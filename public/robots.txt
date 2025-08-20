@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://valentin-marot.fr/sitemap.xml
+
+# Optimisations pour les moteurs de recherche
+Disallow: /api/
+Disallow: /_next/
+Disallow: /404
+Disallow: /500
+
+# Temps de crawl recommandé
+Crawl-delay: 1
+
+# User-agent spécifique pour Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+# User-agent spécifique pour Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0.5
