@@ -1,16 +1,19 @@
-version: '3.8'
-
 services:
   vitrine:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_POSTHOG_KEY: ${NEXT_PUBLIC_POSTHOG_KEY}
+        NEXT_PUBLIC_POSTHOG_HOST: ${NEXT_PUBLIC_POSTHOG_HOST}
     container_name: valentin-marot-vitrine
     restart: unless-stopped
     ports:
       - "3002:3000"  # Port externe 3002, port interne 3000
     environment:
       - NODE_ENV=production
+      - NEXT_PUBLIC_POSTHOG_KEY=${NEXT_PUBLIC_POSTHOG_KEY}
+      - NEXT_PUBLIC_POSTHOG_HOST=${NEXT_PUBLIC_POSTHOG_HOST}
     # Pas de volumes en prod pour des images immuables
     networks:
       - vitrine-network

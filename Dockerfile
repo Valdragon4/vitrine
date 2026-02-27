@@ -1,5 +1,5 @@
 # Utiliser l'image Node.js officielle
-FROM node:18-alpine AS base
+FROM node:20-alpine AS base
 
 # Installer les dépendances uniquement quand nécessaire
 FROM base AS deps
@@ -8,12 +8,19 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Installer toutes les dépendances (production + dev pour la compilation)
-COPY package.json ./
-RUN npm install
+COPY package.json package-lock.json ./
+RUN npm ci
 
 # Reconstruire l'application source
 FROM base AS builder
 WORKDIR /app
+
+# Variables publiques Next.js (doivent être présentes à la build)
+ARG NEXT_PUBLIC_POSTHOG_KEY
+ARG NEXT_PUBLIC_POSTHOG_HOST
+ENV NEXT_PUBLIC_POSTHOG_KEY=$NEXT_PUBLIC_POSTHOG_KEY
+ENV NEXT_PUBLIC_POSTHOG_HOST=$NEXT_PUBLIC_POSTHOG_HOST
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
@@ -25,6 +32,12 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
+
+# Expose aussi les vars au runtime (utile si on ajoute du PostHog côté serveur)
+ARG NEXT_PUBLIC_POSTHOG_KEY
+ARG NEXT_PUBLIC_POSTHOG_HOST
+ENV NEXT_PUBLIC_POSTHOG_KEY=$NEXT_PUBLIC_POSTHOG_KEY
+ENV NEXT_PUBLIC_POSTHOG_HOST=$NEXT_PUBLIC_POSTHOG_HOST
 # Définir un utilisateur non-root pour la sécurité
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

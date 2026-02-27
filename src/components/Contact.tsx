@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Mail, Github, Linkedin, Send, MapPin, Phone } from 'lucide-react';
 import EmailLink from './EmailLink';
+import posthog from '@/lib/posthogClient';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -32,13 +33,16 @@ const Contact = () => {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', message: '' });
+        posthog.capture('contact_form_submitted');
       } else {
         setSubmitStatus('error');
         console.error('Erreur:', data.error);
+        posthog.capture('contact_form_error', { status: response.status, error: data?.error });
       }
     } catch (error) {
       setSubmitStatus('error');
       console.error('Erreur réseau:', error);
+      posthog.capture('contact_form_error', { error: 'network_error' });
     } finally {
       setIsSubmitting(false);
     }
