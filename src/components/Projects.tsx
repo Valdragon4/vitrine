@@ -4,98 +4,21 @@ import { MessageSquare, Server, Code, Database, Globe, Shield, X, ExternalLink }
 import { useState } from 'react';
 import ProjectCard from './ProjectCard';
 import TechBadge from './TechBadge';
-import { trackProjectView, trackExternalLink } from '@/lib/gtm';
+import { projectsData } from '@/lib/projectsData';
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   
   const handleProjectView = (project: any) => {
     setSelectedProject(project);
-    trackProjectView(project.title, project.isExperience ? 'experience' : 'personal');
   };
   
-  const projects = [
-    {
-      title: "Ordely",
-      description: "Développement d'un système automatisé de gestion des commandes clients reçues par SMS, solution complète pour les commerçants.",
-      details: "Les messages sont traités automatiquement, stockés dans un fichier Excel/JSON et affichés via une interface web Flask.",
-      benefit: "Gain de temps pour le commerçant, réduction des erreurs, meilleure traçabilité des commandes.",
-      icon: MessageSquare,
-      technologies: ["Python (Flask)", "Ordely API", "JSON", "Excel (openpyxl)", "HTML/CSS/JS"],
-      color: "violet",
-      fullDescription: "Ordely est un système automatisé développé pour un client boulanger en 2025. Cette solution utilise une API spécialisée pour intercepter les SMS de commandes, les traite automatiquement et les stocke dans des fichiers Excel/JSON. Interface web Flask pour visualiser et gérer les commandes. Détection des doublons intégrée et possibilité d'adaptation à d'autres types de commerces.",
-      features: [
-        "Traitement automatique des SMS entrants",
-        "Interface web Flask pour visualisation",
-        "Export automatique vers Excel",
-        "Détection des commandes en doublon",
-        "Stockage JSON pour flexibilité",
-        "Adaptable à d'autres commerces"
-      ],
-      challenges: "Intégration avec l'API SMS, gestion des formats de commandes variables, optimisation du traitement en temps réel, prévention des doublons.",
-      results: "Gain de temps significatif pour le commerçant, réduction des erreurs de saisie manuelle, meilleure traçabilité et organisation des commandes.",
-      duration: "3 mois (2025)",
-      github: "https://github.com/Valentin-MAROT",
-      demo: "https://boulangerie.valentin-marot.fr",
-      isDemo: true,
-      image: "/images/projects/dashboard.png"
-    },
-    {
-      title: "Homelab & auto-hébergement",
-      description: "Mise en place d'un environnement personnel pour expérimenter l'auto-hébergement et les pratiques DevOps.",
-      details: "Installation et gestion de services tels que Cockpit, Seafile, Portainer, Pi-hole et Pterodactyl Panel.",
-      benefit: "Développement de compétences en administration système, gestion de VPS et déploiement de services en conditions réelles.",
-      icon: Server,
-      technologies: ["Linux (Ubuntu)", "Docker", "Nginx", "Pi-hole", "Pterodactyl", "Cockpit"],
-      color: "blue",
-      fullDescription: "Environnement personnel d'expérimentation démarré en 2024 pour apprendre l'auto-hébergement et les pratiques DevOps. Infrastructure basée sur Ubuntu avec containerisation Docker. Déploiement et gestion de multiples services : Cockpit pour l'administration, Seafile pour le stockage, Portainer pour la gestion Docker, Pi-hole pour le filtrage DNS, et Pterodactyl Panel pour la gestion de serveurs de jeux.",
-      features: [
-        "Administration système avec Cockpit",
-        "Stockage cloud avec Seafile",
-        "Gestion de containers avec Portainer",
-        "Filtrage DNS avec Pi-hole",
-        "Gestion de serveurs de jeux (Pterodactyl)",
-        "Reverse proxy avec Nginx"
-      ],
-      challenges: "Configuration sécurisée des services, gestion des certificats SSL, optimisation des performances, maintenance et mise à jour des services.",
-      results: "Maîtrise de l'administration Linux, compétences en containerisation Docker, expérience pratique en déploiement de services, autonomie en gestion de VPS.",
-      duration: "En cours depuis 2024",
-      github: "https://github.com/Valentin-MAROT",
-      isDemo: false
-      // Pas d'image - utilise le gradient avec l'icône Server
-    },
-    {
-      title: "Site WordPress associatif",
-      description: "Création et mise en ligne d'un site WordPress pour une association, avec migration d'hébergement et configuration DNS.",
-      details: "Accompagnement complet incluant la migration d'hébergement et la configuration Google Workspace.",
-      benefit: "Mise en place d'un site vitrine moderne pour l'association, amélioration de la communication en ligne.",
-      icon: Globe,
-      technologies: ["WordPress", "DNS", "Google Workspace", "Hébergement web"],
-      color: "green",
-      fullDescription: "Projet réalisé en stage chez l'association Les Petites Herbes (avril-juin 2025). Création complète d'un site WordPress vitrine, migration depuis l'ancien hébergement, configuration DNS pour le nouveau domaine, et mise en place de Google Workspace pour la gestion des emails professionnels. Formation des utilisateurs à la gestion du contenu.",
-      features: [
-        "Site WordPress vitrine responsive",
-        "Migration d'hébergement complète",
-        "Configuration DNS et domaine",
-        "Intégration Google Workspace",
-        "Formation des utilisateurs",
-        "Support technique post-déploiement"
-      ],
-      challenges: "Migration sans interruption de service, configuration DNS complexe, formation des utilisateurs non-techniques, compatibilité avec les besoins spécifiques de l'association.",
-      results: "Site moderne et fonctionnel pour l'association, amélioration de la visibilité en ligne, autonomie des utilisateurs pour la gestion du contenu.",
-      duration: "2 mois (avril-juin 2025)",
-      github: "Projet client confidentiel",
-      demo: "Site associatif privé",
-      isExperience: true,
-      isDemo: false,
-      image: "/images/projects/wordpress-association.png"
-    }
-  ];
+  const projects = projectsData;
 
   return (
     <section id="projets" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header amélioré */}
+        {/* Header amélioré avec mise en avant */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl mb-6 shadow-lg">
             <Code className="w-8 h-8 text-white" />
@@ -108,12 +31,12 @@ const Projects = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Découvrez mes projets récents qui illustrent mes compétences en développement, 
-            DevOps et administration système. Chaque projet reflète ma passion pour l'innovation technique.
+            Focus sur <span className="font-semibold text-gray-800">Ordely</span> (en production, passage en <span className="font-semibold">SaaS</span> avec démo bientôt),
+            et sélection de projets représentatifs de mes compétences (DevOps, Admin Système, Web).
           </p>
         </div>
 
-        {/* Grille de projets avec nouvelles cartes */}
+        {/* Grille de projets avec section mise en avant */}
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-20">
           {projects.map((project, index) => (
             <ProjectCard
@@ -251,7 +174,6 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary flex-1 justify-center"
-                    onClick={() => trackExternalLink(selectedProject.demo, `Demo ${selectedProject.title}`)}
                   >
                     <ExternalLink className="w-5 h-5 mr-2" />
                     Voir la démonstration

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import GoogleTagManager from "@/components/GoogleTagManager";
+import { PosthogInit } from "@/components/PosthogInit";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://valentin-marot.fr'),
@@ -143,7 +143,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <GoogleTagManager />
+        <PosthogInit />
         {children}
       </body>
     </html>

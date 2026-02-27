@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Mail, Github, Linkedin, Send, MapPin, Phone } from 'lucide-react';
-import { trackContactForm, trackExternalLink } from '@/lib/gtm';
+import EmailLink from './EmailLink';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -32,16 +32,13 @@ const Contact = () => {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', message: '' });
-        trackContactForm('contact_form', true);
       } else {
         setSubmitStatus('error');
         console.error('Erreur:', data.error);
-        trackContactForm('contact_form', false);
       }
     } catch (error) {
       setSubmitStatus('error');
       console.error('Erreur réseau:', error);
-      trackContactForm('contact_form', false);
     } finally {
       setIsSubmitting(false);
     }
@@ -86,12 +83,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Email</h4>
-                  <a 
-                    href="mailto:contact@valentin-marot.fr" 
-                    className="text-violet-600 hover:text-violet-700 transition-colors duration-200"
-                  >
-                    contact@valentin-marot.fr
-                  </a>
+                  <EmailLink />
                 </div>
               </div>
 
@@ -106,7 +98,6 @@ const Contact = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-violet-600 hover:text-violet-700 transition-colors duration-200"
-                    onClick={() => trackExternalLink('https://github.com/Valentin-MAROT', 'GitHub Profile')}
                   >
                     github.com/Valentin-MAROT
                   </a>
@@ -124,7 +115,6 @@ const Contact = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-violet-600 hover:text-violet-700 transition-colors duration-200"
-                    onClick={() => trackExternalLink('https://www.linkedin.com/in/valentin-marot/', 'LinkedIn Profile')}
                   >
                     linkedin.com/in/valentin-marot
                   </a>

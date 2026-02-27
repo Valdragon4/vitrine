@@ -4,26 +4,14 @@ services:
   vitrine:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     container_name: valentin-marot-vitrine
     restart: unless-stopped
     ports:
       - "3002:3000"  # Port externe 3002, port interne 3000
     environment:
-      - NODE_ENV=development
-      - WATCHPACK_POLLING=true
-      - CHOKIDAR_USEPOLLING=true
-    volumes:
-      # Code source modifiable - utilisation de bind mounts
-      - type: bind
-        source: /opt/vitrine/src
-        target: /app/src
-      - type: bind
-        source: /opt/vitrine/public
-        target: /app/public
-      - type: bind
-        source: /opt/vitrine/.env.local
-        target: /app/.env.local
+      - NODE_ENV=production
+    # Pas de volumes en prod pour des images immuables
     networks:
       - vitrine-network
     healthcheck:

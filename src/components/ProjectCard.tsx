@@ -6,6 +6,7 @@ import TechBadge from './TechBadge';
 
 interface ProjectCardProps {
   project: {
+    slug?: string;
     title: string;
     description: string;
     details: string;
@@ -13,12 +14,13 @@ interface ProjectCardProps {
     icon: any;
     technologies: string[];
     color: string;
-    duration: string;
+    duration?: string;
     demo?: string;
     github?: string;
     isDemo?: boolean;
     isExperience?: boolean;
     image?: string;
+    badges?: string[];
   };
   onViewMore: () => void;
 }
@@ -157,6 +159,15 @@ const ProjectCard = ({ project, onViewMore }: ProjectCardProps) => {
               <Eye className="w-4 h-4" />
               Voir plus
             </button>
+            {project.slug && (
+              <a
+                href={`/projects/${project.slug}`}
+                className="px-4 py-3 border-2 border-gray-300 text-gray-700 hover:bg-gray-100 rounded-2xl font-semibold transition-all duration-300 flex items-center justify-center"
+                title="Détails du projet"
+              >
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            )}
             
             {project.isDemo && project.demo && (
               <a

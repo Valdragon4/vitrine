@@ -4,21 +4,11 @@ Allow: /
 # Sitemap
 Sitemap: https://valentin-marot.fr/sitemap.xml
 
-# Optimisations pour les moteurs de recherche
+# Désactiver l'indexation des dossiers techniques
 Disallow: /api/
 Disallow: /_next/
-Disallow: /404
-Disallow: /500
+Disallow: /admin/
 
-# Temps de crawl recommandé
-Crawl-delay: 1
-
-# User-agent spécifique pour Google
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0.5
-
-# User-agent spécifique pour Bing
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 0.5
+# Autoriser l'indexation des pages importantes
+Allow: /mentions-legales
+Allow: /politique-confidentialite

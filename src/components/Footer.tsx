@@ -105,9 +105,25 @@ const Footer = () => {
         {/* Ligne de séparation */}
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm text-center md:text-left">
-              © 2025 Valentin MAROT. Tous droits réservés.
-            </p>
+            <div className="text-center md:text-left">
+              <p className="text-gray-400 text-sm mb-2">
+                © 2025 Valentin MAROT. Tous droits réservés.
+              </p>
+              <div className="flex flex-wrap justify-center md:justify-start gap-4 text-xs text-gray-500">
+                <a 
+                  href="/mentions-legales" 
+                  className="hover:text-violet-400 transition-colors duration-200"
+                >
+                  Mentions légales
+                </a>
+                <a 
+                  href="/politique-confidentialite" 
+                  className="hover:text-violet-400 transition-colors duration-200"
+                >
+                  Politique de confidentialité
+                </a>
+              </div>
+            </div>
             <p className="text-gray-400 text-sm flex items-center mt-2 md:mt-0">
               Fait avec <Heart className="w-4 h-4 text-red-500 mx-1" /> en France
             </p>

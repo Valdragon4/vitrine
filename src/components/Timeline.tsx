@@ -15,6 +15,7 @@ interface TimelineItem {
   achievements?: string[];
   technologies?: string[];
   current?: boolean;
+  parallel?: boolean;
 }
 
 interface TimelineProps {
@@ -97,6 +98,11 @@ const Timeline = ({ items }: TimelineProps) => {
                       {item.current && (
                         <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">
                           En cours
+                        </span>
+                      )}
+                      {item.parallel && (
+                        <span className="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-700">
+                          En parallèle
                         </span>
                       )}
                     </div>

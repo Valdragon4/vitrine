@@ -15,6 +15,26 @@ export async function POST(request: NextRequest) {
     if (!emailRegex.test(email)) {
       return NextResponse.json({ error: 'Format d\'email invalide' }, { status: 400 });
     }
+    // Vérifier si la configuration SMTP est disponible
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      console.log('Configuration SMTP non disponible, simulation d\'envoi...');
+      
+      // En mode développement, simuler l'envoi d'email
+      console.log('=== SIMULATION EMAIL ===');
+      console.log('De:', process.env.SMTP_FROM || 'contact@valentin-marot.fr');
+      console.log('À:', process.env.CONTACT_EMAIL || 'contact@valentin-marot.fr');
+      console.log('Nom:', name);
+      console.log('Email:', email);
+      console.log('Message:', message);
+      console.log('========================');
+      
+      return NextResponse.json({ 
+        success: true, 
+        message: 'Message reçu ! (Configuration SMTP requise pour l\'envoi réel)',
+        messageId: 'simulation-' + Date.now()
+      }, { status: 200 });
+    }
+    
     console.log('SMTP_HOST:', process.env.SMTP_HOST);
     console.log('SMTP_PORT:', process.env.SMTP_PORT);
     console.log('SMTP_SECURE:', process.env.SMTP_SECURE);

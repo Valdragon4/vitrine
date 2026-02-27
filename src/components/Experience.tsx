@@ -6,13 +6,30 @@ import Timeline from './Timeline';
 const Experience = () => {
   const timelineItems = [
     {
+      id: 'alternance-lacoste',
+      title: 'Alternance - Administrateur Systèmes & Réseaux',
+      company: 'Lacoste',
+      location: 'Paris (hybride)',
+      period: '2025–2026',
+      type: 'experience' as const,
+      description: 'Alternance au sein des équipes IT de Lacoste : administration des infrastructures systèmes et réseaux, sécurité, supervision et automatisation opérationnelle.',
+      achievements: [
+        'Administration quotidienne des systèmes Linux/Windows et équipements réseau',
+        'Durcissement et supervision (monitoring, alerting, mises à jour)',
+        'Automatisation de tâches récurrentes (scripts, CI/CD)',
+        'Amélioration de la sécurité (politiques, certificats, accès)'
+      ],
+      technologies: ['Linux', 'Windows Server', 'Réseaux', 'Sécurité', 'CI/CD', 'Monitoring'],
+      current: true
+    },
+    {
       id: 'formation-master',
       title: 'Master 1 Réseaux & Télécommunications',
       institution: 'Université de Reims Champagne-Ardenne',
       location: 'Reims',
-      period: '2025–2026',
+      period: '2025–2026 (en parallèle de l\'alternance)',
       type: 'education' as const,
-      description: 'Spécialisation en Administration et Sécurité des Réseaux. Formation approfondie sur les infrastructures réseau, la cybersécurité et les télécommunications modernes.',
+      description: 'Spécialisation en Administration et Sécurité des Réseaux, suivie en parallèle de mon alternance chez Lacoste.',
       achievements: [
         'Maîtrise des protocoles réseau avancés',
         'Sécurisation des infrastructures',
@@ -20,7 +37,8 @@ const Experience = () => {
         'Gestion de projets techniques'
       ],
       technologies: ['Réseaux', 'Sécurité', 'Administration système', 'Télécommunications'],
-      current: true
+      current: true,
+      parallel: true
     },
     {
       id: 'formation-licence',
