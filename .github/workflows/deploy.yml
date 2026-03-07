@@ -16,11 +16,15 @@ jobs:
           git fetch origin main
           git reset --hard origin/main
 
-      - name: Rebuild and restart container
+      - name: Build new image
+        run: |
+          cd ~/vitrine
+          docker compose build --no-cache
+
+      - name: Stop old container and start new one
         run: |
           cd ~/vitrine
           docker compose down
-          docker compose build --no-cache
           docker compose up -d
 
       - name: Cleanup unused images
@@ -28,6 +32,6 @@ jobs:
 
       - name: Verify deployment
         run: |
-          sleep 10
+          sleep 15
           curl -f http://localhost:3002 || exit 1
           echo "Deployment completed successfully!"
