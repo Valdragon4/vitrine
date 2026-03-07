@@ -1,152 +1,126 @@
-import { Code, Server, GitBranch, Database, Shield, Zap, Cog, Bot } from 'lucide-react';
+'use client';
+
+import { Globe2, Wrench, Server, MessageCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const Services = () => {
   const services = [
     {
-      title: "Développement d'applications web et systèmes sur mesure",
-      description: "Conception et développement de solutions techniques adaptées aux besoins spécifiques de votre entreprise.",
-      icon: Code,
-      features: [
-        "Applications web avec Python (Flask) et JavaScript", 
-        "Interfaces utilisateur modernes et responsive", 
-        "Architecture scalable et maintenable",
-        "Intégration d'API et bases de données"
-      ]
+      title: 'Site vitrine',
+      subtitle: 'Votre présence en ligne',
+      description: 'Un site clair et moderne pour présenter votre activité. Vos clients vous trouvent, comprennent ce que vous faites, et vous contactent facilement.',
+      icon: Globe2,
+      color: 'from-sky-500 to-blue-600',
+      highlights: ['Design sur mesure', 'Mobile-friendly', 'Formulaire de contact'],
     },
     {
-      title: "Automatisation de processus",
-      description: "Automatisation de tâches répétitives et intégration d'API pour optimiser vos processus métier.",
-      icon: Bot,
-      features: [
-        "Scripts Python pour automatisation", 
-        "Intégration d'API tierces (SMS, email, etc.)", 
-        "Traitement automatique de données",
-        "Solutions sur mesure pour votre secteur"
-      ]
+      title: 'Outils métier',
+      subtitle: 'Simplifiez votre quotidien',
+      description: 'Prise de rendez-vous, commandes en ligne, espace client... Des outils adaptés à votre façon de travailler.',
+      icon: Wrench,
+      color: 'from-violet-500 to-purple-600',
+      highlights: ['Automatisation', 'Gain de temps', 'Moins d\'erreurs'],
     },
     {
-      title: "Mise en place et administration de VPS/services",
-      description: "Installation, configuration et maintenance d'environnements serveur et services auto-hébergés.",
+      title: 'Hébergement & maintenance',
+      subtitle: 'Tranquillité d\'esprit',
+      description: 'Je m\'occupe de la technique : mise en ligne, sauvegardes, mises à jour. Votre site reste rapide et sécurisé.',
       icon: Server,
-      features: [
-        "Configuration Linux (Ubuntu)", 
-        "Containerisation avec Docker", 
-        "Configuration Nginx et reverse proxy",
-        "Sécurisation et maintenance des services"
-      ]
+      color: 'from-emerald-500 to-teal-600',
+      highlights: ['Sauvegardes auto', 'Mises à jour', 'Support réactif'],
     },
     {
-      title: "Déploiement & DevOps de base",
-      description: "Mise en place de pratiques DevOps simples pour le déploiement et la supervision de vos applications.",
-      icon: GitBranch,
-      features: [
-        "Conteneurisation avec Docker", 
-        "CI/CD basique", 
-        "Monitoring et supervision",
-        "Déploiement automatisé"
-      ]
-    }
+      title: 'Accompagnement',
+      subtitle: 'Un interlocuteur unique',
+      description: 'Pas de jargon, des explications claires. Je vous guide à chaque étape et reste disponible pour vos questions.',
+      icon: MessageCircle,
+      color: 'from-amber-500 to-orange-600',
+      highlights: ['Écoute', 'Conseils', 'Évolutions'],
+    },
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-24 bg-transparent">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Mes Services
+        {/* Header */}
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-50 mb-6">
+            Comment je peux <span className="bg-gradient-to-r from-sky-400 to-violet-400 bg-clip-text text-transparent">vous aider</span>
           </h2>
-          <div className="w-24 h-1 bg-violet-600 mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Je propose des solutions complètes pour répondre aux besoins numériques de votre entreprise.
+          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            De l'idée à la mise en ligne, un accompagnement simple et efficace.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Services Grid - 2x2 */}
+        <div className="grid md:grid-cols-2 gap-6 mb-20">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
               <div
                 key={index}
-                className="bg-gray-50 rounded-2xl p-8 hover:bg-violet-50 transition-all duration-300 group"
+                className="group relative bg-slate-900/60 rounded-3xl p-8 border border-slate-800 hover:border-slate-700 transition-all duration-300 hover:bg-slate-900/80"
               >
-                {/* Icône */}
-                <div className="w-16 h-16 bg-violet-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-violet-200 transition-colors duration-200">
-                  <IconComponent className="w-8 h-8 text-violet-600" />
+                {/* Icon */}
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 shadow-lg`}>
+                  <IconComponent className="w-7 h-7 text-white" />
                 </div>
 
-                {/* Titre */}
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {service.title}
-                </h3>
+                {/* Content */}
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm text-slate-500 font-medium mb-1">{service.subtitle}</p>
+                    <h3 className="text-2xl font-bold text-slate-50">{service.title}</h3>
+                  </div>
+                  
+                  <p className="text-slate-400 leading-relaxed">
+                    {service.description}
+                  </p>
 
-                {/* Description */}
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-
-                {/* Fonctionnalités */}
-                <ul className="space-y-2">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-gray-700">
-                      <div className="w-2 h-2 bg-violet-600 rounded-full mr-3"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                  {/* Highlights */}
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    {service.highlights.map((highlight, i) => (
+                      <span
+                        key={i}
+                        className="inline-flex items-center gap-1.5 text-sm text-slate-300"
+                      >
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                        {highlight}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             );
           })}
         </div>
 
-        {/* Section avantages */}
-        <div className="mt-20 bg-gradient-to-r from-violet-50 to-purple-50 rounded-3xl p-12">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Pourquoi me choisir ?
-            </h3>
-            <p className="text-xl text-gray-600">
-              Des solutions sur mesure, simples et efficaces
-            </p>
+        {/* CTA Section */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/50">
+          {/* Background decoration */}
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Zap,
-                title: "Rapidité",
-                description: "Développement agile et livraison rapide"
-              },
-              {
-                icon: Shield,
-                title: "Sécurité",
-                description: "Applications sécurisées et conformes"
-              },
-              {
-                icon: Database,
-                title: "Fiabilité",
-                description: "Solutions robustes et maintenables"
-              },
-              {
-                icon: Code,
-                title: "Sur mesure",
-                description: "Adaptées à vos besoins spécifiques"
-              }
-            ].map((advantage, index) => {
-              const IconComponent = advantage.icon;
-              return (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-violet-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <IconComponent className="w-8 h-8 text-white" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                    {advantage.title}
-                  </h4>
-                  <p className="text-gray-600">
-                    {advantage.description}
-                  </p>
-                </div>
-              );
-            })}
+          <div className="relative px-8 py-16 md:px-16 text-center">
+            <h3 className="text-3xl md:text-4xl font-bold text-slate-50 mb-4">
+              Un projet en tête ?
+            </h3>
+            <p className="text-lg text-slate-400 max-w-xl mx-auto mb-8">
+              Discutons-en.
+            </p>
+            
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-sky-500 to-violet-500 text-white font-semibold text-lg hover:from-sky-400 hover:to-violet-400 transition-all duration-300 shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40"
+            >
+              Parlons de votre projet
+              <ArrowRight className="w-5 h-5" />
+            </a>
+
+            <p className="mt-6 text-sm text-slate-500">
+              Réponse sous 24h • Devis gratuit
+            </p>
           </div>
         </div>
       </div>

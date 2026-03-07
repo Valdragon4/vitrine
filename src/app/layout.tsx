@@ -142,7 +142,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased bg-slate-950">
         <PosthogInit />
         {children}
       </body>

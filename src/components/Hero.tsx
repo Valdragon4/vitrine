@@ -1,84 +1,131 @@
 'use client';
 
+import { Building2, Clock3, Globe2, LayoutTemplate, Sparkles } from 'lucide-react';
+
 const Hero = () => {
   return (
-    <section id="accueil" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-indigo-50">
-      {/* Background moderne avec effets dynamiques */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Dégradés flottants animés */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-violet-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-400/20 to-violet-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-300/10 via-violet-400/10 to-indigo-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
-        
-        {/* Formes géométriques modernes */}
-        <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-violet-200/40 to-purple-300/40 rounded-3xl rotate-12 backdrop-blur-sm"></div>
-        <div className="absolute top-40 right-20 w-20 h-20 bg-gradient-to-br from-indigo-200/50 to-violet-300/50 rounded-2xl -rotate-12 backdrop-blur-sm"></div>
-        <div className="absolute bottom-32 left-1/4 w-24 h-24 bg-gradient-to-br from-purple-200/40 to-indigo-300/40 rounded-full backdrop-blur-sm"></div>
-        <div className="absolute bottom-20 right-1/3 w-16 h-16 bg-gradient-to-br from-violet-300/50 to-purple-400/50 rounded-xl rotate-45 backdrop-blur-sm"></div>
-        
-        {/* Particules flottantes */}
-        <div className="absolute top-1/4 left-1/5 w-2 h-2 bg-violet-400 rounded-full animate-ping opacity-60"></div>
-        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-purple-500 rounded-full animate-ping opacity-40 delay-700"></div>
-        <div className="absolute top-2/3 left-2/3 w-1.5 h-1.5 bg-indigo-400 rounded-full animate-ping opacity-50 delay-1000"></div>
-        
-        {/* Grille moderne avec effet de profondeur */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1)_0%,transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-      </div>
-      
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        {/* Badge moderne */}
-        <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm border border-violet-200 rounded-full text-sm font-medium text-violet-700 mb-8 shadow-sm">
-          <span className="w-2 h-2 bg-violet-500 rounded-full mr-2 animate-pulse"></span>
-          Disponible pour vos projets
-        </div>
-        
-        {/* Nom et titre */}
-        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-          <span className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">Valentin</span> MAROT
-        </h1>
-        
-        {/* Phrase d'accroche */}
-        <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed font-medium">
-          Développeur web & DevOps – Solutions sur mesure pour entreprises et associations
-        </p>
-        
-        {/* Description */}
-        <div className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto space-y-4">
-          <p>
-            J'accompagne les entreprises et associations dans la création de solutions numériques adaptées à leurs besoins.
-          </p>
-        </div>
-        
-        {/* Boutons CTA */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button
-            onClick={() => {
-              const element = document.querySelector('#contact');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="group relative bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white px-8 py-4 rounded-2xl text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-          >
-            <span className="relative z-10">Me contacter</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-violet-700 to-purple-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </button>
-          
-          <button
-            onClick={() => {
-              const element = document.querySelector('#a-propos');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="px-8 py-4 border-2 border-gray-300 hover:border-violet-600 text-gray-700 hover:text-violet-600 rounded-2xl text-lg font-semibold transition-all duration-300 bg-white/50 backdrop-blur-sm hover:bg-white/80"
-          >
-            En savoir plus
-          </button>
-        </div>
-        
+    <section
+      id="accueil"
+      className="relative flex items-center min-h-[80vh] py-20 sm:py-24 lg:py-32"
+    >
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-16 items-center">
+        {/* Colonne gauche : wording */}
+        <div className="space-y-8">
+          <div className="space-y-4">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-slate-50">
+              <span className="block">L&apos;expertise réseau.</span>
+              <span className="block">La passion du code.</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-violet-400">
+                Des solutions sur mesure.
+              </span>
+            </h1>
+            <p className="text-base sm:text-lg text-slate-200/90 max-w-xl leading-relaxed">
+            Étudiant en Master Réseaux & Télécoms et développeur Web & DevOps freelance. Je crée des applications modernes et j'automatise vos infrastructures (Linux, Docker) pour une performance optimale.
+            </p>
+          </div>
 
+          {/* Zone d'action */}
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+            <button
+              onClick={() => {
+                const el = document.querySelector('#projets');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="inline-flex items-center justify-center px-7 py-3 rounded-2xl text-sm font-semibold text-slate-950 bg-sky-400 hover:bg-sky-300 transition-all duration-200 shadow-lg shadow-sky-500/30 hover:shadow-sky-400/40"
+            >
+              Découvrir mes projets
+            </button>
+            <button
+              onClick={() => {
+                const el = document.querySelector('#contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="inline-flex items-center justify-center px-7 py-3 rounded-2xl border border-slate-500/70 text-sm font-semibold text-slate-50 hover:bg-slate-900/70 transition-all duration-200"
+            >
+              Me contacter
+            </button>
+          </div>
+
+          {/* Petite ligne de contexte */}
+          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300/85 pt-4">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-900/90 border border-slate-700/70">
+                <Building2 className="w-3.5 h-3.5 text-sky-300" />
+              </span>
+              <span>Basé en Champagne-Ardenne.</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-900/90 border border-slate-700/70">
+                <Clock3 className="w-3.5 h-3.5 text-emerald-300" />
+              </span>
+              <span>Réponse sous 24h, devis gratuit.</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Colonne droite : mini vitrine services/projets, simple et visuelle */}
+        <div className="relative flex justify-center lg:justify-end">
+          <div className="relative w-full max-w-sm rounded-3xl bg-slate-950/80 border border-slate-800/80 shadow-2xl shadow-slate-900/60 px-6 py-5 overflow-hidden">
+            {/* halo décoratif */}
+            <div className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_10%_0%,rgba(56,189,248,0.4)_0,transparent_40%),radial-gradient(circle_at_100%_100%,rgba(129,140,248,0.35)_0,transparent_45%)] opacity-60" />
+
+            <div className="relative space-y-4">
+              <p className="text-[11px] font-semibold text-slate-200 mb-2 uppercase tracking-[0.18em]">
+                Ce que je mets en place
+              </p>
+
+              <div className="space-y-3 text-[11px]">
+                <div className="group rounded-2xl bg-slate-900/90 border border-slate-700/80 px-4 py-3 flex items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-500/15 border border-sky-400/40">
+                    <Globe2 className="w-4 h-4 text-sky-300" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="font-semibold text-slate-50 text-[11px]">
+                      Sites vitrines clairs
+                    </p>
+                    <p className="text-[10px] text-slate-300">
+                      Pour présenter votre activité et rassurer vos futurs clients.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="group rounded-2xl bg-slate-900/90 border border-slate-700/80 px-4 py-3 flex items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/15 border border-emerald-400/40">
+                    <LayoutTemplate className="w-4 h-4 text-emerald-300" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="font-semibold text-slate-50 text-[11px]">
+                      Services en ligne simples
+                    </p>
+                    <p className="text-[10px] text-slate-300">
+                      Prise de rendez‑vous, demandes de devis, formulaires adaptés à votre métier.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="group rounded-2xl bg-slate-900/90 border border-slate-700/80 px-4 py-3 flex items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-500/15 border border-violet-400/40">
+                    <Sparkles className="w-4 h-4 text-violet-300" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="font-semibold text-slate-50 text-[11px]">
+                      Outils sur mesure
+                    </p>
+                    <p className="text-[10px] text-slate-300">
+                      Petites automatisations et tableaux de bord pensés pour votre quotidien.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* petite “animation” très discrète */}
+              <div className="mt-3 flex items-center gap-2 text-[10px] text-slate-400">
+                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Tout est testé dans mon environnement avant d&apos;être mis en ligne.</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -56,15 +56,15 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-transparent">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-50 mb-4">
             Contact
           </h2>
-          <div className="w-24 h-1 bg-violet-600 mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Un projet en tête ? Une question ? N'hésitez pas à me contacter via ce formulaire ou directement par email.
+          <div className="w-24 h-1 bg-sky-400 mx-auto mb-8" />
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            Un projet en tête ? Une question ? N&apos;hésitez pas à me contacter via ce formulaire ou directement par email.
           </p>
         </div>
 
@@ -72,36 +72,36 @@ const Contact = () => {
           {/* Informations de contact */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              <h3 className="text-2xl font-bold text-slate-50 mb-6">
                 Mes coordonnées
               </h3>
-              <p className="text-gray-600 mb-8">
-                Je suis disponible pour discuter de vos projets et répondre à vos questions. N'hésitez pas à me contacter !
+              <p className="text-slate-300 mb-8">
+                Je suis disponible pour discuter de vos projets et répondre à vos questions. N&apos;hésitez pas à me contacter.
               </p>
             </div>
 
             <div className="space-y-6">
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-violet-100 rounded-full flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-violet-600" />
+                <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-sky-500/40">
+                  <Mail className="w-6 h-6 text-sky-300" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Email</h4>
+                  <h4 className="font-semibold text-slate-50">Email</h4>
                   <EmailLink />
                 </div>
               </div>
 
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-violet-100 rounded-full flex items-center justify-center">
-                  <Github className="w-6 h-6 text-violet-600" />
+                <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-sky-500/40">
+                  <Github className="w-6 h-6 text-sky-300" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">GitHub</h4>
+                  <h4 className="font-semibold text-slate-50">GitHub</h4>
                   <a 
                     href="https://github.com/Valentin-MAROT" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-violet-600 hover:text-violet-700 transition-colors duration-200"
+                    className="text-sky-400 hover:text-sky-300 transition-colors duration-200"
                   >
                     github.com/Valentin-MAROT
                   </a>
@@ -109,16 +109,16 @@ const Contact = () => {
               </div>
 
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-violet-100 rounded-full flex items-center justify-center">
-                  <Linkedin className="w-6 h-6 text-violet-600" />
+                <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-sky-500/40">
+                  <Linkedin className="w-6 h-6 text-sky-300" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">LinkedIn</h4>
+                  <h4 className="font-semibold text-slate-50">LinkedIn</h4>
                   <a 
                     href="https://www.linkedin.com/in/valentin-marot/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-violet-600 hover:text-violet-700 transition-colors duration-200"
+                    className="text-sky-400 hover:text-sky-300 transition-colors duration-200"
                   >
                     linkedin.com/in/valentin-marot
                   </a>
@@ -127,23 +127,23 @@ const Contact = () => {
             </div>
 
             {/* Avantages */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
-              <h4 className="font-semibold text-gray-900 mb-4">Pourquoi me contacter ?</h4>
-              <ul className="space-y-2 text-gray-600">
+            <div className="bg-slate-900/80 rounded-2xl p-6 shadow-sm border border-slate-700/80">
+              <h4 className="font-semibold text-slate-50 mb-4">Pourquoi me contacter ?</h4>
+              <ul className="space-y-2 text-slate-300 text-sm">
                 <li className="flex items-center">
-                  <div className="w-2 h-2 bg-violet-600 rounded-full mr-3"></div>
+                  <div className="w-2 h-2 bg-sky-400 rounded-full mr-3" />
                   Réponse rapide sous 24h
                 </li>
                 <li className="flex items-center">
-                  <div className="w-2 h-2 bg-violet-600 rounded-full mr-3"></div>
+                  <div className="w-2 h-2 bg-sky-400 rounded-full mr-3" />
                   Consultation gratuite
                 </li>
                 <li className="flex items-center">
-                  <div className="w-2 h-2 bg-violet-600 rounded-full mr-3"></div>
+                  <div className="w-2 h-2 bg-sky-400 rounded-full mr-3" />
                   Devis personnalisé
                 </li>
                 <li className="flex items-center">
-                  <div className="w-2 h-2 bg-violet-600 rounded-full mr-3"></div>
+                  <div className="w-2 h-2 bg-sky-400 rounded-full mr-3" />
                   Suivi de projet régulier
                 </li>
               </ul>
@@ -151,14 +151,14 @@ const Contact = () => {
           </div>
 
           {/* Formulaire de contact */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+          <div className="bg-slate-900/80 rounded-2xl shadow-lg p-8 border border-slate-700/80">
+            <h3 className="text-2xl font-bold text-slate-50 mb-6">
               Envoyez-moi un message
             </h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-slate-200 mb-2">
                   Nom complet *
                 </label>
                 <input
@@ -168,13 +168,14 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500 bg-white"
+                  className="w-full px-4 py-3 border border-slate-700 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors duration-200 text-slate-100 placeholder-slate-500 bg-slate-800"
                   placeholder="Votre nom"
+                  style={{ backgroundColor: '#1e293b' }}
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-slate-200 mb-2">
                   Email *
                 </label>
                 <input
@@ -184,13 +185,14 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500 bg-white"
+                  className="w-full px-4 py-3 border border-slate-700 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors duration-200 text-slate-100 placeholder-slate-500 bg-slate-800"
                   placeholder="votre@email.com"
+                  style={{ backgroundColor: '#1e293b' }}
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-slate-200 mb-2">
                   Message *
                 </label>
                 <textarea
@@ -200,21 +202,22 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors duration-200 resize-none text-gray-900 placeholder-gray-500 bg-white"
+                  className="w-full px-4 py-3 border border-slate-700 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors duration-200 resize-none text-slate-100 placeholder-slate-500 bg-slate-800"
                   placeholder="Décrivez votre projet ou votre question..."
+                  style={{ backgroundColor: '#1e293b' }}
                 />
               </div>
 
               {/* Messages de feedback */}
               {submitStatus === 'success' && (
-                <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
+                <div className="p-4 bg-emerald-900/40 border border-emerald-500/60 rounded-lg text-emerald-200 text-sm">
                   <p className="font-medium">✅ Message envoyé avec succès !</p>
                   <p className="text-sm mt-1">Je vous répondrai dans les plus brefs délais.</p>
                 </div>
               )}
 
               {submitStatus === 'error' && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+                <div className="p-4 bg-red-900/40 border border-red-500/60 rounded-lg text-red-100 text-sm">
                   <p className="font-medium">❌ Erreur lors de l'envoi</p>
                   <p className="text-sm mt-1">Veuillez réessayer ou me contacter directement par email.</p>
                 </div>
@@ -225,9 +228,9 @@ const Contact = () => {
                 disabled={isSubmitting}
                 className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${
                   isSubmitting
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-violet-600 hover:bg-violet-700 transform hover:scale-105'
-                } text-white`}
+                    ? 'bg-slate-700 cursor-not-allowed'
+                    : 'bg-sky-500 hover:bg-sky-400 transform hover:scale-105'
+                } text-slate-950`}
               >
                 {isSubmitting ? (
                   <>

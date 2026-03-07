@@ -1,6 +1,6 @@
 'use client';
 
-import { MessageSquare, Server, Code, Database, Globe, Shield, X, ExternalLink } from 'lucide-react';
+import { Code, X, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import ProjectCard from './ProjectCard';
 import TechBadge from './TechBadge';
@@ -16,27 +16,25 @@ const Projects = () => {
   const projects = projectsData;
 
   return (
-    <section id="projets" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="projets" className="py-20 bg-gradient-to-br from-slate-950 via-slate-950 to-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header amélioré avec mise en avant */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl mb-6 shadow-lg">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-sky-500 to-violet-500 rounded-2xl mb-6 shadow-lg shadow-sky-500/40">
             <Code className="w-8 h-8 text-white" />
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Mes <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Projets</span>
+          <h2 className="text-4xl md:text-6xl font-bold text-slate-50 mb-6">
+            Projets <span className="bg-gradient-to-r from-sky-400 to-violet-400 bg-clip-text text-transparent">réalisés</span>
           </h2>
           
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-sky-400 to-violet-400 mx-auto mb-8" />
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Focus sur <span className="font-semibold text-gray-800">Ordely</span> (en production, passage en <span className="font-semibold">SaaS</span> avec démo bientôt),
-            et sélection de projets représentatifs de mes compétences (DevOps, Admin Système, Web).
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            Quelques exemples concrets de projets sur lesquels j&apos;ai travaillé : outils métier,
+            sites vitrines et services en ligne pensés pour des besoins réels.
           </p>
         </div>
 
-        {/* Grille de projets avec section mise en avant */}
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-20">
           {projects.map((project, index) => (
             <ProjectCard
@@ -45,40 +43,6 @@ const Projects = () => {
               onViewMore={() => handleProjectView(project)}
             />
           ))}
-        </div>
-
-        {/* Section compétences techniques améliorée */}
-        <div className="bg-white rounded-3xl p-12 shadow-xl border border-gray-100">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Compétences <span className="text-blue-600">Techniques</span>
-            </h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Technologies et outils que je maîtrise pour créer des solutions robustes et évolutives
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {[
-              { icon: Code, name: "Développement Web", color: "blue", description: "Frontend & Backend" },
-              { icon: Database, name: "Bases de données", color: "green", description: "SQL & NoSQL" },
-              { icon: Server, name: "Administration", color: "purple", description: "Linux & Windows" },
-              { icon: Globe, name: "DevOps", color: "orange", description: "CI/CD & Cloud" },
-              { icon: Shield, name: "Sécurité", color: "red", description: "SSL & Monitoring" },
-              { icon: MessageSquare, name: "API", color: "indigo", description: "REST & GraphQL" }
-            ].map((skill, index) => {
-              const IconComponent = skill.icon;
-              return (
-                <div key={index} className="text-center group cursor-pointer">
-                  <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl">
-                    <IconComponent className="w-10 h-10 text-blue-600 group-hover:text-purple-600 transition-colors duration-300" />
-                  </div>
-                  <h4 className="font-semibold text-gray-900 mb-1">{skill.name}</h4>
-                  <p className="text-sm text-gray-500">{skill.description}</p>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </div>
 
@@ -92,6 +56,7 @@ const Projects = () => {
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mr-6 bg-gradient-to-br ${
                   selectedProject.color === 'violet' ? 'from-violet-500 to-purple-600' :
                   selectedProject.color === 'blue' ? 'from-blue-500 to-cyan-600' :
+                  selectedProject.color === 'orange' ? 'from-orange-500 to-amber-600' :
                   'from-green-500 to-emerald-600'
                 } shadow-lg`}>
                   <selectedProject.icon className="w-8 h-8 text-white" />

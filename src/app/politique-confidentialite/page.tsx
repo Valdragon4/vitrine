@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LegalLayout from "@/components/LegalLayout";
 import EmailLink from "@/components/EmailLink";
 
 export const metadata: Metadata = {
@@ -12,164 +13,128 @@ export const metadata: Metadata = {
 
 export default function PolitiqueConfidentialite() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">
-            Politique de confidentialité
-          </h1>
-          
-          <div className="max-w-none text-gray-700 leading-relaxed">
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                1. Collecte des données personnelles
-              </h2>
-              <p className="mb-4">
-                Dans le cadre de l'utilisation du site valentin-marot.fr, nous sommes amenés à collecter et traiter des données personnelles vous concernant.
-              </p>
-              <p className="mb-4">
-                <strong>Données collectées :</strong>
-              </p>
-              <ul className="list-disc pl-6 mb-4">
-                <li>Données de contact (nom, email, message) via le formulaire de contact</li>
-                <li>Données de navigation de base (adresse IP, pages visitées) via les logs du serveur</li>
-              </ul>
-            </section>
+    <LegalLayout title="Politique de confidentialité">
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-slate-100 mb-4">
+          1. Collecte des données personnelles
+        </h2>
+        <p className="text-slate-300 mb-4">
+          Dans le cadre de l'utilisation du site valentin-marot.fr, nous collectons les données suivantes :
+        </p>
+        <ul className="list-disc pl-6 text-slate-300 space-y-2">
+          <li>Données de contact (nom, email, message) via le formulaire de contact</li>
+          <li>Données de navigation anonymisées via PostHog (analytics)</li>
+        </ul>
+      </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                2. Finalités du traitement
-              </h2>
-              <p className="mb-4">Vos données personnelles sont collectées pour :</p>
-              <ul className="list-disc pl-6 mb-4">
-                <li>Répondre à vos demandes de contact</li>
-                <li>Assurer la sécurité et le bon fonctionnement du site</li>
-                <li>Respecter nos obligations légales</li>
-              </ul>
-            </section>
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-slate-100 mb-4">
+          2. Finalités du traitement
+        </h2>
+        <p className="text-slate-300 mb-4">Vos données personnelles sont collectées pour :</p>
+        <ul className="list-disc pl-6 text-slate-300 space-y-2">
+          <li>Répondre à vos demandes de contact</li>
+          <li>Améliorer l'expérience utilisateur du site</li>
+          <li>Assurer la sécurité et le bon fonctionnement du site</li>
+        </ul>
+      </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                3. Base légale du traitement
-              </h2>
-              <p className="mb-4">
-                Le traitement de vos données personnelles est basé sur :
-              </p>
-              <ul className="list-disc pl-6 mb-4">
-                <li><strong>L'intérêt légitime</strong> pour assurer la sécurité et le bon fonctionnement du site</li>
-                <li><strong>L'exécution du contrat</strong> pour répondre à vos demandes de contact</li>
-              </ul>
-            </section>
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-slate-100 mb-4">
+          3. Cookies et analytics
+        </h2>
+        <p className="text-slate-300 mb-4">
+          Ce site utilise PostHog pour analyser le comportement des visiteurs de manière anonymisée. 
+          Ces données nous aident à améliorer l'expérience utilisateur.
+        </p>
+        <p className="text-slate-300">
+          Vous pouvez désactiver le suivi en utilisant une extension de navigateur type "Do Not Track" 
+          ou en bloquant les scripts tiers.
+        </p>
+      </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                4. Cookies et technologies similaires
-              </h2>
-              <p className="mb-4">
-                Ce site n'utilise pas de cookies de suivi ou d'analyse. Aucune donnée de navigation n'est stockée 
-                sur votre appareil. Les seules données collectées sont celles nécessaires au bon fonctionnement 
-                du site et à la réponse à vos demandes de contact.
-              </p>
-            </section>
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-slate-100 mb-4">
+          4. Partage des données
+        </h2>
+        <p className="text-slate-300 mb-4">
+          Vos données personnelles ne sont pas vendues, louées ou partagées avec des tiers, sauf :
+        </p>
+        <ul className="list-disc pl-6 text-slate-300 space-y-2">
+          <li>En cas d'obligation légale</li>
+          <li>Avec votre consentement explicite</li>
+        </ul>
+      </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                5. Partage des données
-              </h2>
-              <p className="mb-4">
-                Vos données personnelles ne sont pas vendues, louées ou partagées avec des tiers, sauf :
-              </p>
-              <ul className="list-disc pl-6 mb-4">
-                <li>En cas d'obligation légale</li>
-                <li>Avec votre consentement explicite</li>
-              </ul>
-            </section>
-
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                6. Durée de conservation
-              </h2>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <ul className="list-disc pl-6">
-                  <li><strong>Données de contact :</strong> 3 ans après le dernier contact</li>
-                  <li><strong>Logs de navigation :</strong> 12 mois maximum</li>
-                </ul>
-              </div>
-            </section>
-
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                7. Vos droits RGPD
-              </h2>
-              <p className="mb-4">Conformément au RGPD, vous disposez des droits suivants :</p>
-              <ul className="list-disc pl-6 mb-4">
-                <li><strong>Droit d'accès :</strong> obtenir une copie de vos données</li>
-                <li><strong>Droit de rectification :</strong> corriger des données inexactes</li>
-                <li><strong>Droit d'effacement :</strong> supprimer vos données</li>
-                <li><strong>Droit à la limitation :</strong> restreindre le traitement</li>
-                <li><strong>Droit à la portabilité :</strong> récupérer vos données</li>
-                <li><strong>Droit d'opposition :</strong> vous opposer au traitement</li>
-                <li><strong>Droit de retrait du consentement :</strong> à tout moment</li>
-              </ul>
-              <p className="mb-4">
-                Pour exercer ces droits, contactez-nous à : <strong><EmailLink /></strong>
-              </p>
-            </section>
-
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                8. Sécurité des données
-              </h2>
-              <p className="mb-4">
-                Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données 
-                contre la perte, l'utilisation abusive, l'accès non autorisé, la divulgation, l'altération ou la destruction.
-              </p>
-            </section>
-
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                9. Transferts internationaux
-              </h2>
-              <p className="mb-4">
-                Vos données personnelles sont stockées et traitées en France. Aucun transfert vers des pays tiers 
-                n'est effectué.
-              </p>
-            </section>
-
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                10. Réclamations
-              </h2>
-              <p className="mb-4">
-                Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la CNIL :
-              </p>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <p><strong>CNIL</strong></p>
-                <p>3 Place de Fontenoy - TSA 80715 - 75334 PARIS CEDEX 07</p>
-                <p>Téléphone : 01 53 73 22 22</p>
-                <p>Site web : <a href="https://www.cnil.fr" className="text-violet-600 hover:text-violet-800">www.cnil.fr</a></p>
-              </div>
-            </section>
-
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                11. Contact
-              </h2>
-              <p className="mb-4">
-                Pour toute question concernant cette politique de confidentialité :
-              </p>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <p><strong>Email :</strong> <EmailLink /></p>
-                <p><strong>Site web :</strong> https://valentin-marot.fr</p>
-              </div>
-            </section>
-
-            <div className="text-sm text-gray-600 mt-8 pt-4 border-t">
-              <p>Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}</p>
-            </div>
-          </div>
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-slate-100 mb-4">
+          5. Durée de conservation
+        </h2>
+        <div className="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50">
+          <ul className="text-slate-300 space-y-2">
+            <li><span className="text-slate-100 font-medium">Données de contact :</span> 3 ans après le dernier contact</li>
+            <li><span className="text-slate-100 font-medium">Données analytics :</span> 12 mois maximum</li>
+          </ul>
         </div>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-slate-100 mb-4">
+          6. Vos droits RGPD
+        </h2>
+        <p className="text-slate-300 mb-4">Conformément au RGPD, vous disposez des droits suivants :</p>
+        <ul className="list-disc pl-6 text-slate-300 space-y-2">
+          <li><span className="text-slate-100 font-medium">Droit d'accès :</span> obtenir une copie de vos données</li>
+          <li><span className="text-slate-100 font-medium">Droit de rectification :</span> corriger des données inexactes</li>
+          <li><span className="text-slate-100 font-medium">Droit d'effacement :</span> supprimer vos données</li>
+          <li><span className="text-slate-100 font-medium">Droit à la portabilité :</span> récupérer vos données</li>
+          <li><span className="text-slate-100 font-medium">Droit d'opposition :</span> vous opposer au traitement</li>
+        </ul>
+        <p className="text-slate-300 mt-4">
+          Pour exercer ces droits, contactez-nous à : <EmailLink />
+        </p>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-slate-100 mb-4">
+          7. Sécurité des données
+        </h2>
+        <p className="text-slate-300">
+          Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données 
+          contre la perte, l'utilisation abusive, l'accès non autorisé ou la divulgation.
+        </p>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-slate-100 mb-4">
+          8. Réclamations
+        </h2>
+        <p className="text-slate-300 mb-4">
+          Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la CNIL :
+        </p>
+        <div className="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50 space-y-2">
+          <p className="text-slate-100 font-medium">CNIL</p>
+          <p className="text-slate-300">3 Place de Fontenoy - TSA 80715</p>
+          <p className="text-slate-300">75334 PARIS CEDEX 07</p>
+          <p className="text-slate-300">
+            Site web : <a href="https://www.cnil.fr" className="text-sky-400 hover:text-sky-300" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>
+          </p>
+        </div>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-slate-100 mb-4">
+          9. Contact
+        </h2>
+        <div className="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50 space-y-2">
+          <p className="text-slate-300"><span className="text-slate-100 font-medium">Email :</span> <EmailLink /></p>
+          <p className="text-slate-300"><span className="text-slate-100 font-medium">Site web :</span> valentin-marot.fr</p>
+        </div>
+      </section>
+
+      <div className="text-sm text-slate-500 mt-10 pt-6 border-t border-slate-700/50">
+        <p>Dernière mise à jour : Mars 2026</p>
       </div>
-    </div>
+    </LegalLayout>
   );
 }

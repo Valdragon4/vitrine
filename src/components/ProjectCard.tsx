@@ -47,7 +47,7 @@ const ProjectCard = ({ project, onViewMore }: ProjectCardProps) => {
 
   return (
     <>
-      <div className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100">
+      <div className="group relative bg-slate-900/80 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-slate-700/80">
         {/* Image ou gradient de fond - Taille augmentée */}
         <div className="relative h-64 overflow-hidden cursor-pointer" onClick={() => project.image && setShowImageModal(true)}>
           {project.image ? (
@@ -58,10 +58,10 @@ const ProjectCard = ({ project, onViewMore }: ProjectCardProps) => {
                 className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700 ease-out"
               />
               {/* Overlay d'agrandissement au survol */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
-                    <ZoomIn className="w-6 h-6 text-gray-700" />
+                  <div className="bg-slate-950/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
+                    <ZoomIn className="w-6 h-6 text-slate-50" />
                   </div>
                 </div>
               </div>
@@ -101,8 +101,8 @@ const ProjectCard = ({ project, onViewMore }: ProjectCardProps) => {
           {/* Indicateur de clic pour agrandir */}
           {project.image && (
             <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
-              <div className="bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg">
-                <ZoomIn className="w-4 h-4 text-gray-700" />
+              <div className="bg-slate-950/90 backdrop-blur-sm rounded-full p-2 shadow-lg">
+                <ZoomIn className="w-4 h-4 text-slate-50" />
               </div>
             </div>
           )}
@@ -111,25 +111,25 @@ const ProjectCard = ({ project, onViewMore }: ProjectCardProps) => {
         {/* Contenu */}
         <div className="p-6">
           {/* Titre */}
-          <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
+          <h3 className="text-xl font-bold text-slate-50 mb-3 line-clamp-2 group-hover:text-sky-300 transition-colors">
             {project.title}
           </h3>
 
           {/* Description */}
-          <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
+          <p className="text-slate-300 mb-4 line-clamp-3 leading-relaxed">
             {project.description}
           </p>
 
           {/* Bénéfice */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-4 mb-6">
-            <p className="text-blue-800 font-medium text-sm">
+          <div className="bg-gradient-to-r from-sky-500/10 to-violet-500/10 rounded-2xl p-4 mb-6 border border-slate-700/80">
+            <p className="text-sky-200 font-medium text-sm">
               💡 {project.benefit}
             </p>
           </div>
 
           {/* Technologies */}
           <div className="mb-6">
-            <h4 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
+            <h4 className="text-sm font-semibold text-slate-200 mb-3 uppercase tracking-wide">
               Technologies
             </h4>
             <div className="flex flex-wrap gap-2">
@@ -143,7 +143,7 @@ const ProjectCard = ({ project, onViewMore }: ProjectCardProps) => {
                 />
               ))}
               {project.technologies.length > 4 && (
-                <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                <span className="px-2 py-1 bg-slate-800 text-slate-200 text-xs rounded-full">
                   +{project.technologies.length - 4} autres
                 </span>
               )}
@@ -154,7 +154,7 @@ const ProjectCard = ({ project, onViewMore }: ProjectCardProps) => {
           <div className="flex gap-3">
             <button
               onClick={onViewMore}
-              className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+              className="flex-1 bg-gradient-to-r from-sky-500 to-violet-500 hover:from-sky-400 hover:to-violet-400 text-slate-950 py-3 px-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
             >
               <Eye className="w-4 h-4" />
               Voir plus
@@ -162,7 +162,7 @@ const ProjectCard = ({ project, onViewMore }: ProjectCardProps) => {
             {project.slug && (
               <a
                 href={`/projects/${project.slug}`}
-                className="px-4 py-3 border-2 border-gray-300 text-gray-700 hover:bg-gray-100 rounded-2xl font-semibold transition-all duration-300 flex items-center justify-center"
+                className="px-4 py-3 border-2 border-slate-600 text-slate-100 hover:bg-slate-800 rounded-2xl font-semibold transition-all duration-300 flex items-center justify-center"
                 title="Détails du projet"
               >
                 <ExternalLink className="w-4 h-4" />
@@ -174,7 +174,7 @@ const ProjectCard = ({ project, onViewMore }: ProjectCardProps) => {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-3 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white rounded-2xl font-semibold transition-all duration-300 flex items-center justify-center"
+                className="px-4 py-3 border-2 border-sky-500 text-sky-300 hover:bg-sky-500 hover:text-slate-950 rounded-2xl font-semibold transition-all duration-300 flex items-center justify-center"
                 title="Voir la démonstration"
               >
                 <ExternalLink className="w-4 h-4" />

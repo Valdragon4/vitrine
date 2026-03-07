@@ -10,100 +10,56 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { name: 'Accueil', href: '#accueil' },
-    { name: 'À propos', href: '#a-propos' },
-    { name: 'Expérience', href: '#experience' },
-    { name: 'Projets', href: '#projets' },
-    { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMenuOpen(false);
-  };
-
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-200' 
-        : 'bg-transparent'
-    }`}>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-slate-950 backdrop-blur-xl border-b border-slate-800/50 shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
+          : 'bg-slate-950/0 border-b border-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex items-center gap-4">
             <Logo variant="monogram" size="md" />
+            <div className="hidden sm:flex flex-col">
+              <span className="text-xs font-medium uppercase tracking-[0.16em] text-slate-300/80">
+                Valentin Marot
+              </span>
+              <span className="text-[11px] text-slate-400/90">
+                Sites web & solutions numériques pour petites structures
+              </span>
+            </div>
           </div>
-
-          {/* Navigation Desktop */}
-          <nav className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="relative text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-semibold transition-all duration-300 group"
-              >
-                {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-amber-500 group-hover:w-full transition-all duration-300"></span>
-              </button>
-            ))}
-          </nav>
 
           {/* Bouton Contact Desktop */}
           <div className="hidden md:block">
-            <button
-              onClick={() => scrollToSection('#contact')}
-              className="btn-primary"
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-semibold tracking-wide bg-emerald-400 text-slate-950 hover:bg-emerald-300 transition-colors duration-200 shadow-md shadow-emerald-500/40"
+            >
+              Parlez-moi de votre projet
+            </a>
+          </div>
+
+          {/* Menu Mobile (réduit au CTA) */}
+          <div className="md:hidden">
+            <a
+              href="#contact"
+              className="px-3 py-2 rounded-xl text-xs font-semibold tracking-wide bg-emerald-400 text-slate-950 hover:bg-emerald-300 transition-colors duration-200 shadow-md shadow-emerald-500/40"
             >
               Me contacter
-            </button>
-          </div>
-
-          {/* Menu Mobile */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 hover:text-blue-600 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            </a>
           </div>
         </div>
-
-        {/* Menu Mobile Dropdown */}
-        {isMenuOpen && (
-          <div className="md:hidden animate-fade-in-up">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md border-t border-gray-200 rounded-b-2xl shadow-xl">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-3 text-base font-medium transition-all duration-200 rounded-lg"
-                >
-                  {item.name}
-                </button>
-              ))}
-              <button
-                onClick={() => scrollToSection('#contact')}
-                className="block w-full text-left btn-primary mt-4"
-              >
-                Me contacter
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </header>
   );

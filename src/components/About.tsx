@@ -1,105 +1,97 @@
 'use client';
 
-import { Download, GraduationCap, User, Target } from 'lucide-react';
+import { MapPin, Clock, FileText, Mail, Building2 } from 'lucide-react';
 
 const About = () => {
+  const infos = [
+    {
+      icon: Building2,
+      label: 'Statut',
+      value: 'Micro-entreprise',
+      detail: 'SIRET enregistré',
+    },
+    {
+      icon: MapPin,
+      label: 'Localisation',
+      value: 'Champagne-Ardenne',
+      detail: 'Interventions à distance partout en France',
+    },
+    {
+      icon: Clock,
+      label: 'Disponibilité',
+      value: 'Réactif',
+      detail: 'Réponse sous 24h, RDV flexibles',
+    },
+    {
+      icon: FileText,
+      label: 'Facturation',
+      value: 'Simple et claire',
+      detail: 'Devis gratuit, paiement à la livraison',
+    },
+  ];
+
   return (
-    <section id="a-propos" className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="a-propos" className="py-20 bg-transparent">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            À propos de moi
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-50 mb-4">
+            Qui suis-je ?
           </h2>
-          <div className="w-24 h-1 bg-violet-600 mx-auto"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-sky-400 to-violet-400 mx-auto mb-6" />
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Développeur et administrateur système en freelance, je crée des solutions numériques pour les petites structures.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Contenu texte */}
-          <div className="space-y-6">
-            <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0 w-10 h-10 bg-violet-100 rounded-full flex items-center justify-center">
-                <GraduationCap className="w-5 h-5 text-violet-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Formation</h3>
-                <div className="space-y-2">
-                  <p className="text-gray-600 font-medium">
-                    Master 1 Réseaux & Télécommunications – Administration et Sécurité des Réseaux
-                  </p>
-                  <p className="text-sm text-gray-500">Université de Reims Champagne-Ardenne (2025–2026)</p>
-                  <p className="text-gray-600 font-medium">
-                    Licence 3 Informatique
-                  </p>
-                  <p className="text-sm text-gray-500">Université de Reims Champagne-Ardenne (2024–2025)</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0 w-10 h-10 bg-violet-100 rounded-full flex items-center justify-center">
-                <User className="w-5 h-5 text-violet-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Auto-entrepreneur</h3>
-                <p className="text-gray-600">
-                  Passionné par l'automatisation et l'auto-hébergement, je développe des solutions sur mesure pour les entreprises et associations. 
-                  Spécialisé dans l'intégration d'API, l'administration système et les pratiques DevOps.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0 w-10 h-10 bg-violet-100 rounded-full flex items-center justify-center">
-                <Target className="w-5 h-5 text-violet-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Objectif</h3>
-                <p className="text-gray-600">
-                  Concevoir des applications fiables et efficaces, adaptées aux besoins spécifiques de chaque client. 
-                  Focus sur l'automatisation des processus métier et le déploiement de solutions techniques robustes.
-                </p>
-              </div>
-            </div>
-
-            {/* Bouton CV */}
-            <div className="pt-6">
-              <button 
-                onClick={() => {
-                  // Créer un lien de téléchargement
-                  const link = document.createElement('a');
-                  link.href = '/cv-valentin-marot.pdf';
-                  link.download = 'CV-Valentin-MAROT.pdf';
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
-                }}
-                className="inline-flex items-center space-x-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
-              >
-                <Download className="w-5 h-5" />
-                <span>Télécharger mon CV</span>
-              </button>
-            </div>
+        {/* Main content */}
+        <div className="bg-slate-900/50 rounded-3xl border border-slate-800 p-8 md:p-10">
+          {/* Intro */}
+          <div className="mb-10 text-center">
+            <p className="text-slate-300 leading-relaxed max-w-3xl mx-auto">
+              Étudiant en Master Réseaux & Télécoms et passionné d'informatique depuis toujours, 
+              j'ai créé ma micro-entreprise pour accompagner les artisans, commerçants et associations 
+              dans leur présence en ligne. Mon objectif : vous proposer des outils simples et efficaces, 
+              sans vous noyer dans la technique.
+            </p>
           </div>
 
-          {/* Image/Illustration */}
-          <div className="relative">
-            <div className="bg-gradient-to-br from-violet-100 to-violet-200 rounded-2xl p-8 h-80 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-24 h-24 bg-violet-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <User className="w-12 h-12 text-white" />
+          {/* Infos grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {infos.map((info, index) => {
+              const IconComponent = info.icon;
+              return (
+                <div
+                  key={index}
+                  className="bg-slate-800/50 rounded-2xl p-5 border border-slate-700/50 hover:border-slate-600/50 transition-colors"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-slate-700/50 flex items-center justify-center">
+                      <IconComponent className="w-5 h-5 text-sky-400" />
+                    </div>
+                    <span className="text-xs text-slate-500 uppercase tracking-wide font-medium">
+                      {info.label}
+                    </span>
+                  </div>
+                  <p className="text-lg font-semibold text-slate-100 mb-1">{info.value}</p>
+                  <p className="text-sm text-slate-400">{info.detail}</p>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Développeur Full-Stack
-                </h3>
-                <p className="text-gray-600">
-                  Spécialisé en solutions sur mesure
-                </p>
-              </div>
+              );
+            })}
+          </div>
+
+          {/* Contact rapide */}
+          <div className="mt-10 pt-8 border-t border-slate-700/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3 text-slate-400">
+              <Mail className="w-5 h-5" />
+              <span>contact@valentin-marot.fr</span>
             </div>
-            
-            {/* Éléments décoratifs */}
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-violet-400 rounded-full opacity-60"></div>
-            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-violet-300 rounded-full opacity-60"></div>
+            <a
+              href="#contact"
+              className="px-6 py-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 font-medium hover:bg-slate-700 hover:border-slate-600 transition-all"
+            >
+              Me contacter
+            </a>
           </div>
         </div>
       </div>
