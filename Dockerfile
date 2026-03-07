@@ -1,21 +1,14 @@
-# Utiliser l'image Node.js officielle
-FROM node:20-alpine AS base
-
-# Installer les dépendances uniquement quand nécessaire
-FROM base AS deps
-# Vérifier https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine pour comprendre pourquoi libc6-compat pourrait être nécessaire.
+# Stage 1: Dependencies
+FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-
-# Installer toutes les dépendances (production + dev pour la compilation)
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --ignore-scripts
 
-# Reconstruire l'application source
-FROM base AS builder
+# Stage 2: Builder
+FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Variables publiques Next.js (doivent être présentes à la build)
 ARG NEXT_PUBLIC_POSTHOG_KEY
 ARG NEXT_PUBLIC_POSTHOG_HOST
 ENV NEXT_PUBLIC_POSTHOG_KEY=$NEXT_PUBLIC_POSTHOG_KEY
@@ -24,41 +17,26 @@ ENV NEXT_PUBLIC_POSTHOG_HOST=$NEXT_PUBLIC_POSTHOG_HOST
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Générer la build de production
+ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
-# Image de production, copier tous les fichiers et exécuter next
-FROM base AS runner
+# Stage 3: Runner
+FROM node:20-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
-# Expose aussi les vars au runtime (utile si on ajoute du PostHog côté serveur)
-ARG NEXT_PUBLIC_POSTHOG_KEY
-ARG NEXT_PUBLIC_POSTHOG_HOST
-ENV NEXT_PUBLIC_POSTHOG_KEY=$NEXT_PUBLIC_POSTHOG_KEY
-ENV NEXT_PUBLIC_POSTHOG_HOST=$NEXT_PUBLIC_POSTHOG_HOST
-# Définir un utilisateur non-root pour la sécurité
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
-# Copier les fichiers de build
 COPY --from=builder /app/public ./public
-
-# Définir automatiquement le bon propriétaire pour les fichiers
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
-
-# Copier les fichiers de build avec le bon propriétaire
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
-
 EXPOSE 3000
 
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
-
-# Définir la commande par défaut
 CMD ["node", "server.js"]
