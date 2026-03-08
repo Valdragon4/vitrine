@@ -12,6 +12,8 @@ interface Device {
   activateAt: number;
 }
 
+const HERO_THRESHOLD = 0.12;
+
 const CinematicBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -22,12 +24,12 @@ const CinematicBackground = () => {
   const timeRef = useRef(0);
 
   const devices: Device[] = [
-    { id: 'server', iconSrc: '/images/icons/icon-1.png', angle: -90, distance: 180, color: '#38bdf8', glowColor: 'rgba(56, 189, 248, 0.6)', activateAt: 0.05 },
-    { id: 'database', iconSrc: '/images/icons/icon-2.png', angle: -30, distance: 200, color: '#a78bfa', glowColor: 'rgba(167, 139, 250, 0.6)', activateAt: 0.15 },
-    { id: 'cloud', iconSrc: '/images/icons/icon-5.png', angle: 30, distance: 190, color: '#34d399', glowColor: 'rgba(52, 211, 153, 0.6)', activateAt: 0.25 },
-    { id: 'mobile', iconSrc: '/images/icons/icon-6.png', angle: 90, distance: 170, color: '#fb923c', glowColor: 'rgba(251, 146, 60, 0.6)', activateAt: 0.35 },
-    { id: 'security', iconSrc: '/images/icons/icon-4.png', angle: 150, distance: 185, color: '#f472b6', glowColor: 'rgba(244, 114, 182, 0.6)', activateAt: 0.45 },
-    { id: 'api', iconSrc: '/images/icons/icon-3.png', angle: 210, distance: 195, color: '#60a5fa', glowColor: 'rgba(96, 165, 250, 0.6)', activateAt: 0.55 },
+    { id: 'server', iconSrc: '/images/icons/icon-1.png', angle: -90, distance: 180, color: '#38bdf8', glowColor: 'rgba(56, 189, 248, 0.6)', activateAt: 0.15 },
+    { id: 'database', iconSrc: '/images/icons/icon-2.png', angle: -30, distance: 200, color: '#a78bfa', glowColor: 'rgba(167, 139, 250, 0.6)', activateAt: 0.22 },
+    { id: 'cloud', iconSrc: '/images/icons/icon-5.png', angle: 30, distance: 190, color: '#34d399', glowColor: 'rgba(52, 211, 153, 0.6)', activateAt: 0.29 },
+    { id: 'mobile', iconSrc: '/images/icons/icon-6.png', angle: 90, distance: 170, color: '#fb923c', glowColor: 'rgba(251, 146, 60, 0.6)', activateAt: 0.36 },
+    { id: 'security', iconSrc: '/images/icons/icon-4.png', angle: 150, distance: 185, color: '#f472b6', glowColor: 'rgba(244, 114, 182, 0.6)', activateAt: 0.43 },
+    { id: 'api', iconSrc: '/images/icons/icon-3.png', angle: 210, distance: 195, color: '#60a5fa', glowColor: 'rgba(96, 165, 250, 0.6)', activateAt: 0.50 },
   ];
 
   const laptopIconSrc = '/images/icons/icon-7.png';
@@ -108,6 +110,39 @@ const CinematicBackground = () => {
       const time = timeRef.current;
 
       ctx.clearRect(0, 0, dimensions.width, dimensions.height);
+
+      const orbs = [
+        { x: dimensions.width * 0.2, y: dimensions.height * 0.3, radius: 300, color: 'rgba(56, 189, 248, 0.08)' },
+        { x: dimensions.width * 0.8, y: dimensions.height * 0.6, radius: 350, color: 'rgba(139, 92, 246, 0.06)' },
+        { x: dimensions.width * 0.5, y: dimensions.height * 0.8, radius: 280, color: 'rgba(52, 211, 153, 0.05)' },
+      ];
+
+      orbs.forEach((orb, i) => {
+        const wobbleX = Math.sin(time * 0.3 + i) * 20;
+        const wobbleY = Math.cos(time * 0.2 + i * 0.5) * 15;
+        
+        const gradient = ctx.createRadialGradient(
+          orb.x + wobbleX, orb.y + wobbleY, 0,
+          orb.x + wobbleX, orb.y + wobbleY, orb.radius
+        );
+        gradient.addColorStop(0, orb.color);
+        gradient.addColorStop(0.5, orb.color.replace(/[\d.]+\)$/, '0.03)'));
+        gradient.addColorStop(1, 'transparent');
+        
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(orb.x + wobbleX, orb.y + wobbleY, orb.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      const networkOpacity = Math.min(1, Math.max(0, (scrollProgress - HERO_THRESHOLD) * 5));
+      
+      if (networkOpacity <= 0) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      ctx.globalAlpha = networkOpacity;
 
       const devicePositions: { x: number; y: number; progress: number; color: string; glowColor: string }[] = [];
 
@@ -236,6 +271,7 @@ const CinematicBackground = () => {
       
       ctx.save();
       ctx.translate(centerX, centerY);
+      ctx.globalAlpha = networkOpacity;
 
       const laptopGlow = ctx.createRadialGradient(0, 0, 0, 0, 0, laptopSize * 1.3);
       laptopGlow.addColorStop(0, 'rgba(56, 189, 248, 0.35)');
@@ -259,6 +295,7 @@ const CinematicBackground = () => {
       }
 
       ctx.restore();
+      ctx.globalAlpha = networkOpacity;
 
       devices.forEach((device, index) => {
         const deviceProgress = devicePositions[index].progress;
@@ -276,14 +313,14 @@ const CinematicBackground = () => {
           glow.addColorStop(0.4, device.glowColor.replace('0.6', '0.2'));
           glow.addColorStop(1, 'transparent');
           ctx.fillStyle = glow;
-          ctx.globalAlpha = nodeOpacity * 0.7;
+          ctx.globalAlpha = networkOpacity * nodeOpacity * 0.7;
           ctx.beginPath();
           ctx.arc(deviceX, deviceY + wobble, glowSize, 0, Math.PI * 2);
           ctx.fill();
 
           const deviceImg = images.get(device.iconSrc);
           if (deviceImg) {
-            ctx.globalAlpha = nodeOpacity;
+            ctx.globalAlpha = networkOpacity * nodeOpacity;
             ctx.drawImage(
               deviceImg,
               deviceX - iconSize / 2,
@@ -297,6 +334,7 @@ const CinematicBackground = () => {
         }
       });
 
+      ctx.globalAlpha = 1;
       animationRef.current = requestAnimationFrame(animate);
     };
 
