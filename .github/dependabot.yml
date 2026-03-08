@@ -1,0 +1,30 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "deps"
+    labels:
+      - "dependencies"
+    groups:
+      posthog:
+        patterns:
+          - "posthog*"
+          - "@posthog/*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react*"
+      next:
+        patterns:
+          - "next"
+          - "eslint-config-next"
+      dev-dependencies:
+        dependency-type: "development"
+        exclude-patterns:
+          - "typescript"
