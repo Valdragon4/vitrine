@@ -11,13 +11,13 @@ const EmailLink = () => {
   }, []);
 
   if (!mounted) {
-    return <span className="text-sky-400">Email</span>;
+    return <span className="text-zinc-300">Email</span>;
   }
 
   return (
-    <a 
+    <a
       href={`mailto:${email}`}
-      className="text-sky-400 hover:text-sky-300 transition-colors duration-200"
+      className="text-sm text-zinc-300 hover:text-amber-400 transition-colors duration-200"
     >
       {email}
     </a>

@@ -1,94 +1,92 @@
 'use client';
 
-import { MapPin, Clock, FileText, Mail, Building2 } from 'lucide-react';
+import { MapPin, Clock, FileText, Building2, Mail } from 'lucide-react';
+import Parallax from './Parallax';
+
+const infos = [
+  {
+    icon: Building2,
+    label: 'Statut',
+    value: 'Auto-entrepreneur',
+    detail: 'Micro-entreprise, SIRET enregistré',
+  },
+  {
+    icon: MapPin,
+    label: 'Zone',
+    value: 'Champagne-Ardenne',
+    detail: 'À distance partout en France',
+  },
+  {
+    icon: Clock,
+    label: 'Disponibilité',
+    value: 'Réactif',
+    detail: 'Réponse sous 24 h, RDV flexibles',
+  },
+  {
+    icon: FileText,
+    label: 'Facturation',
+    value: 'Claire',
+    detail: 'Devis gratuit, sans surprise',
+  },
+];
 
 const About = () => {
-  const infos = [
-    {
-      icon: Building2,
-      label: 'Statut',
-      value: 'Micro-entreprise',
-      detail: 'SIRET enregistré',
-    },
-    {
-      icon: MapPin,
-      label: 'Localisation',
-      value: 'Champagne-Ardenne',
-      detail: 'Interventions à distance partout en France',
-    },
-    {
-      icon: Clock,
-      label: 'Disponibilité',
-      value: 'Réactif',
-      detail: 'Réponse sous 24h, RDV flexibles',
-    },
-    {
-      icon: FileText,
-      label: 'Facturation',
-      value: 'Simple et claire',
-      detail: 'Devis gratuit, paiement à la livraison',
-    },
-  ];
-
   return (
-    <section id="a-propos" className="py-20 bg-transparent">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-50 mb-4">
-            Qui suis-je ?
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-sky-400 to-violet-400 mx-auto mb-6" />
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Développeur et administrateur système en freelance, je crée des solutions numériques pour les petites structures.
-          </p>
-        </div>
-
-        {/* Main content */}
-        <div className="bg-slate-900/50 rounded-3xl border border-slate-800 p-8 md:p-10">
-          {/* Intro */}
-          <div className="mb-10 text-center">
-            <p className="text-slate-300 leading-relaxed max-w-3xl mx-auto">
-              Étudiant en Master Réseaux & Télécoms et passionné d'informatique depuis toujours, 
-              j'ai créé ma micro-entreprise pour accompagner les artisans, commerçants et associations 
-              dans leur présence en ligne. Mon objectif : vous proposer des outils simples et efficaces, 
-              sans vous noyer dans la technique.
+    <section id="a-propos" className="py-24 sm:py-28">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Parallax speed={0.08}>
+          <div className="mb-12 max-w-2xl">
+            <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
+              04 — À propos
             </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
+              Développeur &amp; administrateur système en freelance
+            </h2>
           </div>
+        </Parallax>
 
-          {/* Infos grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {infos.map((info, index) => {
-              const IconComponent = info.icon;
+        <div className="rounded-2xl border border-zinc-800 bg-[#0c0c0e] p-8 sm:p-10">
+          <p className="text-zinc-400 leading-relaxed max-w-3xl">
+            En Master Réseaux &amp; Télécoms et en alternance sur l&apos;administration
+            systèmes et réseaux, j&apos;ai lancé ma micro-entreprise pour accompagner
+            entreprises, indépendants et associations. Je réunis deux compétences
+            rarement associées : <span className="text-zinc-200">le développement web</span> et{' '}
+            <span className="text-zinc-200">l&apos;infrastructure DevOps</span> — de la
+            conception de l&apos;application jusqu&apos;à son hébergement et sa
+            supervision. Objectif : des solutions robustes, sans jargon inutile.
+          </p>
+
+          {/* Infos */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-10">
+            {infos.map((info) => {
+              const Icon = info.icon;
               return (
                 <div
-                  key={index}
-                  className="bg-slate-800/50 rounded-2xl p-5 border border-slate-700/50 hover:border-slate-600/50 transition-colors"
+                  key={info.label}
+                  className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-slate-700/50 flex items-center justify-center">
-                      <IconComponent className="w-5 h-5 text-sky-400" />
-                    </div>
-                    <span className="text-xs text-slate-500 uppercase tracking-wide font-medium">
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <Icon className="w-4 h-4 text-amber-400" />
+                    <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wide">
                       {info.label}
                     </span>
                   </div>
-                  <p className="text-lg font-semibold text-slate-100 mb-1">{info.value}</p>
-                  <p className="text-sm text-slate-400">{info.detail}</p>
+                  <p className="text-base font-semibold text-zinc-100 mb-1">{info.value}</p>
+                  <p className="text-xs text-zinc-500">{info.detail}</p>
                 </div>
               );
             })}
           </div>
 
           {/* Contact rapide */}
-          <div className="mt-10 pt-8 border-t border-slate-700/50 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-slate-400">
-              <Mail className="w-5 h-5" />
-              <span>contact@valentin-marot.fr</span>
+          <div className="mt-8 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-2.5 font-mono text-sm text-zinc-400">
+              <Mail className="w-4 h-4 text-zinc-600" />
+              contact@valentin-marot.fr
             </div>
             <a
               href="#contact"
-              className="px-6 py-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 font-medium hover:bg-slate-700 hover:border-slate-600 transition-all"
+              className="px-5 py-2.5 rounded-lg border border-zinc-700 text-zinc-200 text-sm font-medium hover:border-zinc-500 hover:text-white transition-colors"
             >
               Me contacter
             </a>

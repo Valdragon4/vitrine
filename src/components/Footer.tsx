@@ -1,139 +1,91 @@
 'use client';
 
-import { Mail, Github, Linkedin, Heart } from 'lucide-react';
+import { Mail, Github, Linkedin } from 'lucide-react';
+
+const NAV = [
+  { label: 'Services', href: '#services' },
+  { label: 'Projets', href: '#projets' },
+  { label: 'Parcours', href: '#experience' },
+  { label: 'À propos', href: '#a-propos' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const SOCIAL = [
+  { icon: Mail, href: 'mailto:contact@valentin-marot.fr', label: 'Email' },
+  { icon: Github, href: 'https://github.com/Valentin-MAROT', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/valentin-marot/', label: 'LinkedIn' },
+];
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-950/80 backdrop-blur-sm text-slate-100 py-12 border-t border-slate-800">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 items-center">
-          {/* Logo et description */}
-          <div className="text-center md:text-left">
-            <h3 className="text-2xl font-bold mb-2">
-              <span className="text-sky-400">Valentin</span> MAROT
-            </h3>
-            <p className="text-slate-400 text-sm">
-              Sites web & solutions numériques pour petites structures
+    <footer className="border-t border-zinc-800 bg-[#0a0a0b]/80 backdrop-blur-sm">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div className="grid md:grid-cols-3 gap-10">
+          {/* Identité */}
+          <div>
+            <p className="text-lg font-semibold text-zinc-100">Valentin Marot</p>
+            <p className="font-mono text-xs text-zinc-500 mt-1">
+              Développeur web &amp; DevOps · Freelance
             </p>
-          </div>
-
-          {/* Liens rapides */}
-          <div className="text-center">
-            <h4 className="font-semibold mb-4">Navigation</h4>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <button
-                onClick={() => {
-                  const element = document.querySelector('#accueil');
-                  if (element) element.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="text-slate-400 hover:text-sky-400 transition-colors duration-200"
-              >
-                Accueil
-              </button>
-              <button
-                onClick={() => {
-                  const element = document.querySelector('#a-propos');
-                  if (element) element.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="text-slate-400 hover:text-sky-400 transition-colors duration-200"
-              >
-                À propos
-              </button>
-              <button
-                onClick={() => {
-                  const element = document.querySelector('#projets');
-                  if (element) element.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="text-slate-400 hover:text-sky-400 transition-colors duration-200"
-              >
-                Projets
-              </button>
-              <button
-                onClick={() => {
-                  const element = document.querySelector('#services');
-                  if (element) element.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="text-slate-400 hover:text-sky-400 transition-colors duration-200"
-              >
-                Services
-              </button>
-              <button
-                onClick={() => {
-                  const element = document.querySelector('#contact');
-                  if (element) element.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="text-slate-400 hover:text-sky-400 transition-colors duration-200"
-              >
-                Contact
-              </button>
+            <div className="flex gap-2 mt-5">
+              {SOCIAL.map((s) => {
+                const Icon = s.icon;
+                return (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target={s.href.startsWith('http') ? '_blank' : undefined}
+                    rel="noopener noreferrer"
+                    title={s.label}
+                    className="w-9 h-9 rounded-lg border border-zinc-800 bg-zinc-900 flex items-center justify-center text-zinc-400 hover:text-amber-400 hover:border-zinc-700 transition-colors"
+                  >
+                    <Icon className="w-4 h-4" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
-          {/* Liens sociaux */}
-          <div className="text-center md:text-right">
-            <h4 className="font-semibold mb-4">Suivez-moi</h4>
-            <div className="flex justify-center md:justify-end space-x-4">
-              <a
-                href="mailto:contact@valentin-marot.fr"
-                className="w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center hover:bg-sky-500 transition-colors duration-200"
-                title="Email"
-              >
-                <Mail className="w-5 h-5" />
+          {/* Navigation */}
+          <div>
+            <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-wide mb-4">Navigation</p>
+            <div className="grid grid-cols-2 gap-y-2">
+              {NAV.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-zinc-400 hover:text-amber-400 transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Légal */}
+          <div>
+            <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-wide mb-4">Informations</p>
+            <div className="flex flex-col gap-2">
+              <a href="/mentions-legales" className="text-sm text-zinc-400 hover:text-amber-400 transition-colors">
+                Mentions légales
               </a>
-              <a
-                href="https://github.com/Valentin-MAROT"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center hover:bg-sky-500 transition-colors duration-200"
-                title="GitHub"
-              >
-                <Github className="w-5 h-5" />
+              <a href="/politique-confidentialite" className="text-sm text-zinc-400 hover:text-amber-400 transition-colors">
+                Politique de confidentialité
               </a>
-              <a
-                href="https://www.linkedin.com/in/valentin-marot/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center hover:bg-sky-500 transition-colors duration-200"
-                title="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
+              <a href="/cgv" className="text-sm text-zinc-400 hover:text-amber-400 transition-colors">
+                CGV
               </a>
             </div>
           </div>
         </div>
 
-        {/* Ligne de séparation */}
-        <div className="border-t border-slate-800 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-center md:text-left">
-              <p className="text-slate-400 text-sm mb-2">
-                © 2026 Valentin MAROT. Tous droits réservés.
-              </p>
-              <div className="flex flex-wrap justify-center md:justify-start gap-4 text-xs text-slate-500">
-                <a 
-                  href="/mentions-legales" 
-                  className="hover:text-sky-400 transition-colors duration-200"
-                >
-                  Mentions légales
-                </a>
-                <a 
-                  href="/politique-confidentialite" 
-                  className="hover:text-sky-400 transition-colors duration-200"
-                >
-                  Politique de confidentialité
-                </a>
-                <a 
-                  href="/cgv" 
-                  className="hover:text-sky-400 transition-colors duration-200"
-                >
-                  CGV
-                </a>
-              </div>
-            </div>
-            <p className="text-slate-400 text-sm flex items-center mt-2 md:mt-0">
-              Fait avec <Heart className="w-4 h-4 text-red-500 mx-1" /> en France
-            </p>
-          </div>
+        <div className="mt-12 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row justify-between items-center gap-2">
+          <p className="font-mono text-xs text-zinc-600">
+            © 2026 Valentin Marot — Tous droits réservés
+          </p>
+          <p className="font-mono text-xs text-zinc-600">
+            Next.js · React Three Fiber
+          </p>
         </div>
       </div>
     </footer>

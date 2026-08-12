@@ -8,44 +8,32 @@ interface LogoProps {
 
 const Logo = ({ size = 'md', variant = 'full', className = '' }: LogoProps) => {
   const sizeClasses = {
-    sm: 'w-8 h-8 text-lg',
-    md: 'w-12 h-12 text-xl',
-    lg: 'w-16 h-16 text-2xl'
+    sm: 'w-8 h-8 text-sm',
+    md: 'w-11 h-11 text-base',
+    lg: 'w-16 h-16 text-2xl',
   };
 
-  const textSizeClasses = {
-    sm: 'text-lg',
-    md: 'text-xl', 
-    lg: 'text-2xl'
-  };
+  const monogram = (
+    <div
+      className={`${sizeClasses[size]} rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center ${className}`}
+    >
+      <span className="font-mono font-semibold text-amber-400 tracking-tight">
+        VM
+      </span>
+    </div>
+  );
 
-  if (variant === 'monogram') {
-    return (
-      <div className={`${sizeClasses[size]} ${className}`}>
-        <div className="w-full h-full bg-gradient-to-br from-blue-600 to-amber-500 rounded-xl flex items-center justify-center shadow-lg">
-          <span className={`${textSizeClasses[size]} font-bold text-white`}>
-            VM
-          </span>
-        </div>
-      </div>
-    );
-  }
+  if (variant === 'monogram') return monogram;
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <div className={sizeClasses[size]}>
-        <div className="w-full h-full bg-gradient-to-br from-blue-600 to-amber-500 rounded-xl flex items-center justify-center shadow-lg">
-          <span className={`${textSizeClasses[size]} font-bold text-white`}>
-            VM
-          </span>
-        </div>
-      </div>
+      {monogram}
       <div className="flex flex-col">
-        <span className="font-bold text-gray-900 text-lg leading-tight">
-          Valentin <span className="text-blue-600">MAROT</span>
+        <span className="font-semibold text-zinc-100 text-base leading-tight">
+          Valentin Marot
         </span>
-        <span className="text-sm text-gray-600 font-medium">
-          Développeur Full-Stack
+        <span className="font-mono text-xs text-zinc-500">
+          Développeur web &amp; DevOps
         </span>
       </div>
     </div>
