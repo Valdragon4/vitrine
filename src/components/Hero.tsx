@@ -1,6 +1,7 @@
 'use client';
 
 import { Building2, Clock3, Globe2, LayoutTemplate, Sparkles } from 'lucide-react';
+import HeroCanvas from './hero/HeroCanvas';
 
 const Hero = () => {
   return (
@@ -8,6 +9,9 @@ const Hero = () => {
       id="accueil"
       className="relative flex items-center min-h-[80vh] py-20 sm:py-24 lg:py-32"
     >
+      {/* Scène 3D décorative (React Three Fiber) en arrière-plan du contenu. */}
+      <HeroCanvas />
+
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-16 items-center">
         {/* Colonne gauche : wording */}
         <div className="space-y-8">
