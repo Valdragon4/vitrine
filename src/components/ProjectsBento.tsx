@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ArrowRight, X, ExternalLink, MessageSquare, TrendingUp, Play, Mail, HardDrive, Globe, Server } from 'lucide-react';
 import Parallax from './Parallax';
+import SectionWatermark from './SectionWatermark';
 
 interface BentoProject {
   id: string;
@@ -120,9 +121,10 @@ const ProjectsBento = () => {
   const [selected, setSelected] = useState<BentoProject | null>(null);
 
   return (
-    <section id="projets" className="py-24 sm:py-28">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Parallax speed={0.08}>
+    <section id="projets" className="relative py-24 sm:py-28 overflow-hidden">
+      <SectionWatermark text="build" align="left" />
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Parallax speed={0.18}>
           <div className="mb-14 max-w-2xl">
             <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
               02 — Projets

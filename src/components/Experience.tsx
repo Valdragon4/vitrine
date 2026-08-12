@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import Timeline from './Timeline';
 import Parallax from './Parallax';
+import SectionWatermark from './SectionWatermark';
 
 const Experience = () => {
   const [showAll, setShowAll] = useState(false);
@@ -145,10 +146,11 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 sm:py-28">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="relative py-24 sm:py-28 overflow-hidden">
+      <SectionWatermark text="history" align="right" />
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <Parallax speed={0.08}>
+        <Parallax speed={0.18}>
           <div className="mb-14 max-w-2xl">
             <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
               03 — Parcours

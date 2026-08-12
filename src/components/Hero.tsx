@@ -50,7 +50,7 @@ const Hero = () => {
           </div>
 
           {/* Stack technique (mono) */}
-          <Parallax speed={0.06} className="mt-12">
+          <Parallax speed={0.16} className="mt-12">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-zinc-500">
               <span className="text-zinc-600">stack&nbsp;:</span>
               {STACK.map((tech, i) => (
@@ -65,7 +65,8 @@ const Hero = () => {
           </Parallax>
 
           {/* Meta */}
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-zinc-500">
+          <Parallax speed={0.28} className="mt-8">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-zinc-500">
             <span className="inline-flex items-center gap-2">
               <MapPin className="w-4 h-4 text-zinc-600" />
               Champagne-Ardenne · à distance partout en France
@@ -75,6 +76,7 @@ const Hero = () => {
               Réponse sous 24 h · devis gratuit
             </span>
           </div>
+          </Parallax>
         </div>
       </div>
     </section>
