@@ -28,7 +28,7 @@ const Header = () => {
           : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
         <div className="flex justify-between items-center h-20">
           <a href="#accueil" aria-label="Accueil">
             <Logo variant="full" size="md" />

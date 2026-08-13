@@ -51,7 +51,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="relative py-24 sm:py-28 overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
         <Parallax speed={0.10}>
           <div className="mb-14 max-w-2xl">
             <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
@@ -196,6 +196,20 @@ const Contact = () => {
                   </>
                 )}
               </button>
+
+              {/* Mention RGPD */}
+              <p className="text-xs text-zinc-500 leading-relaxed">
+                Les informations envoyées via ce formulaire servent uniquement à
+                répondre à votre demande. Elles ne sont ni conservées à d&apos;autres
+                fins, ni transmises à des tiers —{' '}
+                <a
+                  href="/politique-confidentialite"
+                  className="underline decoration-zinc-700 underline-offset-2 hover:text-zinc-300 transition-colors"
+                >
+                  politique de confidentialité
+                </a>
+                .
+              </p>
             </form>
           </div>
         </div>
