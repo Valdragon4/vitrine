@@ -35,8 +35,8 @@ const About = () => {
   return (
     <section id="a-propos" className="relative py-24 sm:py-28 overflow-hidden">
       <SectionWatermark text="whoami" align="left" />
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Parallax speed={0.18}>
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Parallax speed={0.10}>
           <div className="mb-12 max-w-2xl">
             <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
               04 — À propos

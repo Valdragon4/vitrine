@@ -61,34 +61,61 @@ function StarLayer({
 }
 
 interface FloatingDef {
-  geo: 'octahedron' | 'box' | 'tetrahedron' | 'icosahedron';
+  geo:
+    | 'octahedron'
+    | 'box'
+    | 'tetrahedron'
+    | 'icosahedron'
+    | 'dodecahedron'
+    | 'torus'
+    | 'ring';
   position: [number, number, number];
   scale: number;
   color: THREE.Color;
   spin: number;
   parallax: number; // amplitude du déplacement vertical piloté au scroll
+  bob: number; // amplitude du flottement propre, indépendant du scroll
 }
 
+/**
+ * Les objets portent l'essentiel de la parallaxe : répartis sur toute la course
+ * de la caméra (y 0 -> -30), ils traversent le champ à des vitesses relatives
+ * très contrastées (parallax 10 -> 34).
+ */
 const FLOATERS: FloatingDef[] = [
-  { geo: 'box', position: [-6, 4, -6], scale: 0.9, color: WHITE, spin: 0.25, parallax: 10 },
-  { geo: 'octahedron', position: [7, -2, -10], scale: 1.4, color: AMBER, spin: -0.3, parallax: 16 },
-  { geo: 'tetrahedron', position: [-8, -8, -14], scale: 1.6, color: WHITE, spin: 0.35, parallax: 22 },
-  { geo: 'box', position: [9, 8, -18], scale: 1.2, color: WHITE, spin: -0.2, parallax: 26 },
-  { geo: 'icosahedron', position: [-4, 12, -12], scale: 1.1, color: AMBER, spin: 0.28, parallax: 18 },
-  { geo: 'octahedron', position: [5, 16, -8], scale: 0.8, color: WHITE, spin: -0.4, parallax: 12 },
+  // Visibles dès le hero
+  { geo: 'box', position: [-7, 4, -6], scale: 0.9, color: WHITE, spin: 0.25, parallax: 10, bob: 0.5 },
+  { geo: 'octahedron', position: [8, -2, -10], scale: 1.4, color: AMBER, spin: -0.3, parallax: 16, bob: 0.7 },
+  { geo: 'torus', position: [-10, -3, -12], scale: 1.5, color: WHITE, spin: 0.2, parallax: 20, bob: 0.6 },
+  { geo: 'tetrahedron', position: [-8, -9, -14], scale: 1.6, color: WHITE, spin: 0.35, parallax: 24, bob: 0.8 },
+  { geo: 'ring', position: [10, -8, -16], scale: 2.4, color: AMBER, spin: 0.15, parallax: 18, bob: 0.5 },
+  // Entrent en scène au fil du défilement (la caméra descend, eux montent)
+  { geo: 'box', position: [9, -14, -18], scale: 1.2, color: WHITE, spin: -0.2, parallax: 28, bob: 0.9 },
+  { geo: 'icosahedron', position: [-5, -18, -12], scale: 1.1, color: AMBER, spin: 0.28, parallax: 22, bob: 0.7 },
+  { geo: 'dodecahedron', position: [6, -22, -20], scale: 1.8, color: WHITE, spin: 0.18, parallax: 30, bob: 1.0 },
+  { geo: 'torus', position: [-9, -26, -9], scale: 1.0, color: AMBER, spin: -0.25, parallax: 14, bob: 0.6 },
+  { geo: 'octahedron', position: [11, -30, -14], scale: 1.3, color: WHITE, spin: 0.32, parallax: 26, bob: 0.8 },
+  { geo: 'tetrahedron', position: [-11, -34, -22], scale: 2.0, color: WHITE, spin: -0.22, parallax: 34, bob: 1.1 },
+  { geo: 'ring', position: [4, -38, -11], scale: 1.8, color: WHITE, spin: 0.12, parallax: 20, bob: 0.5 },
+  { geo: 'icosahedron', position: [-6, -42, -16], scale: 1.4, color: AMBER, spin: 0.26, parallax: 24, bob: 0.9 },
+  { geo: 'box', position: [8, -46, -8], scale: 0.8, color: WHITE, spin: -0.35, parallax: 12, bob: 0.6 },
 ];
 
-function Floater({ def }: { def: FloatingDef }) {
+function Floater({ def, seed }: { def: FloatingDef; seed: number }) {
   const ref = useRef<THREE.Mesh>(null);
-  const baseY = def.position[1];
+  const [baseX, baseY] = def.position;
 
   useFrame((state, delta) => {
     const m = ref.current;
     if (!m) return;
     m.rotation.x += delta * def.spin;
     m.rotation.y += delta * def.spin * 0.7;
-    // Déplacement vertical piloté par le scroll -> parallaxe entre objets.
-    m.position.y = baseY + scroll.progress * def.parallax;
+    // Flottement propre (dérive lente + oscillation) par-dessus le déplacement
+    // vertical piloté par le scroll -> parallaxe entre objets.
+    const t = state.clock.elapsedTime;
+    m.position.x = baseX + Math.sin(t * 0.25 + seed * 2.1) * 0.5;
+    m.position.y =
+      baseY + scroll.progress * def.parallax + Math.sin(t * 0.5 + seed) * def.bob;
   });
 
   return (
@@ -97,11 +124,14 @@ function Floater({ def }: { def: FloatingDef }) {
       {def.geo === 'octahedron' && <octahedronGeometry args={[1, 0]} />}
       {def.geo === 'tetrahedron' && <tetrahedronGeometry args={[1, 0]} />}
       {def.geo === 'icosahedron' && <icosahedronGeometry args={[1, 0]} />}
+      {def.geo === 'dodecahedron' && <dodecahedronGeometry args={[1, 0]} />}
+      {def.geo === 'torus' && <torusGeometry args={[1, 0.35, 8, 28]} />}
+      {def.geo === 'ring' && <torusGeometry args={[1, 0.015, 6, 72]} />}
       <meshBasicMaterial
         color={def.color}
-        wireframe
+        wireframe={def.geo !== 'ring'}
         transparent
-        opacity={def.color === AMBER ? 0.4 : 0.28}
+        opacity={def.color === AMBER ? 0.45 : 0.3}
       />
     </mesh>
   );
@@ -144,13 +174,13 @@ function Rig() {
   useFrame((state) => {
     const p = scroll.progress;
     // Course caméra plus marquée -> parallaxe plus intense entre les couches.
-    const targetY = -p * 26;
+    const targetY = -p * 30;
     camera.position.y += (targetY - camera.position.y) * 0.08;
     // Léger recul au scroll pour ouvrir la profondeur.
-    const targetZ = 12 + p * 4;
+    const targetZ = 12 + p * 5;
     camera.position.z += (targetZ - camera.position.z) * 0.05;
     // Parallaxe souris renforcée.
-    camera.position.x += (state.pointer.x * 2.2 - camera.position.x) * 0.05;
+    camera.position.x += (state.pointer.x * 2.6 - camera.position.x) * 0.05;
     camera.rotation.z = state.pointer.x * 0.02;
     camera.lookAt(0, camera.position.y * 0.9, 0);
   });
@@ -172,7 +202,7 @@ const Scene = () => {
       <StarLayer count={240} z={-11} size={0.08} amberRatio={0.05} spreadX={30} spreadY={80} />
       <StarLayer count={110} z={-3} size={0.11} amberRatio={0.14} spreadX={24} spreadY={72} />
       {FLOATERS.map((def, i) => (
-        <Floater key={i} def={def} />
+        <Floater key={i} def={def} seed={i} />
       ))}
       <WireCore />
     </Canvas>
