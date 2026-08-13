@@ -6,19 +6,19 @@ import ProjectsBento from '@/components/ProjectsBento';
 import Services from '@/components/Services';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import CinematicBackground from '@/components/CinematicBackground';
+import SceneBackground from '@/components/scene/SceneBackground';
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-slate-50">
-      <CinematicBackground />
+    <main className="min-h-screen text-zinc-200">
+      <SceneBackground />
       <div className="relative z-10">
         <Header />
         <Hero />
-        <ProjectsBento />
         <Services />
-        <About />
+        <ProjectsBento />
         <Experience />
+        <About />
         <Contact />
         <Footer />
       </div>

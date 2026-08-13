@@ -1,16 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Github, Linkedin, Send, MapPin, Phone } from 'lucide-react';
+import { Mail, Github, Linkedin, Send } from 'lucide-react';
 import EmailLink from './EmailLink';
+import Parallax from './Parallax';
+import SectionWatermark from './SectionWatermark';
 import posthog from '@/lib/posthogClient';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -18,18 +16,13 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
-
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
       const data = await response.json();
-
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', message: '' });
@@ -49,116 +42,84 @@ const Contact = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const links = [
+    { icon: Github, label: 'GitHub', value: 'github.com/Valentin-MAROT', href: 'https://github.com/Valentin-MAROT' },
+    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/valentin-marot', href: 'https://www.linkedin.com/in/valentin-marot/' },
+  ];
+
   return (
-    <section id="contact" className="py-20 bg-transparent">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-50 mb-4">
-            Contact
-          </h2>
-          <div className="w-24 h-1 bg-sky-400 mx-auto mb-8" />
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Un projet en tête ? Une question ? N&apos;hésitez pas à me contacter via ce formulaire ou directement par email.
-          </p>
-        </div>
+    <section id="contact" className="relative py-24 sm:py-28 overflow-hidden">
+      <SectionWatermark text="connect" align="right" />
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Parallax speed={0.18}>
+          <div className="mb-14 max-w-2xl">
+            <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
+              05 — Contact
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
+              Parlons de votre projet
+            </h2>
+            <p className="mt-4 text-zinc-400 leading-relaxed">
+              Une idée, un besoin technique, une question ? Écrivez-moi, je réponds
+              sous 24 h.
+            </p>
+          </div>
+        </Parallax>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Informations de contact */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-slate-50 mb-6">
-                Mes coordonnées
-              </h3>
-              <p className="text-slate-300 mb-8">
-                Je suis disponible pour discuter de vos projets et répondre à vos questions. N&apos;hésitez pas à me contacter.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-sky-500/40">
-                  <Mail className="w-6 h-6 text-sky-300" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-50">Email</h4>
-                  <EmailLink />
-                </div>
+        <div className="grid lg:grid-cols-2 gap-6">
+          {/* Coordonnées */}
+          <div className="rounded-2xl border border-zinc-800 bg-[#0c0c0e] p-8 flex flex-col">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-11 h-11 rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center">
+                <Mail className="w-5 h-5 text-amber-400" />
               </div>
-
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-sky-500/40">
-                  <Github className="w-6 h-6 text-sky-300" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-50">GitHub</h4>
-                  <a 
-                    href="https://github.com/Valentin-MAROT" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-sky-400 hover:text-sky-300 transition-colors duration-200"
-                  >
-                    github.com/Valentin-MAROT
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-sky-500/40">
-                  <Linkedin className="w-6 h-6 text-sky-300" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-50">LinkedIn</h4>
-                  <a 
-                    href="https://www.linkedin.com/in/valentin-marot/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-sky-400 hover:text-sky-300 transition-colors duration-200"
-                  >
-                    linkedin.com/in/valentin-marot
-                  </a>
-                </div>
+              <div>
+                <p className="font-mono text-[10px] text-zinc-500 uppercase tracking-wide mb-0.5">Email</p>
+                <EmailLink />
               </div>
             </div>
 
-            {/* Avantages */}
-            <div className="bg-slate-900/80 rounded-2xl p-6 shadow-sm border border-slate-700/80">
-              <h4 className="font-semibold text-slate-50 mb-4">Pourquoi me contacter ?</h4>
-              <ul className="space-y-2 text-slate-300 text-sm">
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-sky-400 rounded-full mr-3" />
-                  Réponse rapide sous 24h
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-sky-400 rounded-full mr-3" />
-                  Consultation gratuite
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-sky-400 rounded-full mr-3" />
-                  Devis personnalisé
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-sky-400 rounded-full mr-3" />
-                  Suivi de projet régulier
-                </li>
+            <div className="space-y-3">
+              {links.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900/40 px-4 py-3 hover:border-zinc-700 transition-colors group"
+                  >
+                    <Icon className="w-5 h-5 text-zinc-500 group-hover:text-amber-400 transition-colors" />
+                    <div>
+                      <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-wide">{link.label}</p>
+                      <p className="text-sm text-zinc-300">{link.value}</p>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+
+            <div className="mt-auto pt-8">
+              <ul className="grid grid-cols-2 gap-2 font-mono text-xs text-zinc-500">
+                {['Réponse sous 24 h', 'Devis gratuit', 'Échange sans engagement', 'Suivi régulier'].map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-amber-500" />
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
 
-          {/* Formulaire de contact */}
-          <div className="bg-slate-900/80 rounded-2xl shadow-lg p-8 border border-slate-700/80">
-            <h3 className="text-2xl font-bold text-slate-50 mb-6">
-              Envoyez-moi un message
-            </h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Formulaire */}
+          <div className="rounded-2xl border border-zinc-800 bg-[#0c0c0e] p-8">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-slate-200 mb-2">
+                <label htmlFor="name" className="block font-mono text-xs text-zinc-500 uppercase tracking-wide mb-2">
                   Nom complet *
                 </label>
                 <input
@@ -168,14 +129,13 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-slate-700 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors duration-200 text-slate-100 placeholder-slate-500 bg-slate-800"
+                  className="w-full px-4 py-3 rounded-lg focus:outline-none"
                   placeholder="Votre nom"
-                  style={{ backgroundColor: '#1e293b' }}
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-slate-200 mb-2">
+                <label htmlFor="email" className="block font-mono text-xs text-zinc-500 uppercase tracking-wide mb-2">
                   Email *
                 </label>
                 <input
@@ -185,14 +145,13 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-slate-700 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors duration-200 text-slate-100 placeholder-slate-500 bg-slate-800"
+                  className="w-full px-4 py-3 rounded-lg focus:outline-none"
                   placeholder="votre@email.com"
-                  style={{ backgroundColor: '#1e293b' }}
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-200 mb-2">
+                <label htmlFor="message" className="block font-mono text-xs text-zinc-500 uppercase tracking-wide mb-2">
                   Message *
                 </label>
                 <textarea
@@ -201,46 +160,41 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={6}
-                  className="w-full px-4 py-3 border border-slate-700 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors duration-200 resize-none text-slate-100 placeholder-slate-500 bg-slate-800"
-                  placeholder="Décrivez votre projet ou votre question..."
-                  style={{ backgroundColor: '#1e293b' }}
+                  rows={5}
+                  className="w-full px-4 py-3 rounded-lg focus:outline-none resize-none"
+                  placeholder="Décrivez votre projet ou votre question…"
                 />
               </div>
 
-              {/* Messages de feedback */}
               {submitStatus === 'success' && (
-                <div className="p-4 bg-emerald-900/40 border border-emerald-500/60 rounded-lg text-emerald-200 text-sm">
-                  <p className="font-medium">✅ Message envoyé avec succès !</p>
-                  <p className="text-sm mt-1">Je vous répondrai dans les plus brefs délais.</p>
+                <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm">
+                  Message envoyé. Je vous réponds au plus vite.
                 </div>
               )}
-
               {submitStatus === 'error' && (
-                <div className="p-4 bg-red-900/40 border border-red-500/60 rounded-lg text-red-100 text-sm">
-                  <p className="font-medium">❌ Erreur lors de l'envoi</p>
-                  <p className="text-sm mt-1">Veuillez réessayer ou me contacter directement par email.</p>
+                <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300 text-sm">
+                  Erreur lors de l&apos;envoi. Réessayez ou écrivez-moi directement par email.
                 </div>
               )}
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${
+                className={`w-full py-3 px-6 rounded-lg font-semibold text-sm transition-colors flex items-center justify-center gap-2 ${
                   isSubmitting
-                    ? 'bg-slate-700 cursor-not-allowed'
-                    : 'bg-sky-500 hover:bg-sky-400 transform hover:scale-105'
-                } text-slate-950`}
+                    ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
+                    : 'bg-amber-500 text-zinc-950 hover:bg-amber-400'
+                }`}
               >
                 {isSubmitting ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Envoi en cours...</span>
+                    <span className="w-4 h-4 border-2 border-zinc-600 border-t-transparent rounded-full animate-spin" />
+                    Envoi…
                   </>
                 ) : (
                   <>
-                    <Send className="w-5 h-5" />
-                    <span>Envoyer le message</span>
+                    <Send className="w-4 h-4" />
+                    Envoyer le message
                   </>
                 )}
               </button>

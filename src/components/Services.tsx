@@ -1,127 +1,117 @@
 'use client';
 
-import { Globe2, Wrench, Server, MessageCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Code2, Workflow, Server, Activity, ArrowRight, Check } from 'lucide-react';
+import Parallax from './Parallax';
+import SectionWatermark from './SectionWatermark';
+
+const services = [
+  {
+    n: '01',
+    title: 'Développement web',
+    icon: Code2,
+    description:
+      "Sites vitrines et applications sur mesure, du front à l'API. Code propre, rapide et pensé pour évoluer.",
+    points: ['Next.js / React', 'API Python (Flask, Django)', 'Bases de données SQL'],
+  },
+  {
+    n: '02',
+    title: 'Automatisation & DevOps',
+    icon: Workflow,
+    description:
+      'Je fiabilise vos déploiements : conteneurisation, pipelines CI/CD et scripts pour supprimer les tâches manuelles.',
+    points: ['Docker & Compose', 'Pipelines CI/CD', 'Déploiements reproductibles'],
+  },
+  {
+    n: '03',
+    title: 'Infrastructure & hébergement',
+    icon: Server,
+    description:
+      "Mise en ligne et administration de vos services sur Linux : reverse-proxy, certificats, DNS, auto-hébergement.",
+    points: ['Serveurs Linux / VPS', 'Nginx, SSL/TLS, DNS', 'Auto-hébergement'],
+  },
+  {
+    n: '04',
+    title: 'Supervision & maintenance',
+    icon: Activity,
+    description:
+      'Votre infra reste saine dans le temps : monitoring, sauvegardes automatiques, mises à jour et sécurité.',
+    points: ['Monitoring & alertes', 'Sauvegardes automatisées', 'Mises à jour & durcissement'],
+  },
+];
 
 const Services = () => {
-  const services = [
-    {
-      title: 'Site vitrine',
-      subtitle: 'Votre présence en ligne',
-      description: 'Un site clair et moderne pour présenter votre activité. Vos clients vous trouvent, comprennent ce que vous faites, et vous contactent facilement.',
-      icon: Globe2,
-      color: 'from-sky-500 to-blue-600',
-      highlights: ['Design sur mesure', 'Mobile-friendly', 'Formulaire de contact'],
-    },
-    {
-      title: 'Outils métier',
-      subtitle: 'Simplifiez votre quotidien',
-      description: 'Prise de rendez-vous, commandes en ligne, espace client... Des outils adaptés à votre façon de travailler.',
-      icon: Wrench,
-      color: 'from-violet-500 to-purple-600',
-      highlights: ['Automatisation', 'Gain de temps', 'Moins d\'erreurs'],
-    },
-    {
-      title: 'Hébergement & maintenance',
-      subtitle: 'Tranquillité d\'esprit',
-      description: 'Je m\'occupe de la technique : mise en ligne, sauvegardes, mises à jour. Votre site reste rapide et sécurisé.',
-      icon: Server,
-      color: 'from-emerald-500 to-teal-600',
-      highlights: ['Sauvegardes auto', 'Mises à jour', 'Support réactif'],
-    },
-    {
-      title: 'Accompagnement',
-      subtitle: 'Un interlocuteur unique',
-      description: 'Pas de jargon, des explications claires. Je vous guide à chaque étape et reste disponible pour vos questions.',
-      icon: MessageCircle,
-      color: 'from-amber-500 to-orange-600',
-      highlights: ['Écoute', 'Conseils', 'Évolutions'],
-    },
-  ];
-
   return (
-    <section id="services" className="py-24 bg-transparent">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-50 mb-6">
-            Comment je peux <span className="bg-gradient-to-r from-sky-400 to-violet-400 bg-clip-text text-transparent">vous aider</span>
-          </h2>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-            De l'idée à la mise en ligne, un accompagnement simple et efficace.
-          </p>
-        </div>
+    <section id="services" className="relative py-24 sm:py-28 overflow-hidden">
+      <SectionWatermark text="deploy" align="right" />
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Parallax speed={0.18}>
+          <div className="mb-14 max-w-2xl">
+            <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
+              01 — Services
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
+              Du code à la production, un seul interlocuteur
+            </h2>
+            <p className="mt-4 text-zinc-400 leading-relaxed">
+              Je couvre l&apos;ensemble de la chaîne : concevoir l&apos;application,
+              l&apos;automatiser, la déployer et la maintenir.
+            </p>
+          </div>
+        </Parallax>
 
-        {/* Services Grid - 2x2 */}
-        <div className="grid md:grid-cols-2 gap-6 mb-20">
-          {services.map((service, index) => {
-            const IconComponent = service.icon;
+        <div className="grid sm:grid-cols-2 gap-px bg-zinc-800/60 rounded-2xl overflow-hidden border border-zinc-800/60">
+          {services.map((service) => {
+            const Icon = service.icon;
             return (
               <div
-                key={index}
-                className="group relative bg-slate-900/60 rounded-3xl p-8 border border-slate-800 hover:border-slate-700 transition-all duration-300 hover:bg-slate-900/80"
+                key={service.n}
+                className="group bg-[#0c0c0e] p-8 transition-colors hover:bg-zinc-900/60"
               >
-                {/* Icon */}
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 shadow-lg`}>
-                  <IconComponent className="w-7 h-7 text-white" />
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-11 h-11 rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center group-hover:border-amber-500/50 transition-colors">
+                    <Icon className="w-5 h-5 text-amber-400" />
+                  </div>
+                  <span className="font-mono text-xs text-zinc-600">{service.n}</span>
                 </div>
 
-                {/* Content */}
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-sm text-slate-500 font-medium mb-1">{service.subtitle}</p>
-                    <h3 className="text-2xl font-bold text-slate-50">{service.title}</h3>
-                  </div>
-                  
-                  <p className="text-slate-400 leading-relaxed">
-                    {service.description}
-                  </p>
+                <h3 className="text-xl font-semibold text-zinc-100 mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-zinc-400 leading-relaxed mb-5">
+                  {service.description}
+                </p>
 
-                  {/* Highlights */}
-                  <div className="flex flex-wrap gap-3 pt-2">
-                    {service.highlights.map((highlight, i) => (
-                      <span
-                        key={i}
-                        className="inline-flex items-center gap-1.5 text-sm text-slate-300"
-                      >
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                        {highlight}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <ul className="space-y-2">
+                  {service.points.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-center gap-2.5 font-mono text-xs text-zinc-500"
+                    >
+                      <Check className="w-3.5 h-3.5 text-amber-500/80 flex-shrink-0" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
               </div>
             );
           })}
         </div>
 
-        {/* CTA Section */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/50">
-          {/* Background decoration */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-          </div>
-
-          <div className="relative px-8 py-16 md:px-16 text-center">
-            <h3 className="text-3xl md:text-4xl font-bold text-slate-50 mb-4">
-              Un projet en tête ?
-            </h3>
-            <p className="text-lg text-slate-400 max-w-xl mx-auto mb-8">
-              Discutons-en.
-            </p>
-            
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-sky-500 to-violet-500 text-white font-semibold text-lg hover:from-sky-400 hover:to-violet-400 transition-all duration-300 shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40"
-            >
-              Parlons de votre projet
-              <ArrowRight className="w-5 h-5" />
-            </a>
-
-            <p className="mt-6 text-sm text-slate-500">
-              Réponse sous 24h • Devis gratuit
+        {/* CTA */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/40 px-8 py-7">
+          <div>
+            <p className="text-lg font-semibold text-zinc-100">Un projet en tête ?</p>
+            <p className="text-sm text-zinc-500 font-mono mt-1">
+              Réponse sous 24 h · devis gratuit
             </p>
           </div>
+          <a
+            href="#contact"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors"
+          >
+            Parlons-en
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+          </a>
         </div>
       </div>
     </section>

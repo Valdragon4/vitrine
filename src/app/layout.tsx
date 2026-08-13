@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     google: 'your-google-verification-code', // À remplacer par votre code Google Search Console
   },
   other: {
-    'theme-color': '#2563eb',
+    'theme-color': '#0a0a0b',
     'color-scheme': 'light dark',
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'default',
@@ -142,7 +142,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased bg-slate-950">
+      <body className="antialiased bg-[#0a0a0b]">
         <PosthogInit />
         {children}
       </body>

@@ -1,130 +1,82 @@
 'use client';
 
-import { Building2, Clock3, Globe2, LayoutTemplate, Sparkles } from 'lucide-react';
+import { ArrowRight, MapPin, Clock3 } from 'lucide-react';
+import Parallax from './Parallax';
+
+const STACK = ['Linux', 'Docker', 'Python', 'Next.js', 'Nginx', 'CI/CD', 'PostgreSQL'];
 
 const Hero = () => {
   return (
     <section
       id="accueil"
-      className="relative flex items-center min-h-[80vh] py-20 sm:py-24 lg:py-32"
+      className="relative flex items-center min-h-[92vh] pt-32 pb-20"
     >
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-16 items-center">
-        {/* Colonne gauche : wording */}
-        <div className="space-y-8">
-          <div className="space-y-4">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-slate-50">
-              <span className="block">L&apos;expertise réseau.</span>
-              <span className="block">La passion du code.</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-violet-400">
-                Des solutions sur mesure.
-              </span>
-            </h1>
-            <p className="text-base sm:text-lg text-slate-200/90 max-w-xl leading-relaxed">
-            Étudiant en Master Réseaux & Télécoms et développeur Web & DevOps freelance. Je crée des applications modernes et j'automatise vos infrastructures (Linux, Docker) pour une performance optimale.
-            </p>
-          </div>
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          {/* Eyebrow */}
+          <p className="font-mono text-xs sm:text-sm tracking-[0.15em] uppercase text-amber-400 mb-6">
+            Développeur web &amp; DevOps · Freelance
+          </p>
 
-          {/* Zone d'action */}
-          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
-            <button
-              onClick={() => {
-                const el = document.querySelector('#projets');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="inline-flex items-center justify-center px-7 py-3 rounded-2xl text-sm font-semibold text-slate-950 bg-sky-400 hover:bg-sky-300 transition-all duration-200 shadow-lg shadow-sky-500/30 hover:shadow-sky-400/40"
+          {/* Titre */}
+          <h1 className="text-4xl sm:text-5xl lg:text-[3.75rem] font-bold leading-[1.05] tracking-tight text-zinc-50">
+            Je conçois, déploie et héberge
+            <br className="hidden sm:block" /> vos applications{' '}
+            <span className="text-amber-400">web</span>.
+          </h1>
+
+          {/* Sous-titre précis */}
+          <p className="mt-7 text-lg text-zinc-400 leading-relaxed max-w-2xl">
+            Développement d&apos;applications sur mesure et infrastructure DevOps :
+            automatisation, conteneurisation, administration Linux et hébergement.
+            Un seul interlocuteur, du code à la mise en production.
+          </p>
+
+          {/* CTA */}
+          <div className="mt-9 flex flex-col sm:flex-row gap-3 sm:items-center">
+            <a
+              href="#projets"
+              className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors"
             >
-              Découvrir mes projets
-            </button>
-            <button
-              onClick={() => {
-                const el = document.querySelector('#contact');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="inline-flex items-center justify-center px-7 py-3 rounded-2xl border border-slate-500/70 text-sm font-semibold text-slate-50 hover:bg-slate-900/70 transition-all duration-200"
+              Voir mes réalisations
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg text-sm font-semibold border border-zinc-700 text-zinc-200 hover:border-zinc-500 hover:text-white transition-colors"
             >
-              Me contacter
-            </button>
+              Discuter d&apos;un projet
+            </a>
           </div>
 
-          {/* Petite ligne de contexte */}
-          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300/85 pt-4">
-            <div className="flex items-center gap-2">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-900/90 border border-slate-700/70">
-                <Building2 className="w-3.5 h-3.5 text-sky-300" />
-              </span>
-              <span>Basé en Champagne-Ardenne.</span>
+          {/* Stack technique (mono) */}
+          <Parallax speed={0.16} className="mt-12">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-zinc-500">
+              <span className="text-zinc-600">stack&nbsp;:</span>
+              {STACK.map((tech, i) => (
+                <span key={tech} className="flex items-center gap-4">
+                  <span className="text-zinc-400">{tech}</span>
+                  {i < STACK.length - 1 && (
+                    <span className="text-zinc-700">/</span>
+                  )}
+                </span>
+              ))}
             </div>
-            <div className="flex items-center gap-2">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-900/90 border border-slate-700/70">
-                <Clock3 className="w-3.5 h-3.5 text-emerald-300" />
-              </span>
-              <span>Réponse sous 24h, devis gratuit.</span>
-            </div>
+          </Parallax>
+
+          {/* Meta */}
+          <Parallax speed={0.28} className="mt-8">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-zinc-500">
+            <span className="inline-flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-zinc-600" />
+              Champagne-Ardenne · à distance partout en France
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Clock3 className="w-4 h-4 text-zinc-600" />
+              Réponse sous 24 h · devis gratuit
+            </span>
           </div>
-        </div>
-
-        {/* Colonne droite : mini vitrine services/projets, simple et visuelle */}
-        <div className="relative flex justify-center lg:justify-end">
-          <div className="relative w-full max-w-sm rounded-3xl bg-slate-950/80 border border-slate-800/80 shadow-2xl shadow-slate-900/60 px-6 py-5 overflow-hidden">
-            {/* halo décoratif */}
-            <div className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_10%_0%,rgba(56,189,248,0.4)_0,transparent_40%),radial-gradient(circle_at_100%_100%,rgba(129,140,248,0.35)_0,transparent_45%)] opacity-60" />
-
-            <div className="relative space-y-4">
-              <p className="text-[11px] font-semibold text-slate-200 mb-2 uppercase tracking-[0.18em]">
-                Ce que je mets en place
-              </p>
-
-              <div className="space-y-3 text-[11px]">
-                <div className="group rounded-2xl bg-slate-900/90 border border-slate-700/80 px-4 py-3 flex items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-500/15 border border-sky-400/40">
-                    <Globe2 className="w-4 h-4 text-sky-300" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <p className="font-semibold text-slate-50 text-[11px]">
-                      Sites vitrines clairs
-                    </p>
-                    <p className="text-[10px] text-slate-300">
-                      Pour présenter votre activité et rassurer vos futurs clients.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="group rounded-2xl bg-slate-900/90 border border-slate-700/80 px-4 py-3 flex items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/15 border border-emerald-400/40">
-                    <LayoutTemplate className="w-4 h-4 text-emerald-300" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <p className="font-semibold text-slate-50 text-[11px]">
-                      Services en ligne simples
-                    </p>
-                    <p className="text-[10px] text-slate-300">
-                      Prise de rendez‑vous, demandes de devis, formulaires adaptés à votre métier.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="group rounded-2xl bg-slate-900/90 border border-slate-700/80 px-4 py-3 flex items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-500/15 border border-violet-400/40">
-                    <Sparkles className="w-4 h-4 text-violet-300" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <p className="font-semibold text-slate-50 text-[11px]">
-                      Outils sur mesure
-                    </p>
-                    <p className="text-[10px] text-slate-300">
-                      Petites automatisations et tableaux de bord pensés pour votre quotidien.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* petite “animation” très discrète */}
-              <div className="mt-3 flex items-center gap-2 text-[10px] text-slate-400">
-                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Tout est testé dans mon environnement avant d&apos;être mis en ligne.</span>
-              </div>
-            </div>
-          </div>
+          </Parallax>
         </div>
       </div>
     </section>

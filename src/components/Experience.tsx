@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { GraduationCap, Briefcase, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import Timeline from './Timeline';
+import Parallax from './Parallax';
+import SectionWatermark from './SectionWatermark';
 
 const Experience = () => {
   const [showAll, setShowAll] = useState(false);
@@ -144,25 +146,24 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-transparent">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header amélioré */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-sky-500 rounded-2xl mb-6 shadow-lg shadow-emerald-500/40">
-            <Briefcase className="w-8 h-8 text-white" />
+    <section id="experience" className="relative py-24 sm:py-28 overflow-hidden">
+      <SectionWatermark text="history" align="right" />
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <Parallax speed={0.18}>
+          <div className="mb-14 max-w-2xl">
+            <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
+              03 — Parcours
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
+              Une double casquette réseau &amp; développement
+            </h2>
+            <p className="mt-4 text-zinc-400 leading-relaxed">
+              Formations, stages et alternance en administration systèmes et
+              réseaux, qui nourrissent mon approche DevOps.
+            </p>
           </div>
-          
-          <h2 className="text-4xl md:text-6xl font-bold text-slate-50 mb-6">
-            Mon <span className="bg-gradient-to-r from-emerald-400 to-sky-400 bg-clip-text text-transparent">parcours</span>
-          </h2>
-          
-          <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-sky-400 mx-auto mb-8" />
-          
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Quelques expériences marquantes (formations, stages, alternance) qui expliquent ma double
-            casquette réseau / développement.
-          </p>
-        </div>
+        </Parallax>
 
         {/* Timeline */}
         <div className="mb-8">
@@ -170,53 +171,42 @@ const Experience = () => {
         </div>
 
         {/* Bouton Voir plus / Réduire */}
-        <div className="flex justify-center mb-16">
+        <div className="flex mb-16">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="group flex items-center gap-3 px-6 py-3 rounded-2xl bg-slate-800/60 border border-slate-700/60 text-slate-300 hover:text-slate-100 hover:bg-slate-800 hover:border-slate-600 transition-all duration-300"
+            className="group flex items-center gap-2.5 px-5 py-2.5 rounded-lg border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-colors font-mono text-xs"
           >
-            <span className="text-sm font-medium">
-              {showAll ? 'Réduire' : 'Voir mon parcours complet'}
-            </span>
-            <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${showAll ? 'rotate-180' : 'group-hover:translate-y-1'}`} />
+            <span>{showAll ? 'Réduire' : 'Voir le parcours complet'}</span>
+            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showAll ? 'rotate-180' : 'group-hover:translate-y-0.5'}`} />
           </button>
         </div>
 
         {/* Call to action */}
-        <div className="text-center mt-12">
-          <div className="bg-slate-900/80 rounded-3xl p-10 shadow-xl shadow-slate-900/60 border border-slate-700/80">
-            <h3 className="text-2xl font-bold text-slate-50 mb-4">
-              Intéressé par mon profil ?
-            </h3>
-            <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
-              Je suis toujours ouvert aux nouvelles opportunités et collaborations. 
-              N'hésitez pas à me contacter pour discuter de vos projets.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => {
-                  const element = document.querySelector('#contact');
-                  if (element) element.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-2xl text-sm font-semibold bg-sky-400 text-slate-950 hover:bg-sky-300 transition-all duration-200 shadow-lg shadow-sky-500/30"
-              >
-                Me contacter
-              </button>
-              <button
-                onClick={() => {
-                  // Télécharger le CV
-                  const link = document.createElement('a');
-                  link.href = '/cv-valentin-marot.pdf';
-                  link.download = 'CV-Valentin-MAROT.pdf';
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
-                }}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-2xl text-sm font-semibold border border-slate-500/70 text-slate-100 hover:bg-slate-900/70 transition-all duration-200"
-              >
-                Télécharger mon CV
-              </button>
-            </div>
+        <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-8 sm:p-10">
+          <h3 className="text-xl font-semibold text-zinc-100 mb-3">
+            Intéressé par mon profil ?
+          </h3>
+          <p className="text-zinc-400 mb-7 max-w-2xl text-sm leading-relaxed">
+            Ouvert aux missions freelance comme aux opportunités en alternance.
+            Parlons de votre besoin.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={() => {
+                const element = document.querySelector('#contact');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg text-sm font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors"
+            >
+              Me contacter
+            </button>
+            <a
+              href="/cv-valentin-marot.pdf"
+              download="CV-Valentin-MAROT.pdf"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg text-sm font-semibold border border-zinc-700 text-zinc-200 hover:border-zinc-500 hover:text-white transition-colors"
+            >
+              Télécharger mon CV
+            </a>
           </div>
         </div>
       </div>

@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { ArrowRight, X, ExternalLink, MessageSquare, TrendingUp, Play, Mail, HardDrive, Globe, Server } from 'lucide-react';
+import Parallax from './Parallax';
+import SectionWatermark from './SectionWatermark';
 
 interface BentoProject {
   id: string;
@@ -10,8 +12,7 @@ interface BentoProject {
   result: string;
   description: string;
   image?: string;
-  icon: any;
-  color: string;
+  icon: React.ComponentType<{ className?: string }>;
   size: 'large' | 'medium' | 'small';
   badges: string[];
   technologies: string[];
@@ -24,243 +25,212 @@ const projects: BentoProject[] = [
     title: 'Ordely',
     problem: 'Trop de temps perdu au téléphone',
     result: 'Commandes automatisées par SMS',
-    description: 'Application de gestion de commandes pour commerces de proximité. Les clients envoient leur commande par SMS, le système la comprend automatiquement grâce à l\'IA et l\'organise dans un tableau de bord.',
+    description:
+      "Application de gestion de commandes pour commerces de proximité. Les clients envoient leur commande par SMS, le système la comprend automatiquement grâce à l'IA et l'organise dans un tableau de bord.",
     image: '/images/projects/ordely.png',
     icon: MessageSquare,
-    color: 'from-orange-500 to-amber-500',
     size: 'large',
     badges: ['Production', 'SaaS'],
     technologies: ['Flask', 'Next.js', 'MariaDB', 'OpenAI'],
-    demo: 'https://ordely.fr'
+    demo: 'https://ordely.fr',
   },
   {
     id: 'dashboard',
     title: 'Dashboard Finance',
     problem: 'Données éparpillées sur plusieurs apps',
     result: 'Vision claire du patrimoine',
-    description: 'Tableau de bord personnel centralisant tous les comptes bancaires, investissements et épargne. Calcul automatique des performances et projections.',
+    description:
+      'Tableau de bord personnel centralisant tous les comptes bancaires, investissements et épargne. Calcul automatique des performances et projections.',
     image: '/images/projects/dashboard-1.png',
     icon: TrendingUp,
-    color: 'from-violet-500 to-purple-500',
     size: 'medium',
     badges: ['Personnel'],
-    technologies: ['Django', 'PostgreSQL', 'Celery']
+    technologies: ['Django', 'PostgreSQL', 'Celery'],
   },
   {
     id: 'media-stack',
     title: 'Media Stack',
     problem: 'Pas de sous-titres disponibles',
     result: 'Sous-titres générés par IA',
-    description: 'Infrastructure multimédia auto-hébergée avec streaming personnel. Whisper génère automatiquement les sous-titres, LibreTranslate les traduit.',
+    description:
+      'Infrastructure multimédia auto-hébergée avec streaming personnel. Whisper génère automatiquement les sous-titres, LibreTranslate les traduit.',
     icon: Play,
-    color: 'from-emerald-500 to-teal-500',
     size: 'small',
     badges: ['Auto-hébergé'],
-    technologies: ['Jellyfin', 'Whisper', 'Docker']
+    technologies: ['Jellyfin', 'Whisper', 'Docker'],
   },
   {
     id: 'zerobyte',
     title: 'Zerobyte',
     problem: 'Risque de perte de données',
     result: 'Backups automatiques multi-serveurs',
-    description: 'Solution de sauvegarde centralisant les backups de plusieurs serveurs via SFTP. Interface web pour gérer et surveiller l\'état des sauvegardes.',
+    description:
+      'Solution de sauvegarde centralisant les backups de plusieurs serveurs via SFTP. Interface web pour gérer et surveiller l\'état des sauvegardes.',
     image: '/images/projects/zerobyte.png',
     icon: HardDrive,
-    color: 'from-red-500 to-rose-500',
     size: 'medium',
     badges: ['Infrastructure'],
-    technologies: ['Zerobyte', 'SFTP', 'Docker']
+    technologies: ['Zerobyte', 'SFTP', 'Docker'],
   },
   {
     id: 'mailcow',
     title: 'Serveur Mail',
     problem: 'Dépendance aux GAFAM',
     result: 'Emails 100% auto-hébergés',
-    description: 'Serveur mail complet avec antispam, antivirus et webmail. Indépendance totale pour les communications professionnelles.',
+    description:
+      'Serveur mail complet avec antispam, antivirus et webmail. Indépendance totale pour les communications professionnelles.',
     icon: Mail,
-    color: 'from-sky-500 to-blue-500',
     size: 'small',
     badges: ['Production'],
-    technologies: ['Mailcow', 'Postfix', 'Docker']
+    technologies: ['Mailcow', 'Postfix', 'Docker'],
   },
   {
     id: 'vitrine',
     title: 'Ce Site',
-    problem: 'Besoin d\'une vitrine pro',
+    problem: "Besoin d'une vitrine pro",
     result: 'Portfolio moderne et performant',
-    description: 'Ce site que vous consultez ! Design sombre, animations fluides, formulaire de contact et analytics intégrés.',
+    description:
+      'Ce site que vous consultez : design graphite, fond 3D en parallax (React Three Fiber), formulaire de contact et analytics intégrés.',
     icon: Globe,
-    color: 'from-indigo-500 to-violet-500',
     size: 'small',
     badges: ['En ligne'],
-    technologies: ['Next.js', 'TailwindCSS', 'PostHog'],
-    demo: 'https://valentin-marot.fr'
+    technologies: ['Next.js', 'React Three Fiber', 'TailwindCSS'],
+    demo: 'https://valentin-marot.fr',
   },
   {
     id: 'homelab',
     title: 'Homelab',
     problem: 'Expérimenter sans risque',
     result: 'Infrastructure complète maison',
-    description: '4 serveurs physiques, Home Assistant pour la domotique, switch et routeur dédiés, VPN WireGuard, monitoring complet. Un vrai datacenter miniature pour tester, apprendre et héberger.',
+    description:
+      '4 serveurs physiques, Home Assistant pour la domotique, switch et routeur dédiés, VPN WireGuard, monitoring complet. Un vrai datacenter miniature pour tester, apprendre et héberger.',
     icon: Server,
-    color: 'from-cyan-500 to-sky-500',
     size: 'small',
     badges: ['Personnel'],
-    technologies: ['Proxmox', 'Docker', 'WireGuard', 'Home Assistant']
-  }
+    technologies: ['Proxmox', 'Docker', 'WireGuard', 'Home Assistant'],
+  },
 ];
 
-const ProjectsBento = () => {
-  const [selectedProject, setSelectedProject] = useState<BentoProject | null>(null);
+const getGridClass = (size: string) => {
+  if (size === 'large') return 'md:col-span-2 md:row-span-2';
+  if (size === 'medium') return 'md:col-span-1 md:row-span-2';
+  return 'md:col-span-1 md:row-span-1';
+};
 
-  const getGridClass = (size: string, index: number) => {
-    if (size === 'large') return 'md:col-span-2 md:row-span-2';
-    if (size === 'medium') return 'md:col-span-1 md:row-span-2';
-    return 'md:col-span-1 md:row-span-1';
-  };
+const ProjectsBento = () => {
+  const [selected, setSelected] = useState<BentoProject | null>(null);
 
   return (
-    <section id="projets" className="py-20 bg-transparent">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-50 mb-4">
-            Projets <span className="bg-gradient-to-r from-sky-400 to-violet-400 bg-clip-text text-transparent">réalisés</span>
-          </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Des solutions concrètes pour des problèmes réels
-          </p>
-        </div>
+    <section id="projets" className="relative py-24 sm:py-28 overflow-hidden">
+      <SectionWatermark text="build" align="left" />
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Parallax speed={0.18}>
+          <div className="mb-14 max-w-2xl">
+            <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
+              02 — Projets
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
+              Des solutions concrètes pour des problèmes réels
+            </h2>
+            <p className="mt-4 text-zinc-400 leading-relaxed">
+              Applications en production, infrastructure auto-hébergée et outils
+              internes. Cliquez pour le détail.
+            </p>
+          </div>
+        </Parallax>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px]">
-          {projects.map((project, index) => {
-            const IconComponent = project.icon;
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 auto-rows-[200px]">
+          {projects.map((project) => {
+            const Icon = project.icon;
             return (
-              <div
+              <button
                 key={project.id}
-                className={`group relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-slate-900/50 ${getGridClass(project.size, index)}`}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => setSelected(project)}
+                className={`group relative rounded-xl overflow-hidden text-left border border-zinc-800 bg-[#0c0c0e] transition-all duration-300 hover:border-zinc-700 ${getGridClass(project.size)}`}
               >
-                {/* Background */}
-                {project.image ? (
+                {project.image && (
                   <div className="absolute inset-0">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover object-top opacity-60 transition-all duration-500 group-hover:opacity-80 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/70 to-transparent" />
                   </div>
-                ) : (
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20`} />
                 )}
 
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/30 transition-colors duration-300" />
+                {!project.image && (
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity">
+                    <Icon className="w-28 h-28 text-white" />
+                  </div>
+                )}
 
-                {/* Content */}
-                <div className="relative h-full p-6 flex flex-col justify-end">
-                  {/* Badges */}
-                  <div className="absolute top-4 left-4 flex gap-2">
+                <div className="relative h-full p-5 flex flex-col justify-between">
+                  <div className="flex items-center gap-2">
                     {project.badges.map((badge) => (
                       <span
                         key={badge}
-                        className={`px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r ${project.color} text-white shadow-lg`}
+                        className="font-mono text-[10px] uppercase tracking-wide px-2 py-1 rounded border border-zinc-700 bg-zinc-900/80 text-zinc-400"
                       >
                         {badge}
                       </span>
                     ))}
                   </div>
 
-                  {/* Icon for non-image cards */}
-                  {!project.image && (
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10 group-hover:opacity-20 transition-opacity">
-                      <IconComponent className="w-32 h-32 text-white" />
-                    </div>
-                  )}
-
-                  {/* Title & Problem/Result */}
                   <div className="space-y-2">
-                    <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${project.color} flex items-center justify-center shadow-lg`}>
-                        <IconComponent className="w-5 h-5 text-white" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-4 h-4 text-amber-400" />
                       </div>
-                      <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                      <h3 className="text-lg font-semibold text-white">{project.title}</h3>
                     </div>
-                    
-                    <div className="flex items-center gap-2 text-sm">
-                      <span className="text-slate-400 line-through">{project.problem}</span>
-                      <ArrowRight className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                      <span className="text-emerald-400 font-medium">{project.result}</span>
-                    </div>
-
-                    {/* Show more on large cards */}
-                    {project.size === 'large' && (
-                      <p className="text-slate-300 text-sm line-clamp-2 mt-2">
-                        {project.description}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Hover indicator */}
-                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                      <ArrowRight className="w-5 h-5 text-white" />
+                    <div className="flex items-center gap-2 text-xs">
+                      <span className="text-zinc-500 line-through truncate">{project.problem}</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+                      <span className="text-amber-400/90 font-medium truncate">{project.result}</span>
                     </div>
                   </div>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
       </div>
 
       {/* Modal */}
-      {selectedProject && (
-        <div 
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto"
-          onClick={() => setSelectedProject(null)}
+      {selected && (
+        <div
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto animate-fade-in-up"
+          onClick={() => setSelected(null)}
         >
-          <div 
-            className="relative bg-slate-900 rounded-3xl max-w-2xl w-full my-8 border border-slate-700/50 shadow-2xl"
+          <div
+            className="relative bg-[#111113] rounded-2xl max-w-2xl w-full my-8 border border-zinc-800 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
             <button
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm hover:bg-slate-700 flex items-center justify-center transition-colors"
+              onClick={() => setSelected(null)}
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-lg bg-zinc-900/80 border border-zinc-700 hover:bg-zinc-800 flex items-center justify-center transition-colors"
             >
-              <X className="w-5 h-5 text-slate-300" />
+              <X className="w-4 h-4 text-zinc-300" />
             </button>
 
-            {/* Modal Header with Image */}
-            {selectedProject.image && (
-              <div className="relative h-48 overflow-hidden rounded-t-3xl">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
+            {selected.image && (
+              <div className="relative h-48 overflow-hidden rounded-t-2xl">
+                <img src={selected.image} alt={selected.title} className="w-full h-full object-cover object-top" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111113] to-transparent" />
               </div>
             )}
 
-            {/* Modal Content */}
             <div className="p-6 space-y-5">
-              {/* Title */}
               <div className="flex items-center gap-3">
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${selectedProject.color} flex items-center justify-center shadow-lg flex-shrink-0`}>
-                  <selectedProject.icon className="w-6 h-6 text-white" />
+                <div className="w-11 h-11 rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center flex-shrink-0">
+                  <selected.icon className="w-5 h-5 text-amber-400" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">{selectedProject.title}</h3>
+                  <h3 className="text-lg font-semibold text-white">{selected.title}</h3>
                   <div className="flex gap-2 mt-1">
-                    {selectedProject.badges.map((badge) => (
-                      <span
-                        key={badge}
-                        className={`px-2 py-0.5 text-xs font-medium rounded-full bg-gradient-to-r ${selectedProject.color} text-white`}
-                      >
+                    {selected.badges.map((badge) => (
+                      <span key={badge} className="font-mono text-[10px] uppercase tracking-wide text-zinc-500">
                         {badge}
                       </span>
                     ))}
@@ -268,49 +238,39 @@ const ProjectsBento = () => {
                 </div>
               </div>
 
-              {/* Problem → Result */}
-              <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
-                <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap">
+              <div className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-4">
+                <div className="flex items-center gap-3">
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-slate-500 uppercase tracking-wide mb-1">Le problème</p>
-                    <p className="text-slate-300 line-through text-sm">{selectedProject.problem}</p>
+                    <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-wide mb-1">Problème</p>
+                    <p className="text-zinc-400 line-through text-sm">{selected.problem}</p>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                  <ArrowRight className="w-5 h-5 text-amber-400 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-emerald-500 uppercase tracking-wide mb-1">Le résultat</p>
-                    <p className="text-emerald-400 font-medium text-sm">{selectedProject.result}</p>
+                    <p className="font-mono text-[10px] text-amber-500/70 uppercase tracking-wide mb-1">Résultat</p>
+                    <p className="text-amber-400 font-medium text-sm">{selected.result}</p>
                   </div>
                 </div>
               </div>
 
-              {/* Description */}
-              <div>
-                <h4 className="text-xs text-slate-500 uppercase tracking-wide mb-2">Description</h4>
-                <p className="text-slate-300 leading-relaxed text-sm">{selectedProject.description}</p>
-              </div>
+              <p className="text-zinc-400 leading-relaxed text-sm">{selected.description}</p>
 
-              {/* Technologies */}
               <div>
-                <h4 className="text-xs text-slate-500 uppercase tracking-wide mb-2">Technologies</h4>
+                <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-wide mb-2">Technologies</p>
                 <div className="flex flex-wrap gap-2">
-                  {selectedProject.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-1 text-xs bg-slate-800 text-slate-300 rounded-lg border border-slate-700"
-                    >
+                  {selected.technologies.map((tech) => (
+                    <span key={tech} className="font-mono text-xs px-2.5 py-1 bg-zinc-900 text-zinc-400 rounded border border-zinc-800">
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* CTA */}
-              {selectedProject.demo && (
+              {selected.demo && (
                 <a
-                  href={selectedProject.demo}
+                  href={selected.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r ${selectedProject.color} text-white font-medium text-sm hover:opacity-90 transition-opacity`}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-amber-500 text-zinc-950 font-medium text-sm hover:bg-amber-400 transition-colors"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Voir le projet
