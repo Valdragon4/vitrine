@@ -1,7 +1,6 @@
 'use client';
 
 import { ArrowRight, MapPin, Clock3 } from 'lucide-react';
-import Parallax from './Parallax';
 
 const STACK = ['Linux', 'Docker', 'Python', 'Next.js', 'Nginx', 'CI/CD', 'PostgreSQL'];
 
@@ -11,8 +10,8 @@ const Hero = () => {
       id="accueil"
       className="relative flex items-center min-h-[92vh] pt-32 pb-20"
     >
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl">
           {/* Eyebrow */}
           <p className="font-mono text-xs sm:text-sm tracking-[0.15em] uppercase text-amber-400 mb-6">
             Développeur web &amp; DevOps · Freelance
@@ -49,8 +48,8 @@ const Hero = () => {
             </a>
           </div>
 
-          {/* Stack technique (mono) */}
-          <Parallax speed={0.16} className="mt-12">
+          {/* Stack technique (mono) — fixe : la parallaxe est réservée aux objets 3D */}
+          <div className="mt-12">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-zinc-500">
               <span className="text-zinc-600">stack&nbsp;:</span>
               {STACK.map((tech, i) => (
@@ -62,10 +61,10 @@ const Hero = () => {
                 </span>
               ))}
             </div>
-          </Parallax>
+          </div>
 
           {/* Meta */}
-          <Parallax speed={0.28} className="mt-8">
+          <div className="mt-8">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-zinc-500">
             <span className="inline-flex items-center gap-2">
               <MapPin className="w-4 h-4 text-zinc-600" />
@@ -76,7 +75,7 @@ const Hero = () => {
               Réponse sous 24 h · devis gratuit
             </span>
           </div>
-          </Parallax>
+          </div>
         </div>
       </div>
     </section>
