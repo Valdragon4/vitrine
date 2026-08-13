@@ -7,31 +7,36 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
-    
+    # Runner auto-hébergé sur valdragon2 : le build (Next.js + three.js) tourne
+    # sur la machine applicative. Server (Core 2 Duo, reverse-proxy nginx) ne
+    # fait que recevoir l'image et redémarrer le conteneur — il ne build jamais.
+    runs-on: [self-hosted, valdragon2]
+
     steps:
-      - name: Pull latest changes
+      - uses: actions/checkout@v4
+
+      - name: Build de l'image (valdragon2)
         run: |
-          cd ~/vitrine
-          git fetch origin main
-          git reset --hard origin/main
+          cp ~/vitrine-deploy/.env .env
+          docker compose -p vitrine build
 
-      - name: Build new image
+      - name: Image de retour arrière sur Server
         run: |
-          cd ~/vitrine
-          docker compose build --no-cache
+          ssh Server 'docker tag "$(docker inspect valentin-marot-vitrine --format "{{.Image}}")" vitrine-vitrine:rollback || true'
 
-      - name: Stop old container and start new one
+      - name: Transfert de l'image vers Server
+        run: docker save vitrine-vitrine:latest | gzip -1 | ssh Server 'gunzip | docker load'
+
+      - name: Déploiement sur Server
         run: |
-          cd ~/vitrine
-          docker compose down
-          docker compose up -d
+          ssh Server 'cd ~/vitrine && git fetch origin main && git reset --hard origin/main && docker compose up -d --no-build'
 
-      - name: Cleanup unused images
-        run: docker image prune -f
-
-      - name: Verify deployment
+      - name: Vérification
         run: |
           sleep 15
-          curl -f http://localhost:3002 || exit 1
+          ssh Server 'curl -fsS -o /dev/null http://localhost:3002'
+          curl -fsS -o /dev/null https://valentin-marot.fr
           echo "Deployment completed successfully!"
+
+      - name: Nettoyage des images orphelines
+        run: docker image prune -f

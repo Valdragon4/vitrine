@@ -18,7 +18,9 @@ services:
     networks:
       - vitrine-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      # curl absent de l image node:slim : le healthcheck echouait depuis
+      # toujours alors que le service repond 200. node est disponible.
+      test: ["CMD", "node", "-e", "require(\"http\").get(\"http://localhost:3000\",r=>process.exit(r.statusCode===200?0:1)).on(\"error\",()=>process.exit(1))"]
       interval: 30s
       timeout: 10s
       retries: 3
