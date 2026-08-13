@@ -48,7 +48,7 @@ const About = () => {
         </Parallax>
 
         <div className="rounded-2xl border border-zinc-800 bg-[#0c0c0e] p-8 sm:p-10">
-          <p className="text-zinc-400 leading-relaxed max-w-3xl">
+          <p className="text-zinc-300 leading-relaxed max-w-3xl">
             En Master Réseaux &amp; Télécoms et en alternance sur l&apos;administration
             systèmes et réseaux, j&apos;ai lancé ma micro-entreprise pour accompagner
             entreprises, indépendants et associations. Je réunis deux compétences
@@ -69,12 +69,12 @@ const About = () => {
                 >
                   <div className="flex items-center gap-2.5 mb-3">
                     <Icon className="w-4 h-4 text-amber-400" />
-                    <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wide">
+                    <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wide">
                       {info.label}
                     </span>
                   </div>
                   <p className="text-base font-semibold text-zinc-100 mb-1">{info.value}</p>
-                  <p className="text-xs text-zinc-500">{info.detail}</p>
+                  <p className="text-xs text-zinc-400">{info.detail}</p>
                 </div>
               );
             })}
@@ -82,7 +82,7 @@ const About = () => {
 
           {/* Contact rapide */}
           <div className="mt-8 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-2.5 font-mono text-sm text-zinc-400">
+            <div className="flex items-center gap-2.5 font-mono text-sm text-zinc-300">
               <Mail className="w-4 h-4 text-zinc-600" />
               contact@valentin-marot.fr
             </div>

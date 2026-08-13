@@ -50,7 +50,7 @@ const Services = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
               Du code à la production, un seul interlocuteur
             </h2>
-            <p className="mt-4 text-zinc-400 leading-relaxed">
+            <p className="mt-4 text-zinc-300 leading-relaxed">
               Je couvre l&apos;ensemble de la chaîne : concevoir l&apos;application,
               l&apos;automatiser, la déployer et la maintenir.
             </p>
@@ -75,7 +75,7 @@ const Services = () => {
                 <h3 className="text-xl font-semibold text-zinc-100 mb-3">
                   {service.title}
                 </h3>
-                <p className="text-sm text-zinc-400 leading-relaxed mb-5">
+                <p className="text-[0.9375rem] text-zinc-300 leading-relaxed mb-5">
                   {service.description}
                 </p>
 
@@ -83,7 +83,7 @@ const Services = () => {
                   {service.points.map((point) => (
                     <li
                       key={point}
-                      className="flex items-center gap-2.5 font-mono text-xs text-zinc-500"
+                      className="flex items-center gap-2.5 font-mono text-xs text-zinc-400"
                     >
                       <Check className="w-3.5 h-3.5 text-amber-500/80 flex-shrink-0" />
                       {point}
@@ -99,7 +99,7 @@ const Services = () => {
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/40 px-8 py-7">
           <div>
             <p className="text-lg font-semibold text-zinc-100">Un projet en tête ?</p>
-            <p className="text-sm text-zinc-500 font-mono mt-1">
+            <p className="text-sm text-zinc-400 font-mono mt-1">
               Réponse sous 24 h · devis gratuit
             </p>
           </div>

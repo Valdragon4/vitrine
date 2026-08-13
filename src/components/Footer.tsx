@@ -24,7 +24,7 @@ const Footer = () => {
           {/* Identité */}
           <div>
             <p className="text-lg font-semibold text-zinc-100">Valentin Marot</p>
-            <p className="font-mono text-xs text-zinc-500 mt-1">
+            <p className="font-mono text-xs text-zinc-400 mt-1">
               Développeur web &amp; DevOps · Freelance
             </p>
             <div className="flex gap-2 mt-5">
@@ -37,7 +37,7 @@ const Footer = () => {
                     target={s.href.startsWith('http') ? '_blank' : undefined}
                     rel="noopener noreferrer"
                     title={s.label}
-                    className="w-9 h-9 rounded-lg border border-zinc-800 bg-zinc-900 flex items-center justify-center text-zinc-400 hover:text-amber-400 hover:border-zinc-700 transition-colors"
+                    className="w-9 h-9 rounded-lg border border-zinc-800 bg-zinc-900 flex items-center justify-center text-zinc-300 hover:text-amber-400 hover:border-zinc-700 transition-colors"
                   >
                     <Icon className="w-4 h-4" />
                   </a>
@@ -54,7 +54,7 @@ const Footer = () => {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-sm text-zinc-400 hover:text-amber-400 transition-colors"
+                  className="text-sm text-zinc-300 hover:text-amber-400 transition-colors"
                 >
                   {item.label}
                 </a>
@@ -66,13 +66,13 @@ const Footer = () => {
           <div>
             <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-wide mb-4">Informations</p>
             <div className="flex flex-col gap-2">
-              <a href="/mentions-legales" className="text-sm text-zinc-400 hover:text-amber-400 transition-colors">
+              <a href="/mentions-legales" className="text-sm text-zinc-300 hover:text-amber-400 transition-colors">
                 Mentions légales
               </a>
-              <a href="/politique-confidentialite" className="text-sm text-zinc-400 hover:text-amber-400 transition-colors">
+              <a href="/politique-confidentialite" className="text-sm text-zinc-300 hover:text-amber-400 transition-colors">
                 Politique de confidentialité
               </a>
-              <a href="/cgv" className="text-sm text-zinc-400 hover:text-amber-400 transition-colors">
+              <a href="/cgv" className="text-sm text-zinc-300 hover:text-amber-400 transition-colors">
                 CGV
               </a>
             </div>

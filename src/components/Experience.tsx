@@ -156,7 +156,7 @@ const Experience = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
               Une double casquette réseau &amp; développement
             </h2>
-            <p className="mt-4 text-zinc-400 leading-relaxed">
+            <p className="mt-4 text-zinc-300 leading-relaxed">
               Formations, stages et alternance en administration systèmes et
               réseaux, qui nourrissent mon approche DevOps.
             </p>
@@ -172,7 +172,7 @@ const Experience = () => {
         <div className="flex mb-16">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="group flex items-center gap-2.5 px-5 py-2.5 rounded-lg border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-colors font-mono text-xs"
+            className="group flex items-center gap-2.5 px-5 py-2.5 rounded-lg border border-zinc-800 text-zinc-300 hover:text-zinc-100 hover:border-zinc-600 transition-colors font-mono text-xs"
           >
             <span>{showAll ? 'Réduire' : 'Voir le parcours complet'}</span>
             <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showAll ? 'rotate-180' : 'group-hover:translate-y-0.5'}`} />
@@ -184,7 +184,7 @@ const Experience = () => {
           <h3 className="text-xl font-semibold text-zinc-100 mb-3">
             Intéressé par mon profil ?
           </h3>
-          <p className="text-zinc-400 mb-7 max-w-2xl text-sm leading-relaxed">
+          <p className="text-zinc-300 mb-7 max-w-2xl text-[0.9375rem] leading-relaxed">
             Ouvert aux missions freelance comme aux opportunités en alternance.
             Parlons de votre besoin.
           </p>

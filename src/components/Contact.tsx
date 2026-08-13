@@ -60,7 +60,7 @@ const Contact = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
               Parlons de votre projet
             </h2>
-            <p className="mt-4 text-zinc-400 leading-relaxed">
+            <p className="mt-4 text-zinc-300 leading-relaxed">
               Une idée, un besoin technique, une question ? Écrivez-moi, je réponds
               sous 24 h.
             </p>
@@ -75,7 +75,7 @@ const Contact = () => {
                 <Mail className="w-5 h-5 text-amber-400" />
               </div>
               <div>
-                <p className="font-mono text-[10px] text-zinc-500 uppercase tracking-wide mb-0.5">Email</p>
+                <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-wide mb-0.5">Email</p>
                 <EmailLink />
               </div>
             </div>
@@ -91,7 +91,7 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900/40 px-4 py-3 hover:border-zinc-700 transition-colors group"
                   >
-                    <Icon className="w-5 h-5 text-zinc-500 group-hover:text-amber-400 transition-colors" />
+                    <Icon className="w-5 h-5 text-zinc-400 group-hover:text-amber-400 transition-colors" />
                     <div>
                       <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-wide">{link.label}</p>
                       <p className="text-sm text-zinc-300">{link.value}</p>
@@ -102,7 +102,7 @@ const Contact = () => {
             </div>
 
             <div className="mt-auto pt-8">
-              <ul className="grid grid-cols-2 gap-2 font-mono text-xs text-zinc-500">
+              <ul className="grid grid-cols-2 gap-2 font-mono text-xs text-zinc-400">
                 {['Réponse sous 24 h', 'Devis gratuit', 'Échange sans engagement', 'Suivi régulier'].map((item) => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="w-1 h-1 rounded-full bg-amber-500" />
@@ -117,7 +117,7 @@ const Contact = () => {
           <div className="rounded-2xl border border-zinc-800 bg-[#0c0c0e] p-8">
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block font-mono text-xs text-zinc-500 uppercase tracking-wide mb-2">
+                <label htmlFor="name" className="block font-mono text-xs text-zinc-400 uppercase tracking-wide mb-2">
                   Nom complet *
                 </label>
                 <input
@@ -133,7 +133,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block font-mono text-xs text-zinc-500 uppercase tracking-wide mb-2">
+                <label htmlFor="email" className="block font-mono text-xs text-zinc-400 uppercase tracking-wide mb-2">
                   Email *
                 </label>
                 <input
@@ -149,7 +149,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block font-mono text-xs text-zinc-500 uppercase tracking-wide mb-2">
+                <label htmlFor="message" className="block font-mono text-xs text-zinc-400 uppercase tracking-wide mb-2">
                   Message *
                 </label>
                 <textarea
@@ -180,7 +180,7 @@ const Contact = () => {
                 disabled={isSubmitting}
                 className={`w-full py-3 px-6 rounded-lg font-semibold text-sm transition-colors flex items-center justify-center gap-2 ${
                   isSubmitting
-                    ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
+                    ? 'bg-zinc-800 text-zinc-400 cursor-not-allowed'
                     : 'bg-amber-500 text-zinc-950 hover:bg-amber-400'
                 }`}
               >
@@ -198,7 +198,7 @@ const Contact = () => {
               </button>
 
               {/* Mention RGPD */}
-              <p className="text-xs text-zinc-500 leading-relaxed">
+              <p className="text-xs text-zinc-400 leading-relaxed">
                 Les informations envoyées via ce formulaire servent uniquement à
                 répondre à votre demande. Elles ne sont ni conservées à d&apos;autres
                 fins, ni transmises à des tiers —{' '}

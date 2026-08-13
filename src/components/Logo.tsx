@@ -32,7 +32,7 @@ const Logo = ({ size = 'md', variant = 'full', className = '' }: LogoProps) => {
         <span className="font-semibold text-zinc-100 text-base leading-tight">
           Valentin Marot
         </span>
-        <span className="font-mono text-xs text-zinc-500">
+        <span className="font-mono text-xs text-zinc-400">
           Développeur web &amp; DevOps
         </span>
       </div>
