@@ -10,8 +10,8 @@ const Hero = () => {
       id="accueil"
       className="relative flex items-center min-h-[92vh] pt-32 pb-20"
     >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl">
+      <div className="w-full max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
+        <div className="max-w-5xl">
           {/* Eyebrow */}
           <p className="font-mono text-xs sm:text-sm tracking-[0.15em] uppercase text-amber-400 mb-6">
             Développeur web &amp; DevOps · Freelance
