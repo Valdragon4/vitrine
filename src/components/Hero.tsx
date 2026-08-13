@@ -25,7 +25,7 @@ const Hero = () => {
           </h1>
 
           {/* Sous-titre précis */}
-          <p className="mt-7 text-lg text-zinc-400 leading-relaxed max-w-2xl">
+          <p className="mt-7 text-lg text-zinc-300 leading-relaxed max-w-2xl">
             Développement d&apos;applications sur mesure et infrastructure DevOps :
             automatisation, conteneurisation, administration Linux et hébergement.
             Un seul interlocuteur, du code à la mise en production.
@@ -50,11 +50,11 @@ const Hero = () => {
 
           {/* Stack technique (mono) — fixe : la parallaxe est réservée aux objets 3D */}
           <div className="mt-12">
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-zinc-500">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-zinc-400">
               <span className="text-zinc-600">stack&nbsp;:</span>
               {STACK.map((tech, i) => (
                 <span key={tech} className="flex items-center gap-4">
-                  <span className="text-zinc-400">{tech}</span>
+                  <span className="text-zinc-300">{tech}</span>
                   {i < STACK.length - 1 && (
                     <span className="text-zinc-700">/</span>
                   )}
@@ -65,7 +65,7 @@ const Hero = () => {
 
           {/* Meta */}
           <div className="mt-8">
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-zinc-500">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-zinc-400">
             <span className="inline-flex items-center gap-2">
               <MapPin className="w-4 h-4 text-zinc-600" />
               Champagne-Ardenne · à distance partout en France

@@ -64,7 +64,7 @@ const Timeline = ({ items }: TimelineProps) => {
               }`}
             >
               <IconComponent
-                className={`w-5 h-5 ${item.current ? 'text-amber-400' : 'text-zinc-400'}`}
+                className={`w-5 h-5 ${item.current ? 'text-amber-400' : 'text-zinc-300'}`}
               />
             </div>
 
@@ -72,7 +72,7 @@ const Timeline = ({ items }: TimelineProps) => {
             <div className="ml-6 flex-1 min-w-0">
               <div className="bg-[#0c0c0e] rounded-xl border border-zinc-800 p-6">
                 <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded border border-zinc-700 text-zinc-400">
+                  <span className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded border border-zinc-700 text-zinc-300">
                     {getTypeLabel(item.type)}
                   </span>
                   {item.current && (
@@ -81,7 +81,7 @@ const Timeline = ({ items }: TimelineProps) => {
                     </span>
                   )}
                   {item.parallel && (
-                    <span className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded border border-zinc-700 text-zinc-500">
+                    <span className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded border border-zinc-700 text-zinc-400">
                       En parallèle
                     </span>
                   )}
@@ -98,7 +98,7 @@ const Timeline = ({ items }: TimelineProps) => {
                   </div>
                 )}
 
-                <div className="flex flex-wrap gap-4 font-mono text-xs text-zinc-500 mb-4">
+                <div className="flex flex-wrap gap-4 font-mono text-xs text-zinc-400 mb-4">
                   <span className="flex items-center">
                     <MapPin className="w-3.5 h-3.5 mr-1.5" />
                     {item.location}
@@ -109,14 +109,14 @@ const Timeline = ({ items }: TimelineProps) => {
                   </span>
                 </div>
 
-                <p className="text-zinc-400 leading-relaxed mb-4 text-sm">
+                <p className="text-zinc-300 leading-relaxed mb-4 text-[0.9375rem]">
                   {item.description}
                 </p>
 
                 {item.achievements && item.achievements.length > 0 && (
                   <ul className="space-y-2 mb-4">
                     {item.achievements.map((achievement, i) => (
-                      <li key={i} className="flex items-start text-zinc-400">
+                      <li key={i} className="flex items-start text-zinc-300">
                         <span className="w-1 h-1 rounded-full bg-amber-500 mr-3 mt-2 flex-shrink-0" />
                         <span className="text-sm">{achievement}</span>
                       </li>

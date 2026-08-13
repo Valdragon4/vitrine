@@ -95,7 +95,7 @@ const TechBadge = ({ name, variant = 'primary', size = 'md', showIcon = true }: 
   return (
     <span className={`
       inline-flex items-center gap-1.5 rounded-md font-mono
-      border border-zinc-800 bg-zinc-900 text-zinc-400
+      border border-zinc-800 bg-zinc-900 text-zinc-300
       hover:border-zinc-700 hover:text-zinc-200 transition-colors
       ${sizeClasses[size]}
     `}>

@@ -130,7 +130,7 @@ const ProjectsBento = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
               Des solutions concrètes pour des problèmes réels
             </h2>
-            <p className="mt-4 text-zinc-400 leading-relaxed">
+            <p className="mt-4 text-zinc-300 leading-relaxed">
               Applications en production, infrastructure auto-hébergée et outils
               internes. Cliquez pour le détail.
             </p>
@@ -168,7 +168,7 @@ const ProjectsBento = () => {
                     {project.badges.map((badge) => (
                       <span
                         key={badge}
-                        className="font-mono text-[10px] uppercase tracking-wide px-2 py-1 rounded border border-zinc-700 bg-zinc-900/80 text-zinc-400"
+                        className="font-mono text-[10px] uppercase tracking-wide px-2 py-1 rounded border border-zinc-700 bg-zinc-900/80 text-zinc-300"
                       >
                         {badge}
                       </span>
@@ -183,7 +183,7 @@ const ProjectsBento = () => {
                       <h3 className="text-lg font-semibold text-white">{project.title}</h3>
                     </div>
                     <div className="flex items-center gap-2 text-xs">
-                      <span className="text-zinc-500 line-through truncate">{project.problem}</span>
+                      <span className="text-zinc-400 line-through truncate">{project.problem}</span>
                       <ArrowRight className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
                       <span className="text-amber-400/90 font-medium truncate">{project.result}</span>
                     </div>
@@ -228,7 +228,7 @@ const ProjectsBento = () => {
                   <h3 className="text-lg font-semibold text-white">{selected.title}</h3>
                   <div className="flex gap-2 mt-1">
                     {selected.badges.map((badge) => (
-                      <span key={badge} className="font-mono text-[10px] uppercase tracking-wide text-zinc-500">
+                      <span key={badge} className="font-mono text-[10px] uppercase tracking-wide text-zinc-400">
                         {badge}
                       </span>
                     ))}
@@ -240,7 +240,7 @@ const ProjectsBento = () => {
                 <div className="flex items-center gap-3">
                   <div className="flex-1 min-w-0">
                     <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-wide mb-1">Problème</p>
-                    <p className="text-zinc-400 line-through text-sm">{selected.problem}</p>
+                    <p className="text-zinc-300 line-through text-sm">{selected.problem}</p>
                   </div>
                   <ArrowRight className="w-5 h-5 text-amber-400 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
@@ -250,13 +250,13 @@ const ProjectsBento = () => {
                 </div>
               </div>
 
-              <p className="text-zinc-400 leading-relaxed text-sm">{selected.description}</p>
+              <p className="text-zinc-300 leading-relaxed text-[0.9375rem]">{selected.description}</p>
 
               <div>
                 <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-wide mb-2">Technologies</p>
                 <div className="flex flex-wrap gap-2">
                   {selected.technologies.map((tech) => (
-                    <span key={tech} className="font-mono text-xs px-2.5 py-1 bg-zinc-900 text-zinc-400 rounded border border-zinc-800">
+                    <span key={tech} className="font-mono text-xs px-2.5 py-1 bg-zinc-900 text-zinc-300 rounded border border-zinc-800">
                       {tech}
                     </span>
                   ))}
