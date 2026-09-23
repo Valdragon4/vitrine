@@ -1,6 +1,37 @@
 import type { Metadata } from "next";
+import { Archivo, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { PosthogInit } from "@/components/PosthogInit";
+
+/**
+ * Polices auto-hebergees par next/font : telechargees au build, servies
+ * depuis notre origine. Cela supprime l'@import bloquant vers Google Fonts
+ * qui se trouvait en tete de globals.css.
+ *
+ * Archivo pour le titrage (grotesque industrielle, dessinee pour les gros
+ * corps), IBM Plex Sans pour le texte courant (typographie d'ingenierie,
+ * accents francais bien dessines), JetBrains Mono pour le code et la mesure.
+ */
+const display = Archivo({
+  subsets: ["latin", "latin-ext"],
+  weight: ["600", "700", "800"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const sans = IBM_Plex_Sans({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://valentin-marot.fr'),
@@ -83,7 +114,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
       <head>
         {/* Métadonnées structurées JSON-LD */}
         <script

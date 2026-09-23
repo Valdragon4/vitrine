@@ -85,7 +85,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <span className="w-12 h-12 rounded-xl border border-zinc-700 bg-zinc-900 flex items-center justify-center flex-shrink-0 mt-1">
               <Icon className="w-6 h-6 text-amber-400" aria-hidden="true" />
             </span>
-            <h1 className="text-4xl sm:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
+            <h1 className="font-display text-4xl sm:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
               {project.title}
             </h1>
           </div>
@@ -137,7 +137,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <div className="mt-16 grid lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] gap-12 xl:gap-20">
           <div>
             <section>
-              <h2 className="text-2xl font-bold text-zinc-50 tracking-tight mb-5">
+              <h2 className="font-display text-2xl font-bold text-zinc-50 tracking-tight mb-5">
                 Ce que c&apos;est
               </h2>
               <p className="text-zinc-300 leading-relaxed max-w-[36rem]">
@@ -146,7 +146,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </section>
 
             <section className="mt-14">
-              <h2 className="text-2xl font-bold text-zinc-50 tracking-tight mb-5">
+              <h2 className="font-display text-2xl font-bold text-zinc-50 tracking-tight mb-5">
                 Ce que ça fait
               </h2>
               <ul className="space-y-3 max-w-[36rem]">
@@ -163,7 +163,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </section>
 
             <section className="mt-14">
-              <h2 className="text-2xl font-bold text-zinc-50 tracking-tight mb-5">
+              <h2 className="font-display text-2xl font-bold text-zinc-50 tracking-tight mb-5">
                 Ce qui a coincé
               </h2>
               <p className="text-zinc-300 leading-relaxed max-w-[36rem]">
@@ -172,7 +172,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </section>
 
             <section className="mt-14">
-              <h2 className="text-2xl font-bold text-zinc-50 tracking-tight mb-5">
+              <h2 className="font-display text-2xl font-bold text-zinc-50 tracking-tight mb-5">
                 Où ça en est
               </h2>
               <p className="text-zinc-300 leading-relaxed max-w-[36rem]">
@@ -183,7 +183,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           {/* Pile technique */}
           <aside className="lg:sticky lg:top-8 lg:self-start">
-            <h2 className="text-[11px] uppercase tracking-[0.14em] text-zinc-400 mb-4">
+            <h2 className="font-display text-[11px] uppercase tracking-[0.14em] text-zinc-400 mb-4">
               Pile technique
             </h2>
             <ul className="flex flex-wrap gap-2">
@@ -216,7 +216,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Suite */}
         <nav className="mt-24 pt-12 border-t border-zinc-800" aria-label="Autres projets">
-          <h2 className="text-[11px] uppercase tracking-[0.14em] text-zinc-400 mb-6">
+          <h2 className="font-display text-[11px] uppercase tracking-[0.14em] text-zinc-400 mb-6">
             Autres projets
           </h2>
           <ul className="grid sm:grid-cols-2 xl:grid-cols-4 gap-3">

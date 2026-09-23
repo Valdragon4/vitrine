@@ -54,7 +54,7 @@ const Contact = () => {
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
         <Parallax speed={0.10}>
           <div className="mb-16 max-w-3xl">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
               Parlons de votre projet
             </h2>
             <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">

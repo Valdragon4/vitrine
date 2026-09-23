@@ -35,7 +35,7 @@ const Hero = () => {
         <div className="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-12 xl:gap-20 items-center">
           {/* Colonne argumentaire */}
           <div>
-            <h1 className="text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-bold leading-[1.04] tracking-tight text-zinc-50 text-balance">
+            <h1 className="font-display text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-bold leading-[1.04] tracking-tight text-zinc-50 text-balance">
               Je conçois, déploie et héberge vos applications{' '}
               <span className="text-amber-400">web</span>.
             </h1>

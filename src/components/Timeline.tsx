@@ -87,7 +87,7 @@ const Timeline = ({ items }: TimelineProps) => {
                   )}
                 </div>
 
-                <h3 className="text-lg font-semibold text-zinc-100 mb-1.5">
+                <h3 className="font-display text-lg font-semibold text-zinc-100 mb-1.5">
                   {item.title}
                 </h3>
 

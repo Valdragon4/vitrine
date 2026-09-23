@@ -135,7 +135,7 @@ const Experience = () => {
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
         <Parallax speed={0.1}>
           <div className="mb-16 max-w-3xl">
-            <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight text-balance">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight text-balance">
               Une double casquette réseau &amp; développement
             </h2>
             <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
@@ -172,7 +172,7 @@ const Experience = () => {
         </div>
 
         <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-8 sm:p-10">
-          <h3 className="text-xl font-semibold text-zinc-100 mb-3">
+          <h3 className="font-display text-xl font-semibold text-zinc-100 mb-3">
             Intéressé par mon profil ?
           </h3>
           <p className="text-zinc-300 mb-7 max-w-[36rem] text-[0.9375rem] leading-relaxed">

@@ -50,7 +50,7 @@ const Services = () => {
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
         <Parallax speed={0.1}>
           <div className="mb-16 max-w-3xl">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
               Du code à la production, un seul interlocuteur
             </h2>
             <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
@@ -85,7 +85,7 @@ const Services = () => {
                   )}
                 </div>
 
-                <h3 className="text-xl font-semibold text-zinc-100 mb-3 text-balance">
+                <h3 className="font-display text-xl font-semibold text-zinc-100 mb-3 text-balance">
                   {step.heading}
                 </h3>
                 <p className="text-[0.9375rem] text-zinc-300 leading-relaxed mb-6 max-w-[30rem]">
