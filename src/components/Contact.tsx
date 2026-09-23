@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Mail, Github, Linkedin, Send } from 'lucide-react';
 import EmailLink from './EmailLink';
 import Parallax from './Parallax';
-import posthog from '@/lib/posthogClient';
+import { captureIfConsented } from '@/lib/posthogClient';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -25,16 +25,16 @@ const Contact = () => {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', message: '' });
-        posthog.capture('contact_form_submitted');
+        captureIfConsented('contact_form_submitted');
       } else {
         setSubmitStatus('error');
         console.error('Erreur:', data.error);
-        posthog.capture('contact_form_error', { status: response.status, error: data?.error });
+        captureIfConsented('contact_form_error', { status: response.status, error: data?.error });
       }
     } catch (error) {
       setSubmitStatus('error');
       console.error('Erreur réseau:', error);
-      posthog.capture('contact_form_error', { error: 'network_error' });
+      captureIfConsented('contact_form_error', { error: 'network_error' });
     } finally {
       setIsSubmitting(false);
     }

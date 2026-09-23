@@ -1,6 +1,7 @@
 'use client';
 
 import { Mail, Github, Linkedin } from 'lucide-react';
+import { resetConsent } from '@/lib/consent';
 
 const NAV = [
   { label: 'Services', href: '#services' },
@@ -75,6 +76,15 @@ const Footer = () => {
               <a href="/cgv" className="inline-flex items-center min-h-[40px] text-sm text-zinc-300 hover:text-amber-400 transition-colors">
                 CGV
               </a>
+              {/* Rouvre le bandeau de consentement : un choix qu'on ne peut
+                  pas revenir modifier n'en est pas vraiment un. */}
+              <button
+                type="button"
+                onClick={resetConsent}
+                className="inline-flex items-center min-h-[40px] text-sm text-zinc-300 hover:text-amber-400 transition-colors text-left"
+              >
+                Gérer les cookies
+              </button>
             </div>
           </div>
         </div>
