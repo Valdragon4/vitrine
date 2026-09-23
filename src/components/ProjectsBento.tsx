@@ -1,283 +1,140 @@
-'use client';
-
-import { useState } from 'react';
-import { ArrowRight, X, ExternalLink, MessageSquare, TrendingUp, Play, Mail, HardDrive, Globe, Server } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { projectsData, type ProjectItem } from '@/lib/projectsData';
 import Parallax from './Parallax';
 
-interface BentoProject {
-  id: string;
-  title: string;
-  problem: string;
-  result: string;
-  description: string;
-  image?: string;
-  icon: React.ComponentType<{ className?: string }>;
-  size: 'large' | 'medium' | 'small';
-  badges: string[];
-  technologies: string[];
-  demo?: string;
-}
-
-const projects: BentoProject[] = [
-  {
-    id: 'ordely',
-    title: 'Ordely',
-    problem: 'Trop de temps perdu au téléphone',
-    result: 'Commandes automatisées par SMS',
-    description:
-      "Application de gestion de commandes pour commerces de proximité. Les clients envoient leur commande par SMS, le système la comprend automatiquement grâce à l'IA et l'organise dans un tableau de bord.",
-    image: '/images/projects/ordely.png',
-    icon: MessageSquare,
-    size: 'large',
-    badges: ['Production', 'SaaS'],
-    technologies: ['Flask', 'Next.js', 'MariaDB', 'OpenAI'],
-    demo: 'https://ordely.fr',
-  },
-  {
-    id: 'dashboard',
-    title: 'Dashboard Finance',
-    problem: 'Données éparpillées sur plusieurs apps',
-    result: 'Vision claire du patrimoine',
-    description:
-      'Tableau de bord personnel centralisant tous les comptes bancaires, investissements et épargne. Calcul automatique des performances et projections.',
-    image: '/images/projects/dashboard-1.png',
-    icon: TrendingUp,
-    size: 'medium',
-    badges: ['Personnel'],
-    technologies: ['Django', 'PostgreSQL', 'Celery'],
-  },
-  {
-    id: 'media-stack',
-    title: 'Media Stack',
-    problem: 'Pas de sous-titres disponibles',
-    result: 'Sous-titres générés par IA',
-    description:
-      'Infrastructure multimédia auto-hébergée avec streaming personnel. Whisper génère automatiquement les sous-titres, LibreTranslate les traduit.',
-    icon: Play,
-    size: 'small',
-    badges: ['Auto-hébergé'],
-    technologies: ['Jellyfin', 'Whisper', 'Docker'],
-  },
-  {
-    id: 'zerobyte',
-    title: 'Zerobyte',
-    problem: 'Risque de perte de données',
-    result: 'Backups automatiques multi-serveurs',
-    description:
-      'Solution de sauvegarde centralisant les backups de plusieurs serveurs via SFTP. Interface web pour gérer et surveiller l\'état des sauvegardes.',
-    image: '/images/projects/zerobyte.png',
-    icon: HardDrive,
-    size: 'medium',
-    badges: ['Infrastructure'],
-    technologies: ['Zerobyte', 'SFTP', 'Docker'],
-  },
-  {
-    id: 'mailcow',
-    title: 'Serveur Mail',
-    problem: 'Dépendance aux GAFAM',
-    result: 'Emails 100% auto-hébergés',
-    description:
-      'Serveur mail complet avec antispam, antivirus et webmail. Indépendance totale pour les communications professionnelles.',
-    icon: Mail,
-    size: 'small',
-    badges: ['Production'],
-    technologies: ['Mailcow', 'Postfix', 'Docker'],
-  },
-  {
-    id: 'vitrine',
-    title: 'Ce Site',
-    problem: "Besoin d'une vitrine pro",
-    result: 'Portfolio moderne et performant',
-    description:
-      'Ce site que vous consultez : design graphite, fond 3D en parallax (React Three Fiber), formulaire de contact et analytics intégrés.',
-    icon: Globe,
-    size: 'small',
-    badges: ['En ligne'],
-    technologies: ['Next.js', 'React Three Fiber', 'TailwindCSS'],
-    demo: 'https://valentin-marot.fr',
-  },
-  {
-    id: 'homelab',
-    title: 'Homelab',
-    problem: 'Expérimenter sans risque',
-    result: 'Infrastructure complète maison',
-    description:
-      '4 serveurs physiques, Home Assistant pour la domotique, switch et routeur dédiés, VPN WireGuard, monitoring complet. Un vrai datacenter miniature pour tester, apprendre et héberger.',
-    icon: Server,
-    size: 'small',
-    badges: ['Personnel'],
-    technologies: ['Proxmox', 'Docker', 'WireGuard', 'Home Assistant'],
-  },
-];
-
-const getGridClass = (size: string) => {
-  if (size === 'large') return 'md:col-span-2 md:row-span-2';
-  if (size === 'medium') return 'md:col-span-1 md:row-span-2';
-  return 'md:col-span-1 md:row-span-1';
+/**
+ * Le poids d'une carte dit son importance. Ordely occupe quatre fois la
+ * surface d'une petite carte parce qu'il porte quatre fois plus de preuve.
+ *
+ * La hauteur minimale mobile n'est pas décorative : en une seule colonne,
+ * sans elle, toutes les cartes retombent à la même taille et la hiérarchie
+ * — la seule vraie structure de la page — disparaît sur le support
+ * majoritaire.
+ */
+const spanFor = (size: ProjectItem['size']) => {
+  if (size === 'large') return 'min-h-[360px] md:min-h-0 md:col-span-2 md:row-span-2';
+  if (size === 'medium') return 'min-h-[260px] md:min-h-0 md:col-span-1 md:row-span-2';
+  return 'min-h-[200px] md:min-h-0 md:col-span-1 md:row-span-1';
 };
 
 const ProjectsBento = () => {
-  const [selected, setSelected] = useState<BentoProject | null>(null);
-
   return (
-    <section id="projets" className="relative py-24 sm:py-28 overflow-hidden">
+    <section id="projets" className="relative py-28 sm:py-36 overflow-hidden">
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
-        <Parallax speed={0.10}>
-          <div className="mb-14 max-w-2xl">
-            <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
-              02 — Projets
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
-              Des solutions concrètes pour des problèmes réels
+        <Parallax speed={0.1}>
+          <div className="mb-16 max-w-3xl">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
+              Onze projets en service, pas des maquettes
             </h2>
-            <p className="mt-4 text-zinc-300 leading-relaxed">
-              Applications en production, infrastructure auto-hébergée et outils
-              internes. Cliquez pour le détail.
+            <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
+              Applications en production, infrastructure qui les héberge et
+              contributions open source. Chaque projet a sa page : le problème,
+              ce qui a coincé, et ce que ça donne aujourd&apos;hui.
             </p>
           </div>
         </Parallax>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 auto-rows-[200px]">
-          {projects.map((project) => {
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:auto-rows-[210px]">
+          {projectsData.map((project) => {
             const Icon = project.icon;
+            const isLarge = project.size === 'large';
+
             return (
-              <button
-                key={project.id}
-                onClick={() => setSelected(project)}
-                className={`group relative rounded-xl overflow-hidden text-left border border-zinc-800 bg-[#0c0c0e] transition-all duration-300 hover:border-zinc-700 ${getGridClass(project.size)}`}
+              <Link
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                className={`group relative rounded-xl overflow-hidden border border-zinc-800 bg-[#0c0c0e] transition-colors duration-300 hover:border-zinc-600 focus-visible:border-amber-500 ${spanFor(
+                  project.size
+                )}`}
               >
                 {project.image && (
                   <div className="absolute inset-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover object-top opacity-60 transition-all duration-500 group-hover:opacity-80 group-hover:scale-105"
+                      alt=""
+                      aria-hidden="true"
+                      className="w-full h-full object-cover object-top opacity-50 transition-opacity duration-700 ease-out group-hover:opacity-80"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/70 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/75 to-[#0a0a0b]/20" />
                   </div>
                 )}
 
                 {!project.image && (
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity">
-                    <Icon className="w-28 h-28 text-white" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04] transition-opacity duration-500 group-hover:opacity-[0.09]">
+                    <Icon className="w-28 h-28 text-white" strokeWidth={1.25} />
                   </div>
                 )}
 
-                <div className="relative h-full p-5 flex flex-col justify-between">
-                  <div className="flex items-center gap-2">
-                    {project.badges.map((badge) => (
-                      <span
-                        key={badge}
-                        className="font-mono text-[10px] uppercase tracking-wide px-2 py-1 rounded border border-zinc-700 bg-zinc-900/80 text-zinc-300"
-                      >
-                        {badge}
-                      </span>
-                    ))}
+                <div className="relative h-full p-5 sm:p-6 flex flex-col justify-between gap-4">
+                  {/* Rangée haute : nature du projet, et l'affordance de sortie */}
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      {project.badges.map((badge) => (
+                        <span
+                          key={badge}
+                          className="text-[11px] uppercase tracking-wider px-2 py-0.5 rounded border border-zinc-700/80 bg-zinc-950/70 text-zinc-300"
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                    <ArrowUpRight
+                      className="w-4 h-4 text-zinc-600 flex-shrink-0 transition-[color,transform] duration-300 group-hover:text-amber-400 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      aria-hidden="true"
+                    />
                   </div>
 
-                  <div className="space-y-2">
+                  {/* Rangée basse : le titre mène, la transformation suit */}
+                  <div className="space-y-2.5">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center flex-shrink-0">
+                      <span className="w-8 h-8 rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center flex-shrink-0">
                         <Icon className="w-4 h-4 text-amber-400" />
+                      </span>
+                      <h3
+                        className={`font-semibold text-white tracking-tight ${
+                          isLarge ? 'text-2xl sm:text-3xl' : 'text-lg'
+                        }`}
+                      >
+                        {project.title}
+                      </h3>
+                    </div>
+
+                    {isLarge && (
+                      <p className="text-zinc-300 leading-relaxed max-w-[34rem] pt-1">
+                        {project.description}
+                      </p>
+                    )}
+
+                    <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px] leading-snug">
+                      <span className="text-zinc-400 line-through decoration-zinc-600">
+                        {project.problem}
+                      </span>
+                      <span className="text-amber-400/90 font-medium">
+                        {project.result}
+                      </span>
+                    </p>
+
+                    {isLarge && (
+                      <div className="flex flex-wrap gap-1.5 pt-2">
+                        {project.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="font-mono text-[11px] px-2 py-0.5 rounded border border-zinc-800 bg-zinc-950/60 text-zinc-400"
+                          >
+                            {tech}
+                          </span>
+                        ))}
                       </div>
-                      <h3 className="text-lg font-semibold text-white">{project.title}</h3>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs">
-                      <span className="text-zinc-400 line-through truncate">{project.problem}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-                      <span className="text-amber-400/90 font-medium truncate">{project.result}</span>
-                    </div>
+                    )}
                   </div>
                 </div>
-              </button>
+              </Link>
             );
           })}
         </div>
       </div>
-
-      {/* Modal */}
-      {selected && (
-        <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto animate-fade-in-up"
-          onClick={() => setSelected(null)}
-        >
-          <div
-            className="relative bg-[#111113] rounded-2xl max-w-2xl w-full my-8 border border-zinc-800 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setSelected(null)}
-              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-lg bg-zinc-900/80 border border-zinc-700 hover:bg-zinc-800 flex items-center justify-center transition-colors"
-            >
-              <X className="w-4 h-4 text-zinc-300" />
-            </button>
-
-            {selected.image && (
-              <div className="relative h-48 overflow-hidden rounded-t-2xl">
-                <img src={selected.image} alt={selected.title} className="w-full h-full object-cover object-top" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111113] to-transparent" />
-              </div>
-            )}
-
-            <div className="p-6 space-y-5">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center flex-shrink-0">
-                  <selected.icon className="w-5 h-5 text-amber-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white">{selected.title}</h3>
-                  <div className="flex gap-2 mt-1">
-                    {selected.badges.map((badge) => (
-                      <span key={badge} className="font-mono text-[10px] uppercase tracking-wide text-zinc-400">
-                        {badge}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex-1 min-w-0">
-                    <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-wide mb-1">Problème</p>
-                    <p className="text-zinc-300 line-through text-sm">{selected.problem}</p>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="font-mono text-[10px] text-amber-500/70 uppercase tracking-wide mb-1">Résultat</p>
-                    <p className="text-amber-400 font-medium text-sm">{selected.result}</p>
-                  </div>
-                </div>
-              </div>
-
-              <p className="text-zinc-300 leading-relaxed text-[0.9375rem]">{selected.description}</p>
-
-              <div>
-                <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-wide mb-2">Technologies</p>
-                <div className="flex flex-wrap gap-2">
-                  {selected.technologies.map((tech) => (
-                    <span key={tech} className="font-mono text-xs px-2.5 py-1 bg-zinc-900 text-zinc-300 rounded border border-zinc-800">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {selected.demo && (
-                <a
-                  href={selected.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-amber-500 text-zinc-950 font-medium text-sm hover:bg-amber-400 transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Voir le projet
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

@@ -49,3 +49,11 @@ next-env.d.ts
 *.log
 *.bak
 *.bak-*
+
+# --- Impeccable ---
+# Skill installé localement : 15 Mo de binaire, réinstallable par
+# `npx impeccable install -y --project --providers=claude`.
+/.claude/
+# Réglages locaux du détecteur. Les décisions motivées et partagées
+# (faux positifs vérifiés) vivent dans .impeccable/config.json, qui est suivi.
+/.impeccable/config.local.json

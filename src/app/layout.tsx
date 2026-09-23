@@ -65,17 +65,14 @@ export const metadata: Metadata = {
     images: ['https://valentin-marot.fr/og-image.jpg'],
     creator: '@valentin_marot',
   },
-  verification: {
-    google: 'your-google-verification-code', // À remplacer par votre code Google Search Console
-  },
   other: {
     'theme-color': '#0a0a0b',
-    'color-scheme': 'light dark',
+    'color-scheme': 'dark',
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'default',
     'apple-mobile-web-app-title': 'Valentin MAROT',
     'application-name': 'Valentin MAROT Portfolio',
-    'msapplication-TileColor': '#2563eb',
+    'msapplication-TileColor': '#0a0a0b',
     'msapplication-config': '/browserconfig.xml',
   },
 };
@@ -100,6 +97,7 @@ export default function RootLayout({
               "description": "Développeur web & DevOps freelance spécialisé en Python, Docker, Linux",
               "url": "https://valentin-marot.fr",
               "sameAs": [
+                "https://github.com/Valdragon4",
                 "https://github.com/Valentin-MAROT",
                 "https://linkedin.com/in/valentin-marot"
               ],
