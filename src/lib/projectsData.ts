@@ -298,6 +298,7 @@ export const projectsData: ProjectItem[] = [
     results:
       "Démarrage en une commande : le conteneur applique le schéma, sert le client et déclenche l'ingestion des cartes.",
     duration: '2026 — en cours',
+    image: '/images/projects/table-virtuelle-mtg.png',
     github: 'https://github.com/Valdragon4/Table-virtuel-mtg',
   },
   {
@@ -353,6 +354,7 @@ export const projectsData: ProjectItem[] = [
     results:
       'Proposition ouverte sur le dépôt officiel Centreon, sous la référence #6406.',
     duration: '2026',
+    image: '/images/projects/centreon-plugin.png',
     github: 'https://github.com/centreon/centreon-plugins/pull/6406',
   },
   {
