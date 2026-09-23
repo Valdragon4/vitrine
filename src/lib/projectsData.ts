@@ -43,7 +43,10 @@ export interface ProjectItem {
   challenges: string;
   results: string;
   duration: string;
+  /** Image principale : carte de la grille et ouverture de la page projet. */
   image?: string;
+  /** Images complémentaires, page de détail uniquement. */
+  gallery?: { src: string; alt: string; caption: string }[];
   demo?: string;
   github?: string;
 }
@@ -89,6 +92,14 @@ export const projectsData: ProjectItem[] = [
       "En production chez un commerçant. Le dépôt compte 860 commits et neuf chaînes d'intégration continue : tests, déploiement, migrations de base, sauvegarde quotidienne, contrôle de santé, maintenance, versionnage sémantique et retour arrière.",
     duration: '2024 — en cours',
     image: '/images/projects/ordely.png',
+    gallery: [
+      {
+        src: '/images/projects/ordely-vitrine.png',
+        alt: 'Page d’accueil publique d’Ordely : un SMS client et sa confirmation automatique',
+        caption:
+          'La page publique du produit. Le commerçant n’installe rien chez ses clients : la commande arrive par SMS ordinaire.',
+      },
+    ],
     demo: 'https://ordely.fr',
   },
   {

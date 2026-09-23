@@ -133,6 +133,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         )}
 
+        {/* Galerie — images complémentaires, avec ce qu'elles montrent */}
+        {project.gallery && project.gallery.length > 0 && (
+          <section className="mt-12 grid gap-8 sm:grid-cols-2">
+            {project.gallery.map((img) => (
+              <figure key={img.src} className="m-0">
+                <div className="rounded-2xl overflow-hidden border border-zinc-800">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={img.src} alt={img.alt} className="w-full h-auto" />
+                </div>
+                <figcaption className="mt-3 text-[13px] text-zinc-400 leading-relaxed max-w-[36rem]">
+                  {img.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </section>
+        )}
+
         {/* Corps */}
         <div className="mt-16 grid lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] gap-12 xl:gap-20">
           <div>
