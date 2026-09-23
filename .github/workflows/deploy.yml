@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+    # Un changement purement documentaire ne redeploie pas la production.
+    paths-ignore:
+      - 'README.md'
+      - '.gitignore'
+      - 'docs/**'
+      - '**/*.md'
 
 jobs:
   deploy:

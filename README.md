@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# valentin-marot.fr
 
-## Getting Started
+Site vitrine de [Valentin Marot](https://valentin-marot.fr) — développeur web &
+DevOps freelance. Next.js, rendu 3D temps réel, formulaire de contact, et un
+déploiement continu sur infrastructure auto-hébergée.
 
-First, run the development server:
+## Pile
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+| | |
+|---|---|
+| **Framework** | Next.js 16 (App Router), React 19, TypeScript 5 |
+| **Styles** | Tailwind CSS 3.4 |
+| **3D** | three.js via `@react-three/fiber` et `@react-three/drei` |
+| **Analytics** | PostHog (`posthog-js` côté client, `posthog-node` côté serveur) |
+| **Contact** | `nodemailer` |
+| **Conteneur** | image multi-étages `node:20-alpine` |
+
+Le code applicatif vit dans `src/` : `app/` (routes App Router), `components/`,
+`lib/`.
+
+## Développer
+
+```sh
+npm install
+npm run dev          # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ou en conteneur, avec `Dockerfile.dev` :
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+docker compose up
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Les clés PostHog sont injectées **au build** (`NEXT_PUBLIC_POSTHOG_KEY`) ; elles
+ne sont pas dans le dépôt. Copier les variables nécessaires dans un `.env` local,
+que `.gitignore` exclut.
 
-## Learn More
+## Déploiement
 
-To learn more about Next.js, take a look at the following resources:
+Le déploiement est **automatique** : toute poussée sur `main` déclenche
+`.github/workflows/deploy.yml`. Les changements purement documentaires
+(`README.md`, `.gitignore`, `docs/`) sont exclus par `paths-ignore` — ils ne
+redéploient pas le site.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+La chaîne, et la raison de sa forme :
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+push main
+  └─ runner auto-hébergé (valdragon2)
+       ├─ build de l'image Next.js
+       ├─ pose du tag `vitrine-vitrine:rollback` sur Server
+       ├─ docker save | ssh Server docker load
+       ├─ git reset --hard origin/main + docker compose up -d --no-build
+       └─ vérification : curl interne (:3002) puis public (https://valentin-marot.fr)
+```
 
-## Deploy on Vercel
+**Server ne build jamais.** C'est un Core 2 Duo qui porte le reverse-proxy nginx
+d'une vingtaine de vhosts ; un build Next.js l'avait saturé (load 7+). Le build
+a donc été déplacé sur la machine applicative, et Server ne reçoit qu'une image
+déjà construite.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Retour arrière
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Le tag `rollback` pointe sur l'image qui tournait avant le dernier déploiement :
+
+```sh
+ssh Server
+cd ~/vitrine
+docker tag vitrine-vitrine:rollback vitrine-vitrine:latest
+docker compose up -d --no-build
+```
+
+> ⚠️ Le déploiement fait `git reset --hard` dans `~/vitrine` sur Server : toute
+> modification locale non commitée y est écrasée. Le healthcheck est commité
+> dans le dépôt précisément pour cette raison.

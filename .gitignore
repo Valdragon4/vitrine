@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# --- Résidus et secrets présents sur la machine de déploiement ---
+# Ces chemins existent dans ~/vitrine sur Server et ne doivent JAMAIS être
+# stagés par accident (un `git add -A` distrait suffirait).
+/keys/
+/config
+/zerobyte-staging/
+*.log
+*.bak
+*.bak-*
