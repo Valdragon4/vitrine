@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,6 +14,12 @@
   /* Accent unique */
   --accent: #f59e0b;
   --accent-soft: #fbbf24;
+
+  /* Le site n'a pas de thème clair : le dire au navigateur, sinon les
+     contrôles natifs (validation de formulaire, autofill, scrollbars
+     Firefox) rendent en clair par-dessus une page sombre. */
+  color-scheme: dark;
+  accent-color: var(--accent);
 }
 
 * {
@@ -31,9 +36,10 @@ html {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   line-height: 1.6;
   font-weight: 400;
+  caret-color: var(--accent);
 }
 
 ::selection {
@@ -47,9 +53,28 @@ section[id] {
   scroll-margin-top: 84px;
 }
 
-/* Scrollbar sobre */
+/* ---------------------------------------------------------------
+   Anneau de focus
+   Sans cette règle, tout ce qui n'est pas un champ de formulaire —
+   cartes de projet, boutons d'appel à l'action, navigation, liens de
+   pied de page — hérite de l'outline par défaut du navigateur, qui est
+   un liseré sombre invisible sur #0a0a0b.
+   --------------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* Les surfaces déjà arrondies gardent leur propre rayon. */
+a:focus-visible,
+button:focus-visible {
+  border-radius: inherit;
+}
+
+/* Scrollbar sobre — WebKit puis standard (Firefox) */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg);
@@ -62,67 +87,22 @@ section[id] {
 ::-webkit-scrollbar-thumb:hover {
   background: #3a3a3f;
 }
-
-/* Libellé mono réutilisable (eyebrows, index de section) */
-.eyebrow {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
+::-webkit-scrollbar-corner {
+  background: var(--bg);
+}
+html {
+  scrollbar-color: #2a2a2e var(--bg);
+  scrollbar-width: thin;
 }
 
-/* Fine texture de grille, très discrète (optionnelle via .grid-texture) */
-.grid-texture {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 64px 64px;
+/* Chiffres alignés dans les données tabulaires et les compteurs */
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
-
-/* Animations conservées (utilisées par les modales) */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in-up { animation: fadeInUp 0.4s ease-out forwards; }
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Timeline (accent ambre, plus de bleu) */
-.timeline-item {
-  position: relative;
-  padding-left: 40px;
-  margin-bottom: 32px;
-}
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 2px;
-  width: 12px;
-  height: 12px;
-  background: var(--accent);
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
-}
-.timeline-item::after {
-  content: '';
-  position: absolute;
-  left: 5px;
-  top: 18px;
-  width: 2px;
-  height: calc(100% + 16px);
-  background: var(--border);
-}
-.timeline-item:last-child::after { display: none; }
 
 /* Formulaires — thème graphite, focus ambre */
-input[type="text"],
-input[type="email"],
+input[type='text'],
+input[type='email'],
 textarea {
   color: #e8e8ea !important;
   background-color: #141416 !important;
@@ -131,8 +111,8 @@ textarea {
   transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
   caret-color: var(--accent) !important;
 }
-input[type="text"]:focus,
-input[type="email"]:focus,
+input[type='text']:focus,
+input[type='email']:focus,
 textarea:focus {
   color: #fff !important;
   background-color: #141416 !important;
@@ -140,10 +120,10 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18) !important;
   outline: none !important;
 }
-input[type="text"]::placeholder,
-input[type="email"]::placeholder,
+input[type='text']::placeholder,
+input[type='email']::placeholder,
 textarea::placeholder {
-  color: #71717a !important;
+  color: #8b8b93 !important;
   opacity: 1 !important;
 }
 input:-webkit-autofill,
@@ -158,6 +138,11 @@ textarea:-webkit-autofill {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }

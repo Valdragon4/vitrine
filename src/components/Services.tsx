@@ -1,114 +1,135 @@
 'use client';
 
-import { Code2, Workflow, Server, Activity, ArrowRight, Check } from 'lucide-react';
+import { Code2, Workflow, Server, Activity, ArrowRight } from 'lucide-react';
 import Parallax from './Parallax';
 
-const services = [
+/**
+ * Ces quatre prestations ne sont pas quatre cases équivalentes : c'est une
+ * chaîne. On conçoit, puis on automatise ce qu'on a conçu, puis on le
+ * déploie, puis on le maintient. La mise en page dit cet enchaînement —
+ * d'où le connecteur, et non une grille de quatre cartes jumelles.
+ */
+const steps = [
   {
-    n: '01',
-    title: 'Développement web',
+    title: 'Concevoir',
+    heading: 'Développement web',
     icon: Code2,
     description:
-      "Sites vitrines et applications sur mesure, du front à l'API. Code propre, rapide et pensé pour évoluer.",
+      "Sites vitrines et applications sur mesure, du front à l'API. Code lisible, rapide, et pensé pour être repris.",
     points: ['Next.js / React', 'API Python (Flask, Django)', 'Bases de données SQL'],
   },
   {
-    n: '02',
-    title: 'Automatisation & DevOps',
+    title: 'Automatiser',
+    heading: 'Intégration & déploiement continus',
     icon: Workflow,
     description:
-      'Je fiabilise vos déploiements : conteneurisation, pipelines CI/CD et scripts pour supprimer les tâches manuelles.',
-    points: ['Docker & Compose', 'Pipelines CI/CD', 'Déploiements reproductibles'],
+      'Chaque mise en ligne devient une opération sans surprise : conteneurisation, tests, déploiement déclenché par la fusion, retour arrière prévu.',
+    points: ['Docker & Compose', 'Pipelines CI/CD', 'Retour arrière immédiat'],
   },
   {
-    n: '03',
-    title: 'Infrastructure & hébergement',
+    title: 'Héberger',
+    heading: 'Infrastructure & mise en ligne',
     icon: Server,
     description:
-      "Mise en ligne et administration de vos services sur Linux : reverse-proxy, certificats, DNS, auto-hébergement.",
-    points: ['Serveurs Linux / VPS', 'Nginx, SSL/TLS, DNS', 'Auto-hébergement'],
+      'Vos services tournent sur du Linux administré : reverse-proxy, certificats, DNS, segmentation réseau, ou auto-hébergement complet.',
+    points: ['Serveurs Linux / VPS', 'Nginx, TLS, DNS', 'Auto-hébergement'],
   },
   {
-    n: '04',
-    title: 'Supervision & maintenance',
+    title: 'Maintenir',
+    heading: 'Supervision & maintenance',
     icon: Activity,
     description:
-      'Votre infra reste saine dans le temps : monitoring, sauvegardes automatiques, mises à jour et sécurité.',
-    points: ['Monitoring & alertes', 'Sauvegardes automatisées', 'Mises à jour & durcissement'],
+      "L'infrastructure reste saine dans la durée : métriques, alertes qui se déclenchent vraiment, sauvegardes vérifiées, mises à jour et durcissement.",
+    points: ['Monitoring & alertes', 'Sauvegardes vérifiées', 'Mises à jour & durcissement'],
   },
 ];
 
 const Services = () => {
   return (
-    <section id="services" className="relative py-24 sm:py-28 overflow-hidden">
+    <section id="services" className="relative py-28 sm:py-36 overflow-hidden">
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
-        <Parallax speed={0.10}>
-          <div className="mb-14 max-w-2xl">
-            <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
-              01 — Services
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
+        <Parallax speed={0.1}>
+          <div className="mb-16 max-w-3xl">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
               Du code à la production, un seul interlocuteur
             </h2>
-            <p className="mt-4 text-zinc-300 leading-relaxed">
-              Je couvre l&apos;ensemble de la chaîne : concevoir l&apos;application,
-              l&apos;automatiser, la déployer et la maintenir.
+            <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
+              La plupart des projets se cassent entre deux prestataires : celui qui
+              développe et celui qui héberge. Je tiens les deux bouts de la chaîne.
             </p>
           </div>
         </Parallax>
 
-        <div className="grid sm:grid-cols-2 gap-px bg-zinc-800/60 rounded-2xl overflow-hidden border border-zinc-800/60">
-          {services.map((service) => {
-            const Icon = service.icon;
+        <ol className="relative grid gap-px bg-zinc-800/60 sm:grid-cols-2 xl:grid-cols-4 rounded-2xl overflow-hidden border border-zinc-800/60">
+          {steps.map((step, i) => {
+            const Icon = step.icon;
             return (
-              <div
-                key={service.n}
-                className="group bg-[#0c0c0e] p-8 transition-colors hover:bg-zinc-900/60"
+              <li
+                key={step.title}
+                className="group relative bg-[#0c0c0e] p-7 sm:p-8 transition-colors hover:bg-zinc-900/60"
               >
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-11 h-11 rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center group-hover:border-amber-500/50 transition-colors">
-                    <Icon className="w-5 h-5 text-amber-400" />
-                  </div>
-                  <span className="font-mono text-xs text-zinc-600">{service.n}</span>
+                {/* Étape et position dans la chaîne */}
+                <div className="flex items-center gap-2.5 mb-6">
+                  <Icon
+                    className="w-4 h-4 text-amber-400 flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="text-xs uppercase tracking-[0.14em] text-amber-400/90 font-medium">
+                    {step.title}
+                  </span>
+                  {i < steps.length - 1 && (
+                    <ArrowRight
+                      className="w-3.5 h-3.5 text-zinc-700 ml-auto hidden xl:block"
+                      aria-hidden="true"
+                    />
+                  )}
                 </div>
 
-                <h3 className="text-xl font-semibold text-zinc-100 mb-3">
-                  {service.title}
+                <h3 className="font-display text-xl font-semibold text-zinc-100 mb-3 text-balance">
+                  {step.heading}
                 </h3>
-                <p className="text-[0.9375rem] text-zinc-300 leading-relaxed mb-5">
-                  {service.description}
+                <p className="text-[0.9375rem] text-zinc-300 leading-relaxed mb-6 max-w-[30rem]">
+                  {step.description}
                 </p>
 
-                <ul className="space-y-2">
-                  {service.points.map((point) => (
+                <ul className="space-y-2 border-t border-zinc-800/80 pt-5">
+                  {step.points.map((point) => (
                     <li
                       key={point}
-                      className="flex items-center gap-2.5 font-mono text-xs text-zinc-400"
+                      className="flex items-baseline gap-2.5 text-[13px] text-zinc-400"
                     >
-                      <Check className="w-3.5 h-3.5 text-amber-500/80 flex-shrink-0" />
+                      <span
+                        className="w-1 h-1 rounded-full bg-amber-500/70 flex-shrink-0 translate-y-[-2px]"
+                        aria-hidden="true"
+                      />
                       {point}
                     </li>
                   ))}
                 </ul>
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ol>
 
-        {/* CTA */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/40 px-8 py-7">
+        <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 rounded-2xl border border-zinc-800 bg-zinc-900/40 px-8 py-7">
           <div>
-            <p className="text-lg font-semibold text-zinc-100">Un projet en tête ?</p>
-            <p className="text-sm text-zinc-400 font-mono mt-1">
-              Réponse sous 24 h · devis gratuit
+            <p className="text-lg font-semibold text-zinc-100">
+              Un projet en tête&nbsp;?
+            </p>
+            <p className="text-sm text-zinc-400 mt-1 max-w-[32rem] leading-relaxed">
+              Dites-moi où vous en êtes, je vous réponds avec un périmètre et un
+              prix, pas avec un questionnaire.
             </p>
           </div>
           <a
             href="#contact"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors"
+            className="group inline-flex items-center gap-2 min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors flex-shrink-0"
           >
             Parlons-en
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight
+              className="w-4 h-4 transition-transform group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
           </a>
         </div>
       </div>

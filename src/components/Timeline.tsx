@@ -72,22 +72,22 @@ const Timeline = ({ items }: TimelineProps) => {
             <div className="ml-6 flex-1 min-w-0">
               <div className="bg-[#0c0c0e] rounded-xl border border-zinc-800 p-6">
                 <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded border border-zinc-700 text-zinc-300">
+                  <span className="text-[11px] uppercase tracking-wider px-2 py-0.5 rounded border border-zinc-700 text-zinc-300">
                     {getTypeLabel(item.type)}
                   </span>
                   {item.current && (
-                    <span className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400">
+                    <span className="text-[11px] uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400">
                       En cours
                     </span>
                   )}
                   {item.parallel && (
-                    <span className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded border border-zinc-700 text-zinc-400">
+                    <span className="text-[11px] uppercase tracking-wider px-2 py-0.5 rounded border border-zinc-700 text-zinc-400">
                       En parallèle
                     </span>
                   )}
                 </div>
 
-                <h3 className="text-lg font-semibold text-zinc-100 mb-1.5">
+                <h3 className="font-display text-lg font-semibold text-zinc-100 mb-1.5">
                   {item.title}
                 </h3>
 
@@ -98,23 +98,23 @@ const Timeline = ({ items }: TimelineProps) => {
                   </div>
                 )}
 
-                <div className="flex flex-wrap gap-4 font-mono text-xs text-zinc-400 mb-4">
+                <div className="flex flex-wrap gap-4 text-xs text-zinc-400 mb-4">
                   <span className="flex items-center">
                     <MapPin className="w-3.5 h-3.5 mr-1.5" />
                     {item.location}
                   </span>
                   <span className="flex items-center">
                     <Calendar className="w-3.5 h-3.5 mr-1.5" />
-                    {item.period}
+                    <span className="font-mono tabular">{item.period}</span>
                   </span>
                 </div>
 
-                <p className="text-zinc-300 leading-relaxed mb-4 text-[0.9375rem]">
+                <p className="text-zinc-300 leading-relaxed mb-4 text-[0.9375rem] max-w-[36rem]">
                   {item.description}
                 </p>
 
                 {item.achievements && item.achievements.length > 0 && (
-                  <ul className="space-y-2 mb-4">
+                  <ul className="space-y-2 mb-4 max-w-[36rem]">
                     {item.achievements.map((achievement, i) => (
                       <li key={i} className="flex items-start text-zinc-300">
                         <span className="w-1 h-1 rounded-full bg-amber-500 mr-3 mt-2 flex-shrink-0" />

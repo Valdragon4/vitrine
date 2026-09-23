@@ -1,9 +1,15 @@
 'use client';
 
-import { MapPin, Clock, FileText, Building2, Mail } from 'lucide-react';
+import { MapPin, Clock, FileText, Building2 } from 'lucide-react';
 import Parallax from './Parallax';
 import SectionWatermark from './SectionWatermark';
+import EmailLink from './EmailLink';
 
+/**
+ * Des faits, pas des adjectifs. Une fiche dont la valeur est « Réactif »
+ * ou « Claire » est une carte construite avant d'avoir quelque chose à y
+ * mettre.
+ */
 const infos = [
   {
     icon: Building2,
@@ -19,80 +25,95 @@ const infos = [
   },
   {
     icon: Clock,
-    label: 'Disponibilité',
-    value: 'Réactif',
-    detail: 'Réponse sous 24 h, RDV flexibles',
+    label: 'Format',
+    value: 'Mission ou forfait',
+    detail: 'Prestation ponctuelle ou suivi dans la durée',
   },
   {
     icon: FileText,
-    label: 'Facturation',
-    value: 'Claire',
-    detail: 'Devis gratuit, sans surprise',
+    label: 'Devis',
+    value: 'Gratuit, sous 24 h',
+    detail: 'Périmètre et prix fixés avant de commencer',
   },
 ];
 
 const About = () => {
   return (
-    <section id="a-propos" className="relative py-24 sm:py-28 overflow-hidden">
+    <section id="a-propos" className="relative py-28 sm:py-36 overflow-hidden">
       <SectionWatermark text="whoami" align="left" />
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
-        <Parallax speed={0.10}>
-          <div className="mb-12 max-w-2xl">
-            <p className="font-mono text-xs tracking-[0.15em] uppercase text-amber-400 mb-4">
-              04 — À propos
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight">
-              Développeur &amp; administrateur système en freelance
+        <Parallax speed={0.1}>
+          <div className="mb-16 max-w-3xl">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight text-balance">
+              Développeur et administrateur système, en freelance
             </h2>
           </div>
         </Parallax>
 
-        <div className="rounded-2xl border border-zinc-800 bg-[#0c0c0e] p-8 sm:p-10">
-          <p className="text-zinc-300 leading-relaxed max-w-3xl">
-            En Master Réseaux &amp; Télécoms et en alternance sur l&apos;administration
-            systèmes et réseaux, j&apos;ai lancé ma micro-entreprise pour accompagner
-            entreprises, indépendants et associations. Je réunis deux compétences
-            rarement associées : <span className="text-zinc-200">le développement web</span> et{' '}
-            <span className="text-zinc-200">l&apos;infrastructure DevOps</span> — de la
-            conception de l&apos;application jusqu&apos;à son hébergement et sa
-            supervision. Objectif : des solutions robustes, sans jargon inutile.
-          </p>
+        <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-12 xl:gap-20">
+          {/* La prose porte l'argument : elle n'a pas besoin d'une carte */}
+          <div>
+            <p className="text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
+              En Master Réseaux &amp; Télécommunications et en alternance sur
+              l&apos;administration systèmes et réseaux, j&apos;ai lancé ma
+              micro-entreprise pour accompagner entreprises, indépendants et
+              associations.
+            </p>
+            <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
+              Je réunis deux compétences rarement associées :{' '}
+              <span className="text-zinc-100">le développement web</span> et{' '}
+              <span className="text-zinc-100">l&apos;infrastructure qui le fait
+              tourner</span>. Concrètement, ça veut dire que je sais ce que coûte
+              en production le code que j&apos;écris — et que votre projet ne se
+              perdra pas entre deux prestataires qui se renvoient la
+              responsabilité.
+            </p>
+            <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
+              Ce n&apos;est pas théorique : j&apos;administre quatre machines sur
+              trois sites, un SaaS en production et une vingtaine de services
+              exposés. Tout ce que je propose, je le fais déjà tourner chez moi.
+            </p>
 
-          {/* Infos */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-10">
+            <div className="mt-10 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <EmailLink />
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center min-h-[44px] px-5 py-3 rounded-lg border border-zinc-700 text-zinc-200 text-sm font-medium hover:border-zinc-500 hover:text-white transition-colors"
+              >
+                Me contacter
+              </a>
+            </div>
+          </div>
+
+          {/* Les faits administratifs : une liste de définitions, pas
+              quatre cartes jumelles */}
+          <dl className="divide-y divide-zinc-800 border-y border-zinc-800">
             {infos.map((info) => {
               const Icon = info.icon;
               return (
                 <div
                   key={info.label}
-                  className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
+                  className="py-5 grid grid-cols-[auto_minmax(0,1fr)] gap-x-3.5 gap-y-1 items-baseline"
                 >
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <Icon className="w-4 h-4 text-amber-400" />
-                    <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wide">
-                      {info.label}
+                  <Icon
+                    className="w-4 h-4 text-amber-400 translate-y-0.5"
+                    aria-hidden="true"
+                  />
+                  <dt className="text-xs uppercase tracking-[0.14em] text-zinc-400">
+                    {info.label}
+                  </dt>
+                  <dd className="col-start-2 max-w-[24rem]">
+                    <span className="block text-base font-semibold text-zinc-100">
+                      {info.value}
                     </span>
-                  </div>
-                  <p className="text-base font-semibold text-zinc-100 mb-1">{info.value}</p>
-                  <p className="text-xs text-zinc-400">{info.detail}</p>
+                    <span className="block text-[13px] text-zinc-400 leading-relaxed mt-0.5">
+                      {info.detail}
+                    </span>
+                  </dd>
                 </div>
               );
             })}
-          </div>
-
-          {/* Contact rapide */}
-          <div className="mt-8 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-2.5 font-mono text-sm text-zinc-300">
-              <Mail className="w-4 h-4 text-zinc-600" />
-              contact@valentin-marot.fr
-            </div>
-            <a
-              href="#contact"
-              className="px-5 py-2.5 rounded-lg border border-zinc-700 text-zinc-200 text-sm font-medium hover:border-zinc-500 hover:text-white transition-colors"
-            >
-              Me contacter
-            </a>
-          </div>
+          </dl>
         </div>
       </div>
     </section>
