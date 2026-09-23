@@ -395,6 +395,7 @@ export const projectsData: ProjectItem[] = [
     results:
       "Chaque fusion met en ligne en quelques minutes, avec retour arrière immédiat si la vérification échoue. Les modifications purement documentaires ne déclenchent plus de déploiement.",
     duration: '2025 — en cours',
+    image: '/images/projects/vitrine.png',
     demo: 'https://valentin-marot.fr',
     github: 'https://github.com/Valdragon4/vitrine',
   },
