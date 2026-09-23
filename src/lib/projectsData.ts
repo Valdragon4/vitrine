@@ -43,7 +43,10 @@ export interface ProjectItem {
   challenges: string;
   results: string;
   duration: string;
+  /** Image principale : carte de la grille et ouverture de la page projet. */
   image?: string;
+  /** Images complémentaires, page de détail uniquement. */
+  gallery?: { src: string; alt: string; caption: string }[];
   demo?: string;
   github?: string;
 }
@@ -89,6 +92,14 @@ export const projectsData: ProjectItem[] = [
       "En production chez un commerçant. Le dépôt compte 860 commits et neuf chaînes d'intégration continue : tests, déploiement, migrations de base, sauvegarde quotidienne, contrôle de santé, maintenance, versionnage sémantique et retour arrière.",
     duration: '2024 — en cours',
     image: '/images/projects/ordely.png',
+    gallery: [
+      {
+        src: '/images/projects/ordely-vitrine.png',
+        alt: 'Page d’accueil publique d’Ordely : un SMS client et sa confirmation automatique',
+        caption:
+          'La page publique du produit. Le commerçant n’installe rien chez ses clients : la commande arrive par SMS ordinaire.',
+      },
+    ],
     demo: 'https://ordely.fr',
   },
   {
@@ -131,6 +142,7 @@ export const projectsData: ProjectItem[] = [
     results:
       "Les machines tiennent entre 86 et 91 jours d'uptime sans conteneur en défaut. L'ensemble est décrit dans 110 pages de documentation, journaux d'incidents compris — y compris les écarts constatés et les correctifs qui n'ont pas encore été appliqués.",
     duration: '2023 — en cours',
+    image: '/images/projects/homelab.png',
   },
   {
     slug: 'mcp-infra',
@@ -159,6 +171,7 @@ export const projectsData: ProjectItem[] = [
     results:
       "Le serveur tourne en service systemd sur l'hôte applicatif. Il a servi à établir l'inventaire qui a nourri la refonte de ce site : les chiffres affichés ici en sortent.",
     duration: '2026 — en cours',
+    image: '/images/projects/mcp-infra.png',
   },
   {
     slug: 'openproject-reskin',
@@ -186,6 +199,15 @@ export const projectsData: ProjectItem[] = [
     results:
       "Quinze écrans comparés sur un protocole fixe : instance d'origine vierge contre sources modifiées, même version, mêmes données de démonstration, mêmes réglages de capture. Onze entrées de menu refaites, zéro perdue.",
     duration: '2026',
+    image: '/images/projects/openproject-reskin.png',
+    gallery: [
+      {
+        src: '/images/projects/openproject-origine.png',
+        alt: 'Accueil d’OpenProject 17.8 dans sa version d’origine',
+        caption:
+          'La même page avant refonte, sur la même version et le même jeu de démonstration. Le menu global était une liste plate ; il est désormais groupé en Travailler, Collaborer et Suivre — sans qu’aucune entrée disparaisse.',
+      },
+    ],
     github: 'https://github.com/Valdragon4/Openproject-reskin',
   },
   {
@@ -271,6 +293,7 @@ export const projectsData: ProjectItem[] = [
     results:
       'En service quotidien. Tout nouveau contenu sans sous-titres en obtient automatiquement.',
     duration: '2024 — en cours',
+    image: '/images/projects/media-stack.png',
   },
   {
     slug: 'table-virtuelle-mtg',
@@ -298,6 +321,7 @@ export const projectsData: ProjectItem[] = [
     results:
       "Démarrage en une commande : le conteneur applique le schéma, sert le client et déclenche l'ingestion des cartes.",
     duration: '2026 — en cours',
+    image: '/images/projects/table-virtuelle-mtg.png',
     github: 'https://github.com/Valdragon4/Table-virtuel-mtg',
   },
   {
@@ -353,6 +377,7 @@ export const projectsData: ProjectItem[] = [
     results:
       'Proposition ouverte sur le dépôt officiel Centreon, sous la référence #6406.',
     duration: '2026',
+    image: '/images/projects/centreon-plugin.png',
     github: 'https://github.com/centreon/centreon-plugins/pull/6406',
   },
   {
@@ -382,6 +407,7 @@ export const projectsData: ProjectItem[] = [
     results:
       "Chaque fusion met en ligne en quelques minutes, avec retour arrière immédiat si la vérification échoue. Les modifications purement documentaires ne déclenchent plus de déploiement.",
     duration: '2025 — en cours',
+    image: '/images/projects/vitrine.png',
     demo: 'https://valentin-marot.fr',
     github: 'https://github.com/Valdragon4/vitrine',
   },

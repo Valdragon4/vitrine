@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { PosthogInit } from "@/components/PosthogInit";
+import CookieBanner from "@/components/CookieBanner";
 
 /**
  * Polices auto-hebergees par next/font : telechargees au build, servies
@@ -174,6 +175,7 @@ export default function RootLayout({
       <body className="antialiased bg-[#0a0a0b]">
         <PosthogInit />
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

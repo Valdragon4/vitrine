@@ -23,7 +23,7 @@ export default function PolitiqueConfidentialite() {
         </p>
         <ul className="list-disc pl-6 text-zinc-300 space-y-2">
           <li>Données de contact (nom, email, message) via le formulaire de contact</li>
-          <li>Données de navigation anonymisées via PostHog (analytics)</li>
+          <li>Données de navigation via PostHog (mesure d&apos;audience) — <span className="text-zinc-100 font-medium">uniquement si vous y avez consenti</span></li>
         </ul>
       </section>
 
@@ -44,12 +44,29 @@ export default function PolitiqueConfidentialite() {
           3. Cookies et analytics
         </h2>
         <p className="text-zinc-300 mb-4">
-          Ce site utilise PostHog pour analyser le comportement des visiteurs de manière anonymisée. 
-          Ces données nous aident à améliorer l'expérience utilisateur.
+          Ce site utilise PostHog pour mesurer les pages consultées et améliorer
+          la navigation.
+        </p>
+        <p className="text-zinc-300 mb-4">
+          <span className="text-zinc-100 font-medium">
+            Rien n&apos;est mesuré tant que vous n&apos;avez pas accepté.
+          </span>{' '}
+          Tant que le choix n&apos;a pas été fait, le script de mesure n&apos;est pas
+          chargé, aucun cookie n&apos;est déposé et aucune donnée de navigation
+          n&apos;est transmise. Un bandeau vous demande votre accord lors de votre
+          première visite.
+        </p>
+        <p className="text-zinc-300 mb-4">
+          Si vous refusez, rien n&apos;est mesuré et le choix est conservé pour vos
+          visites suivantes. Si vous acceptez, la mesure démarre immédiatement et
+          un cookie est déposé pour reconnaître votre navigateur d&apos;une page à
+          l&apos;autre.
         </p>
         <p className="text-zinc-300">
-          Vous pouvez désactiver le suivi en utilisant une extension de navigateur type "Do Not Track" 
-          ou en bloquant les scripts tiers.
+          Vous pouvez revenir sur votre choix à tout moment via le lien{' '}
+          <span className="text-zinc-100 font-medium">« Gérer les cookies »</span>{' '}
+          en pied de page. Revenir sur une acceptation coupe la mesure et efface
+          les identifiants déposés.
         </p>
       </section>
 
