@@ -142,6 +142,7 @@ export const projectsData: ProjectItem[] = [
     results:
       "Les machines tiennent entre 86 et 91 jours d'uptime sans conteneur en défaut. L'ensemble est décrit dans 110 pages de documentation, journaux d'incidents compris — y compris les écarts constatés et les correctifs qui n'ont pas encore été appliqués.",
     duration: '2023 — en cours',
+    image: '/images/projects/homelab.png',
   },
   {
     slug: 'mcp-infra',
@@ -170,6 +171,7 @@ export const projectsData: ProjectItem[] = [
     results:
       "Le serveur tourne en service systemd sur l'hôte applicatif. Il a servi à établir l'inventaire qui a nourri la refonte de ce site : les chiffres affichés ici en sortent.",
     duration: '2026 — en cours',
+    image: '/images/projects/mcp-infra.png',
   },
   {
     slug: 'openproject-reskin',
@@ -197,6 +199,15 @@ export const projectsData: ProjectItem[] = [
     results:
       "Quinze écrans comparés sur un protocole fixe : instance d'origine vierge contre sources modifiées, même version, mêmes données de démonstration, mêmes réglages de capture. Onze entrées de menu refaites, zéro perdue.",
     duration: '2026',
+    image: '/images/projects/openproject-reskin.png',
+    gallery: [
+      {
+        src: '/images/projects/openproject-origine.png',
+        alt: 'Accueil d’OpenProject 17.8 dans sa version d’origine',
+        caption:
+          'La même page avant refonte, sur la même version et le même jeu de démonstration. Le menu global était une liste plate ; il est désormais groupé en Travailler, Collaborer et Suivre — sans qu’aucune entrée disparaisse.',
+      },
+    ],
     github: 'https://github.com/Valdragon4/Openproject-reskin',
   },
   {
@@ -282,6 +293,7 @@ export const projectsData: ProjectItem[] = [
     results:
       'En service quotidien. Tout nouveau contenu sans sous-titres en obtient automatiquement.',
     duration: '2024 — en cours',
+    image: '/images/projects/media-stack.png',
   },
   {
     slug: 'table-virtuelle-mtg',
