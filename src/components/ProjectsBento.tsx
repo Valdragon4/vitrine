@@ -76,7 +76,7 @@ const ProjectsBento = () => {
                 )}`}
               >
                 {project.image && (
-                  <div className="absolute inset-0">
+                  <div className="absolute inset-[7px] overflow-hidden rounded-[5px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={project.image}

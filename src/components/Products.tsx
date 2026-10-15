@@ -107,13 +107,16 @@ const Products = () => {
 
           {flagship.image && (
             <div className="relative min-h-[260px] lg:min-h-0 border-t lg:border-t-0 lg:border-l border-ink-800">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={flagship.image}
-                alt="Tableau de bord commerçant d’Ordely, données anonymisées"
-                className="absolute inset-0 w-full h-full object-cover object-left-top"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-card/70 via-transparent to-transparent" />
+              {/* L'image tient à l'intérieur du filet de la plaque. */}
+              <div className="absolute top-0 right-[7px] bottom-[7px] left-[7px] lg:top-[7px] lg:left-0 overflow-hidden rounded-b-[5px] lg:rounded-bl-none lg:rounded-r-[5px]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={flagship.image}
+                  alt="Tableau de bord commerçant d’Ordely, données anonymisées"
+                  className="absolute inset-0 w-full h-full object-cover object-left-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-card/70 via-transparent to-transparent" />
+              </div>
             </div>
           )}
         </article>

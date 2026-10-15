@@ -119,7 +119,7 @@ export const projectsData: ProjectItem[] = [
     image: '/images/projects/ordely.png',
     gallery: [
       {
-        src: '/images/projects/ordely-vitrine.png',
+        src: '/images/projects/ordely-vitrine-2610.png',
         alt: 'Page d’accueil publique d’Ordely : un SMS client et sa confirmation automatique',
         caption:
           'La page publique du produit. Le commerçant n’installe rien chez ses clients : la commande arrive par SMS ordinaire.',
@@ -193,7 +193,7 @@ export const projectsData: ProjectItem[] = [
     challenges:
       "Les notifications web passent par le service de chaque fabricant de navigateur — Google, Apple, Mozilla — chacun avec ses règles. Le planificateur doit tenir la journée de chaque inscrit sans jamais doubler un envoi ni en perdre un au redémarrage.",
     results: 'Mise en service le 25 septembre 2026 pour les adhérents d’Akhilleus. En trois semaines, 80 exercices ont été réalisés à la réception d’un coucou, et 22 des 23 avis laissés après un exercice sont positifs.',
-    image: '/images/projects/coucou.png',
+    image: '/images/projects/coucou-2610.png',
     duration: '2026 — en cours',
   },
   {
@@ -263,7 +263,7 @@ export const projectsData: ProjectItem[] = [
     results:
       "Aucun conteneur en défaut sur le parc. Les sauvegardes sont copiées hors site et restaurées chaque semaine pour être comparées à la base vivante — une sauvegarde n'est déclarée bonne qu'après restauration. L'ensemble est décrit dans 125 pages de documentation, journaux d'incidents compris — y compris les écarts constatés et les correctifs qui n'ont pas encore été appliqués.",
     duration: '2023 — en cours',
-    image: '/images/projects/homelab.png',
+    image: '/images/projects/homelab-smart-2610.png',
   },
   {
     slug: 'mcp-infra',
@@ -528,7 +528,7 @@ export const projectsData: ProjectItem[] = [
     results:
       "Chaque fusion met en ligne en quelques minutes, avec retour arrière immédiat si la vérification échoue. Les modifications purement documentaires ne déclenchent plus de déploiement.",
     duration: '2025 — en cours',
-    image: '/images/projects/vitrine.png',
+    image: '/images/projects/vitrine-2610.png',
     demo: 'https://valentin-marot.fr',
     github: 'https://github.com/Valdragon4/vitrine',
   },
