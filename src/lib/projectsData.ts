@@ -471,7 +471,7 @@ export const projectsData: ProjectItem[] = [
     results:
       'Exécution quotidienne, dix artefacts vérifiés par passage, zéro échec sur les dernières campagnes.',
     duration: '2025 — en cours',
-    image: '/images/projects/zerobyte.png',
+    image: '/images/projects/zerobyte-anon-2610.png',
   },
   {
     slug: 'centreon-plugin',
