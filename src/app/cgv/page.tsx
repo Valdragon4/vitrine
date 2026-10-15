@@ -226,13 +226,20 @@ export default function CGV() {
         </p>
         <div className="border-l border-signal-500/40 pl-5 py-1">
           <p className="text-ink-100 font-medium mb-2">Médiation de la consommation</p>
+          <p className="text-ink-300 mb-3">
+            La médiation de la consommation (articles L.611-1 et suivants du code de la
+            consommation) ne concerne que les litiges entre un professionnel et un
+            consommateur. Elle ne s&apos;applique pas aux contrats conclus avec des
+            entreprises ou des associations, qui ne sont pas des consommateurs au sens de
+            ce code.
+          </p>
           <p className="text-ink-300">
-            Conformément aux articles L.616-1 et R.616-1 du code de la consommation, le client peut 
-            recourir gratuitement au service de médiation proposé. Le médiateur peut être saisi 
-            via la plateforme européenne de règlement en ligne des litiges : 
-            <a href="https://ec.europa.eu/consumers/odr" className="text-signal-400 hover:text-signal-300 underline decoration-signal-400/40 underline-offset-2 ml-1" target="_blank" rel="noopener noreferrer">
-              ec.europa.eu/consumers/odr
-            </a>
+            Lorsqu&apos;une prestation est proposée à un client consommateur, le nom et
+            les coordonnées du médiateur de la consommation compétent lui sont
+            communiqués avant la conclusion du contrat, conformément à l&apos;article
+            L.616-1 du code de la consommation. La plateforme européenne de règlement en
+            ligne des litiges (ODR) a été fermée le 20 juillet 2025 et n&apos;est plus
+            disponible.
           </p>
         </div>
       </section>
@@ -249,7 +256,7 @@ export default function CGV() {
       </section>
 
       <div className="text-sm text-ink-400 mt-10 pt-6 border-t border-ink-700/50">
-        <p>Dernière mise à jour : Mars 2026</p>
+        <p>Dernière mise à jour : Octobre 2026</p>
       </div>
     </LegalLayout>
   );
