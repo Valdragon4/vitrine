@@ -26,6 +26,9 @@
   --signal-400: 126 211 168;
   --signal-500: 244 246 248;
   --signal-600: 220 228 238;
+  /* Fond des champs : plus sombre que la plaque, pour qu'un champ se lise
+     comme un creux dans l'émail. */
+  --field: 12 33 79;
   --radius-sm: 3px;
   --radius-md: 6px;
   --radius-lg: 12px;
@@ -137,17 +140,23 @@ input[type='text'],
 input[type='email'],
 textarea {
   color: var(--text) !important;
-  background-color: var(--surface) !important;
-  border: 1px solid var(--border) !important;
+  background-color: rgb(var(--field)) !important;
+  /* ink-500 : 4,8:1 sur la plaque, 6:1 sur le fond du champ (seuil 3:1). */
+  border: 1px solid rgb(var(--ink-500)) !important;
   border-radius: var(--radius-md) !important;
   transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
   caret-color: var(--accent) !important;
+}
+input[type='text']:hover,
+input[type='email']:hover,
+textarea:hover {
+  border-color: rgb(var(--ink-400)) !important;
 }
 input[type='text']:focus,
 input[type='email']:focus,
 textarea:focus {
   color: rgb(var(--ink-50)) !important;
-  background-color: var(--surface) !important;
+  background-color: rgb(var(--field)) !important;
   border-color: var(--accent) !important;
   box-shadow: 0 0 0 3px rgb(var(--signal-400) / 0.2) !important;
   outline: none !important;
@@ -163,9 +172,9 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
   -webkit-text-fill-color: var(--text) !important;
-  -webkit-box-shadow: 0 0 0px 1000px var(--surface) inset !important;
-  box-shadow: 0 0 0px 1000px var(--surface) inset !important;
-  border: 1px solid var(--border) !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgb(var(--field)) inset !important;
+  box-shadow: 0 0 0px 1000px rgb(var(--field)) inset !important;
+  border: 1px solid rgb(var(--ink-500)) !important;
   transition: background-color 5000s ease-in-out 0s !important;
 }
 
@@ -196,4 +205,10 @@ textarea:-webkit-autofill {
   border-radius: calc(var(--radius-lg) - 5px);
   pointer-events: none;
   z-index: 30;
+}
+
+/* Sur une plaque bleu émail, les filets séparateurs ink-800 disparaissent
+   (1:1) : on les éclaircit à l'intérieur des plaques seulement. */
+[class*='bg-card'] {
+  --ink-800: 52 80 143;
 }

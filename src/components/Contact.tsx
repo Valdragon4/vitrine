@@ -68,7 +68,7 @@ const Contact = () => {
           {/* Coordonnées */}
           <div className="rounded-2xl border border-ink-800 bg-card p-8 flex flex-col">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-11 h-11 rounded-lg border border-ink-700 bg-ink-900 flex items-center justify-center">
+              <div className="w-11 h-11 rounded-lg border border-ink-500/70 bg-[rgb(var(--field))] flex items-center justify-center">
                 <Mail className="w-5 h-5 text-signal-400" />
               </div>
               <div>
@@ -86,7 +86,7 @@ const Contact = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-xl border border-ink-800 bg-ink-900/40 px-4 py-3 hover:border-ink-700 transition-colors group"
+                    className="flex items-center gap-3 rounded-xl border border-ink-500/70 bg-[rgb(var(--field))] px-4 py-3 hover:border-ink-300 transition-colors group"
                   >
                     <Icon className="w-5 h-5 text-ink-400 group-hover:text-signal-400 transition-colors" />
                     <div>
