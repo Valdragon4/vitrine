@@ -20,7 +20,7 @@ const Experience = () => {
         "Création et exploitation de mes propres logiciels — Ordely en tête — et conception, déploiement et hébergement d'applications pour des clients, de la première ligne de code à la supervision en production.",
       achievements: [
         'Ordely : SaaS de commande par SMS, en production chez une boulangerie depuis août 2026',
-        'Messagerie SMS et application Le Coucou pour la Maison Sport-Santé Akhilleus',
+        'Application Le Coucou et messagerie SMS (en déploiement) pour la Maison Sport-Santé Akhilleus',
         'Dix chaînes CI/CD : tests, migrations, déploiement et retour arrière',
         'Infrastructure de cinq machines : supervision, sauvegardes vérifiées, documentation',
       ],

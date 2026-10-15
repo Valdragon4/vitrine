@@ -26,12 +26,13 @@ const spanFor = (size: ProjectItem['size']) => {
 const ORDER = [
   'homelab',
   'mcp-infra',
-  'vitrine',
   'sauvegardes',
   'openproject-reskin',
   'dashboard-patrimoine',
+  'vitrine',
   'media-stack',
   'mailcow',
+  'plenove',
   'table-virtuelle-mtg',
   'centreon-plugin',
 ];

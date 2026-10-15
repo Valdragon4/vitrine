@@ -12,11 +12,11 @@ const STACK = ['Linux', 'Docker', 'Python', 'Next.js', 'Nginx', 'CI/CD', 'Postgr
 const PROOF = [
   {
     fact: 'Ordely, en production',
-    detail: '130+ clients d’une boulangerie y commandent par SMS, ~170 commandes par semaine',
+    detail: '140+ clients d’une boulangerie y commandent par SMS, ~170 commandes par semaine',
   },
   {
-    fact: '3 logiciels utilisés par des clients',
-    detail: 'Ordely, une messagerie SMS pour associations et Le Coucou — plus Plenove sur Android',
+    fact: 'Des logiciels utilisés chaque jour',
+    detail: 'Ordely et Le Coucou en service ; une messagerie SMS pour associations en déploiement',
   },
   {
     fact: '10 chaînes CI/CD',

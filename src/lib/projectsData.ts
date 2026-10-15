@@ -79,9 +79,9 @@ export const projectsData: ProjectItem[] = [
       audience: 'Boulangeries et commerces de bouche',
       status: 'En production depuis août 2026',
       metrics: [
-        { value: '130+', label: 'clients commandent par SMS' },
+        { value: '140+', label: 'clients commandent par SMS' },
         { value: '~170', label: 'commandes gérées par semaine' },
-        { value: '2 sur 3', label: 'clients repassent commande' },
+        { value: '3 sur 4', label: 'clients repassent commande' },
       ],
     },
     size: 'large',
@@ -114,7 +114,7 @@ export const projectsData: ProjectItem[] = [
     challenges:
       "Comprendre des SMS écrits à la va-vite, sans ponctuation ni orthographe fiable. Isoler les données de chaque commerce sur une plateforme partagée. Et faire remonter la vraie adresse IP du client à travers deux couches de reverse-proxy — un réglage faux et c'est le journal d'audit, la limitation de débit et l'IP de consentement RGPD qui deviennent faux avec lui.",
     results:
-      "En production depuis août 2026 dans une boulangerie familiale de l'Aube : plus de 130 clients y commandent par SMS, environ 170 commandes par semaine, 43 clients réguliers sans ressaisie, et près d'un SMS sur six reçu avant 7 h ou après 20 h — des commandes qui, avant, n'arrivaient pas. Le dépôt compte plus de 1 300 commits et dix chaînes d'intégration continue : tests et audit des dépendances, construction des images, déploiement avec sauvegarde de la base avant migration, contrôle de santé, maintenance, versionnage sémantique, notes de mise à jour et retour arrière.",
+      "En production depuis août 2026 dans une boulangerie familiale de l'Aube. Au 15 octobre 2026 : plus de 140 clients y commandent par SMS, environ 170 commandes par semaine, plus de trois clients sur quatre ont déjà recommandé, 46 clients réguliers sont servis sans ressaisie, et près d'un SMS sur six arrive avant 7 h ou après 20 h — des commandes qui, avant, n'arrivaient pas. Le dépôt compte plus de 1 300 commits et dix chaînes d'intégration continue : tests et audit des dépendances, construction des images, déploiement avec sauvegarde de la base avant migration, contrôle de santé, maintenance, versionnage sémantique, notes de mise à jour et retour arrière.",
     duration: '2024 — en cours',
     image: '/images/projects/ordely.png',
     gallery: [
@@ -136,14 +136,14 @@ export const projectsData: ProjectItem[] = [
       "Diffusion de SMS pour les associations, depuis leurs propres téléphones et cartes SIM. Écrire à tous les adhérents d'un coup, ou — bien plus souvent — à un groupe de dix à trente personnes.",
     product: {
       audience: 'Associations et structures médico-sociales',
-      status: 'En service chez Akhilleus · proposée à d’autres structures',
+      status: 'Prête · déploiement en cours chez Akhilleus',
       metrics: [
-        { value: '~1 200', label: 'adhérents joignables' },
+        { value: '~1 200', label: 'adhérents visés par le premier déploiement' },
       ],
     },
     size: 'medium',
     icon: Send,
-    badges: ['Production', 'Produit'],
+    badges: ['Produit', 'En déploiement'],
     technologies: ['Next.js', 'PostgreSQL', 'Android'],
     stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Docker', 'Passerelle SMS privée', 'Application compagnon Android'],
     fullDescription:
@@ -158,7 +158,7 @@ export const projectsData: ProjectItem[] = [
     challenges:
       "Les deux usages tirent dans des sens opposés : une campagne à 1 200 destinataires exige débit maîtrisé et reprise sur incident, alors qu'un message à quinze personnes doit partir tout de suite. Et Android bride en silence les envois au-delà de trente messages par demi-heure — l'ordre est accepté, le téléphone attend dans un placard qu'on tape sur son écran. La limite est documentée, et levée une fois pour toutes à la mise en service.",
     results:
-      "En service à la Maison Sport-Santé Akhilleus pour ses quelque 1 200 adhérents. La même solution est proposée à d’autres associations, en hébergement géré ou installée sur leur propre serveur.",
+      "Développée et éprouvée de bout en bout — campagnes, accusés de réception, réponses entrantes —, elle est en cours de déploiement à la Maison Sport-Santé Akhilleus, pour ses quelque 1 200 adhérents. La même solution est proposée à d’autres associations, en hébergement géré ou installée sur leur propre serveur.",
     duration: '2026 — en cours',
   },
   {
@@ -171,6 +171,10 @@ export const projectsData: ProjectItem[] = [
     product: {
       audience: 'Maisons sport-santé et leurs adhérents',
       status: 'En service depuis septembre 2026',
+      metrics: [
+        { value: '80', label: 'exercices réalisés en trois semaines' },
+        { value: '22 sur 23', label: 'avis laissés sont positifs' },
+      ],
     },
     size: 'small',
     icon: Bell,
@@ -188,7 +192,8 @@ export const projectsData: ProjectItem[] = [
     ],
     challenges:
       "Les notifications web passent par le service de chaque fabricant de navigateur — Google, Apple, Mozilla — chacun avec ses règles. Le planificateur doit tenir la journée de chaque inscrit sans jamais doubler un envoi ni en perdre un au redémarrage.",
-    results: 'Mise en service le 25 septembre 2026 pour les adhérents d’Akhilleus.',
+    results: 'Mise en service le 25 septembre 2026 pour les adhérents d’Akhilleus. En trois semaines, 80 exercices ont été réalisés à la réception d’un coucou, et 22 des 23 avis laissés après un exercice sont positifs.',
+    image: '/images/projects/coucou.png',
     duration: '2026 — en cours',
   },
   {
@@ -198,14 +203,9 @@ export const projectsData: ProjectItem[] = [
     result: 'Le plein le plus malin, détour compris',
     description:
       "Application mobile qui croise les prix officiels des carburants, le véhicule et le trajet réel pour indiquer où faire le plein au meilleur coût total — détour compris.",
-    product: {
-      audience: 'Automobilistes',
-      status: 'Application Android, abonnement via Google Play',
-      metrics: [{ value: '11 000+', label: 'stations suivies en France' }],
-    },
     size: 'small',
     icon: Fuel,
-    badges: ['Produit', 'Mobile'],
+    badges: ['Mobile', 'En pause'],
     technologies: ['Flutter', 'FastAPI', 'OpenStreetMap'],
     stack: ['Flutter', 'Dart', 'Python', 'FastAPI', 'OSRM', 'Nominatim', 'OpenStreetMap', 'Google Play Billing', 'Docker'],
     fullDescription:
@@ -220,7 +220,7 @@ export const projectsData: ProjectItem[] = [
     ],
     challenges:
       "Calculer des itinéraires réels pour chaque recherche sans payer un service cartographique au volume : le moteur d'itinéraires et le géocodage tournent sur mes serveurs, à partir des données OpenStreetMap de la France entière.",
-    results: 'API publique en service ; application Android avec abonnement intégré.',
+    results: "Application Android aboutie, avec abonnement intégré. Le projet est en pause depuis septembre 2026 : son moteur d'itinéraires, gourmand en mémoire, a été arrêté pour laisser la place aux services en production sur la même machine.",
     duration: '2026 — en cours',
   },
   {
@@ -508,7 +508,7 @@ export const projectsData: ProjectItem[] = [
     result: 'Fusionner suffit à mettre en ligne',
     description:
       "Ce site : rendu 3D en arrière-plan, et une chaîne de déploiement continue qui va de la fusion à la vérification publique.",
-    size: 'medium',
+    size: 'small',
     icon: Globe,
     badges: ['En ligne'],
     technologies: ['Next.js', 'React Three Fiber', 'Tailwind'],

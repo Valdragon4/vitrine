@@ -78,7 +78,7 @@ const Products = () => {
               </dl>
             )}
             <p className="mt-3 text-xs text-ink-500">
-              Mesures chez le commerce pilote, une boulangerie familiale de l&apos;Aube.
+              Mesures au 15 octobre 2026 chez le commerce pilote, une boulangerie familiale de l&apos;Aube.
             </p>
 
             <div className="mt-8 lg:mt-auto lg:pt-8 flex flex-col sm:flex-row gap-3">
@@ -119,7 +119,7 @@ const Products = () => {
         </article>
 
         {/* Les autres produits */}
-        <ul className="mt-3 grid gap-3 md:grid-cols-3">
+        <ul className="mt-3 grid gap-3 md:grid-cols-2">
           {others.map((p) => {
             const Icon = p.icon;
             return (
