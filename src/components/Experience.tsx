@@ -139,9 +139,9 @@ const Experience = () => {
               Une double casquette réseau &amp; développement
             </h2>
             <p className="mt-5 text-lg text-ink-300 leading-relaxed max-w-[36rem]">
-              Administrateur systèmes et réseaux en alternance, développeur en
-              freelance. Les deux métiers se nourrissent : je sais ce que coûte en
-              production le code que j&apos;écris.
+              Administrateur systèmes et réseaux en alternance, fondateur et
+              développeur à côté. Ce que j&apos;apprends en exploitation passe
+              directement dans le code de mes produits.
             </p>
           </div>
         </Parallax>
