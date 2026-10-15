@@ -57,3 +57,4 @@ next-env.d.ts
 # Réglages locaux du détecteur. Les décisions motivées et partagées
 # (faux positifs vérifiés) vivent dans .impeccable/config.json, qui est suivi.
 /.impeccable/config.local.json
+/.impeccable/review/

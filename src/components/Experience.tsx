@@ -11,20 +11,20 @@ const Experience = () => {
   const timelineItems = [
     {
       id: 'freelance',
-      title: 'Développeur web & DevOps — Freelance',
-      company: 'Auto-entrepreneur',
+      title: 'Fondateur d’Ordely · Développeur & DevOps indépendant',
+      company: 'Micro-entreprise',
       location: 'Champagne-Ardenne · à distance',
       period: '2025 — en cours',
       type: 'experience' as const,
       description:
-        "Conception, déploiement et hébergement d'applications web pour des clients, de la première ligne de code à la supervision en production. Disponible pour des missions de prestation et des projets au forfait.",
+        "Création et exploitation de mes propres logiciels — Ordely en tête — et conception, déploiement et hébergement d'applications pour des clients, de la première ligne de code à la supervision en production.",
       achievements: [
-        "Développement d'applications sur mesure, du front à l'API",
-        'Conteneurisation et chaînes de déploiement continu',
-        'Administration de serveurs Linux, reverse-proxy, TLS et DNS',
-        'Supervision, sauvegardes et maintenance dans la durée',
+        'Ordely : SaaS de commande par SMS, en production chez une boulangerie depuis août 2026',
+        'Application Le Coucou et messagerie SMS (en déploiement) pour la Maison Sport-Santé Akhilleus',
+        'Dix chaînes CI/CD : tests, migrations, déploiement et retour arrière',
+        'Infrastructure de cinq machines : supervision, sauvegardes vérifiées, documentation',
       ],
-      technologies: ['Next.js', 'Python', 'Docker', 'Linux', 'Nginx', 'CI/CD'],
+      technologies: ['Next.js', 'Python', 'Flutter', 'Docker', 'Linux', 'CI/CD'],
       current: true,
     },
     {
@@ -135,10 +135,10 @@ const Experience = () => {
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
         <Parallax speed={0.1}>
           <div className="mb-16 max-w-3xl">
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight text-balance">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-50 tracking-tight text-balance">
               Une double casquette réseau &amp; développement
             </h2>
-            <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
+            <p className="mt-5 text-lg text-ink-300 leading-relaxed max-w-[36rem]">
               Administrateur systèmes et réseaux en alternance, développeur en
               freelance. Les deux métiers se nourrissent : je sais ce que coûte en
               production le code que j&apos;écris.
@@ -155,7 +155,7 @@ const Experience = () => {
             type="button"
             onClick={() => setShowAll(!showAll)}
             aria-expanded={showAll}
-            className="group flex items-center gap-2.5 min-h-[44px] px-5 py-3 rounded-lg border border-zinc-800 text-zinc-300 hover:text-zinc-100 hover:border-zinc-600 transition-colors text-sm"
+            className="group flex items-center gap-2.5 min-h-[44px] px-5 py-3 rounded-lg border border-ink-800 text-ink-300 hover:text-ink-100 hover:border-ink-600 transition-colors text-sm"
           >
             <span>
               {showAll
@@ -171,25 +171,25 @@ const Experience = () => {
           </button>
         </div>
 
-        <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-8 sm:p-10">
-          <h3 className="font-display text-xl font-semibold text-zinc-100 mb-3">
+        <div className="rounded-2xl border border-ink-800 bg-ink-900/40 p-8 sm:p-10">
+          <h3 className="font-display text-xl font-semibold text-ink-100 mb-3">
             Intéressé par mon profil ?
           </h3>
-          <p className="text-zinc-300 mb-7 max-w-[36rem] text-[0.9375rem] leading-relaxed">
+          <p className="text-ink-300 mb-7 max-w-[36rem] text-[0.9375rem] leading-relaxed">
             Disponible pour des missions de prestation, des projets au forfait et
             des opportunités en alternance.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors"
+              className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold bg-signal-500 text-ink-950 hover:bg-signal-400 transition-colors"
             >
               Me contacter
             </a>
             <a
               href="/cv-valentin-marot.pdf"
               download="CV-Valentin-MAROT.pdf"
-              className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold border border-zinc-700 text-zinc-200 hover:border-zinc-500 hover:text-white transition-colors"
+              className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold border border-ink-700 text-ink-200 hover:border-ink-500 hover:text-white transition-colors"
             >
               Télécharger mon CV
             </a>

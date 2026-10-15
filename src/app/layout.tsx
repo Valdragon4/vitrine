@@ -1,29 +1,27 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import { Barlow, Barlow_Condensed, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { PosthogInit } from "@/components/PosthogInit";
 import CookieBanner from "@/components/CookieBanner";
+import NavigationTracker from "@/components/NavigationTracker";
 
 /**
  * Polices auto-hebergees par next/font : telechargees au build, servies
- * depuis notre origine. Cela supprime l'@import bloquant vers Google Fonts
- * qui se trouvait en tete de globals.css.
- *
- * Archivo pour le titrage (grotesque industrielle, dessinee pour les gros
- * corps), IBM Plex Sans pour le texte courant (typographie d'ingenierie,
- * accents francais bien dessines), JetBrains Mono pour le code et la mesure.
+ * depuis notre origine. Barlow Condensed pour le titrage (capitales etroites
+ * des plaques de rue), Barlow pour le texte, JetBrains Mono pour les seuls
+ * mots-commandes en filigrane.
  */
-const display = Archivo({
+const barlowCondensed = Barlow_Condensed({
   subsets: ["latin", "latin-ext"],
-  weight: ["600", "700", "800"],
-  variable: "--font-display",
+  weight: ["500", "600", "700"],
+  variable: "--font-barlow-condensed",
   display: "swap",
 });
 
-const sans = IBM_Plex_Sans({
+const barlow = Barlow({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
+  variable: "--font-barlow",
   display: "swap",
 });
 
@@ -36,9 +34,14 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://valentin-marot.fr'),
-  title: "Valentin MAROT - Développeur Web & DevOps | Solutions sur mesure",
-  description: "Développeur web & DevOps freelance spécialisé en Python, Docker, Linux. Création d'applications web, automatisation et administration système. Solutions sur mesure pour entreprises et associations.",
+  title: "Valentin MAROT - Fondateur d'Ordely, développeur & DevOps",
+  description: "Fondateur d'Ordely, logiciel de commande par SMS pour boulangeries. J'édite des logiciels pour commerces et associations, et je conçois, déploie et héberge des applications sur mesure avec CI/CD et infrastructure supervisée.",
   keywords: [
+    "Ordely",
+    "commande par SMS",
+    "logiciel boulangerie",
+    "SMS association",
+    "CI/CD",
     "développeur web", 
     "développeur Python", 
     "DevOps", 
@@ -75,8 +78,8 @@ export const metadata: Metadata = {
     canonical: 'https://valentin-marot.fr',
   },
   openGraph: {
-    title: "Valentin MAROT - Développeur Web & DevOps | Solutions sur mesure",
-    description: "Développeur web & DevOps freelance spécialisé en Python, Docker, Linux. Création d'applications web, automatisation et administration système.",
+    title: "Valentin MAROT - Fondateur d'Ordely, développeur & DevOps",
+    description: "Fondateur d'Ordely. Logiciels pour commerces et associations, applications sur mesure, CI/CD et hébergement supervisé.",
     url: 'https://valentin-marot.fr',
     siteName: 'Valentin MAROT - Portfolio',
     locale: 'fr_FR',
@@ -92,8 +95,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Valentin MAROT - Développeur Web & DevOps',
-    description: 'Développeur web & DevOps freelance spécialisé en Python, Docker, Linux. Solutions sur mesure.',
+    title: "Valentin MAROT - Fondateur d'Ordely, développeur & DevOps",
+    description: 'Fondateur d’Ordely. Logiciels pour commerces et associations, CI/CD et hébergement.',
     images: ['https://valentin-marot.fr/og-image.jpg'],
     creator: '@valentin_marot',
   },
@@ -115,7 +118,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="fr" className={`${barlowCondensed.variable} ${barlow.variable} ${mono.variable}`}>
       <head>
         {/* Métadonnées structurées JSON-LD */}
         <script
@@ -125,8 +128,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Valentin MAROT",
-              "jobTitle": "Développeur Web & DevOps",
-              "description": "Développeur web & DevOps freelance spécialisé en Python, Docker, Linux",
+              "jobTitle": "Fondateur d'Ordely, développeur & DevOps",
+              "description": "Fondateur d'Ordely, éditeur de logiciels pour commerces et associations, développeur & DevOps",
               "url": "https://valentin-marot.fr",
               "sameAs": [
                 "https://github.com/Valdragon4",
@@ -172,8 +175,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased bg-[#0a0a0b]">
+      <body className="antialiased bg-page">
         <PosthogInit />
+        <NavigationTracker />
         {children}
         <CookieBanner />
       </body>

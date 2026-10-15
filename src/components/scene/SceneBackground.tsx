@@ -13,12 +13,12 @@ const Scene = dynamic(() => import('./Scene'), { ssr: false });
  */
 const StaticBackdrop = () => (
   <>
-    <div className="absolute inset-0 bg-[#0a0a0b]" />
+    <div className="absolute inset-0 bg-page" />
     <div
       className="absolute inset-0 opacity-[0.5]"
       style={{
         background:
-          'radial-gradient(1200px 700px at 78% 12%, rgba(245,158,11,0.06), transparent 60%), radial-gradient(900px 900px at 15% 90%, rgba(255,255,255,0.03), transparent 55%)',
+          'radial-gradient(1200px 700px at 78% 12%, rgb(var(--signal-400) / 0.06), transparent 60%), radial-gradient(900px 900px at 15% 90%, rgba(255,255,255,0.03), transparent 55%)',
       }}
     />
     <div

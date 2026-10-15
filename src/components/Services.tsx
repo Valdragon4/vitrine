@@ -50,56 +50,57 @@ const Services = () => {
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
         <Parallax speed={0.1}>
           <div className="mb-16 max-w-3xl">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
-              Du code à la production, un seul interlocuteur
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink-50 tracking-tight text-balance">
+              Votre projet, avec la rigueur de mes produits
             </h2>
-            <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
+            <p className="mt-5 text-lg text-ink-300 leading-relaxed max-w-[36rem]">
               La plupart des projets se cassent entre deux prestataires : celui qui
-              développe et celui qui héberge. Je tiens les deux bouts de la chaîne.
+              développe et celui qui héberge. Je tiens les deux bouts de la chaîne,
+              avec les méthodes qui font tourner Ordely en production.
             </p>
           </div>
         </Parallax>
 
-        <ol className="relative grid gap-px bg-zinc-800/60 sm:grid-cols-2 xl:grid-cols-4 rounded-2xl overflow-hidden border border-zinc-800/60">
+        <ol className="relative grid gap-px bg-ink-800/60 sm:grid-cols-2 xl:grid-cols-4 rounded-2xl overflow-hidden border border-ink-800/60">
           {steps.map((step, i) => {
             const Icon = step.icon;
             return (
               <li
                 key={step.title}
-                className="group relative bg-[#0c0c0e] p-7 sm:p-8 transition-colors hover:bg-zinc-900/60"
+                className="group relative bg-card p-7 sm:p-8 transition-colors hover:bg-ink-900/60"
               >
                 {/* Étape et position dans la chaîne */}
                 <div className="flex items-center gap-2.5 mb-6">
                   <Icon
-                    className="w-4 h-4 text-amber-400 flex-shrink-0"
+                    className="w-4 h-4 text-signal-400 flex-shrink-0"
                     aria-hidden="true"
                   />
-                  <span className="text-xs uppercase tracking-[0.14em] text-amber-400/90 font-medium">
+                  <span className="text-[13px] font-semibold text-signal-400/90 font-medium">
                     {step.title}
                   </span>
                   {i < steps.length - 1 && (
                     <ArrowRight
-                      className="w-3.5 h-3.5 text-zinc-700 ml-auto hidden xl:block"
+                      className="w-3.5 h-3.5 text-ink-700 ml-auto hidden xl:block"
                       aria-hidden="true"
                     />
                   )}
                 </div>
 
-                <h3 className="font-display text-xl font-semibold text-zinc-100 mb-3 text-balance">
+                <h3 className="font-display text-xl font-semibold text-ink-100 mb-3 text-balance">
                   {step.heading}
                 </h3>
-                <p className="text-[0.9375rem] text-zinc-300 leading-relaxed mb-6 max-w-[30rem]">
+                <p className="text-[0.9375rem] text-ink-300 leading-relaxed mb-6 max-w-[30rem]">
                   {step.description}
                 </p>
 
-                <ul className="space-y-2 border-t border-zinc-800/80 pt-5">
+                <ul className="space-y-2 border-t border-ink-800/80 pt-5">
                   {step.points.map((point) => (
                     <li
                       key={point}
-                      className="flex items-baseline gap-2.5 text-[13px] text-zinc-400"
+                      className="flex items-baseline gap-2.5 text-[13px] text-ink-400"
                     >
                       <span
-                        className="w-1 h-1 rounded-full bg-amber-500/70 flex-shrink-0 translate-y-[-2px]"
+                        className="w-1 h-1 rounded-full bg-signal-500/70 flex-shrink-0 translate-y-[-2px]"
                         aria-hidden="true"
                       />
                       {point}
@@ -111,19 +112,19 @@ const Services = () => {
           })}
         </ol>
 
-        <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 rounded-2xl border border-zinc-800 bg-zinc-900/40 px-8 py-7">
+        <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 rounded-2xl border border-ink-800 bg-ink-900/40 px-8 py-7">
           <div>
-            <p className="text-lg font-semibold text-zinc-100">
+            <p className="text-lg font-semibold text-ink-100">
               Un projet en tête&nbsp;?
             </p>
-            <p className="text-sm text-zinc-400 mt-1 max-w-[32rem] leading-relaxed">
+            <p className="text-sm text-ink-400 mt-1 max-w-[32rem] leading-relaxed">
               Dites-moi où vous en êtes, je vous réponds avec un périmètre et un
               prix, pas avec un questionnaire.
             </p>
           </div>
           <a
             href="#contact"
-            className="group inline-flex items-center gap-2 min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors flex-shrink-0"
+            className="group inline-flex items-center gap-2 min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold bg-signal-500 text-ink-950 hover:bg-signal-400 transition-colors flex-shrink-0"
           >
             Parlons-en
             <ArrowRight
