@@ -263,7 +263,7 @@ export const projectsData: ProjectItem[] = [
     results:
       "Aucun conteneur en défaut sur le parc. Les sauvegardes sont copiées hors site et restaurées chaque semaine pour être comparées à la base vivante — une sauvegarde n'est déclarée bonne qu'après restauration. L'ensemble est décrit dans 125 pages de documentation, journaux d'incidents compris — y compris les écarts constatés et les correctifs qui n'ont pas encore été appliqués.",
     duration: '2023 — en cours',
-    image: '/images/projects/homelab-smart-2610.png',
+    image: '/images/projects/homelab-smart-anon.png',
   },
   {
     slug: 'mcp-infra',
