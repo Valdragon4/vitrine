@@ -54,10 +54,10 @@ const Contact = () => {
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
         <Parallax speed={0.10}>
           <div className="mb-16 max-w-3xl">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink-50 tracking-tight text-balance">
               Parlons de votre projet
             </h2>
-            <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
+            <p className="mt-5 text-lg text-ink-300 leading-relaxed max-w-[36rem]">
               Une idée, un besoin technique, une question ? Écrivez-moi : je réponds
               sous 24 h, avec un périmètre et un prix.
             </p>
@@ -66,13 +66,13 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Coordonnées */}
-          <div className="rounded-2xl border border-zinc-800 bg-[#0c0c0e] p-8 flex flex-col">
+          <div className="rounded-2xl border border-ink-800 bg-card p-8 flex flex-col">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-11 h-11 rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center">
-                <Mail className="w-5 h-5 text-amber-400" />
+              <div className="w-11 h-11 rounded-lg border border-ink-700 bg-ink-900 flex items-center justify-center">
+                <Mail className="w-5 h-5 text-signal-400" />
               </div>
               <div>
-                <p className="text-[11px] text-zinc-400 uppercase tracking-[0.14em] mb-0.5">Email</p>
+                <p className="text-[13px] font-semibold text-ink-400 mb-0.5">Email</p>
                 <EmailLink />
               </div>
             </div>
@@ -86,12 +86,12 @@ const Contact = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900/40 px-4 py-3 hover:border-zinc-700 transition-colors group"
+                    className="flex items-center gap-3 rounded-xl border border-ink-800 bg-ink-900/40 px-4 py-3 hover:border-ink-700 transition-colors group"
                   >
-                    <Icon className="w-5 h-5 text-zinc-400 group-hover:text-amber-400 transition-colors" />
+                    <Icon className="w-5 h-5 text-ink-400 group-hover:text-signal-400 transition-colors" />
                     <div>
-                      <p className="text-[11px] text-zinc-400 uppercase tracking-[0.14em]">{link.label}</p>
-                      <p className="text-sm text-zinc-300">{link.value}</p>
+                      <p className="text-[13px] font-semibold text-ink-400">{link.label}</p>
+                      <p className="text-sm text-ink-300">{link.value}</p>
                     </div>
                   </a>
                 );
@@ -99,10 +99,10 @@ const Contact = () => {
             </div>
 
             <div className="mt-auto pt-8">
-              <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-[13px] text-zinc-400">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-[13px] text-ink-400">
                 {['Réponse sous 24 h', 'Devis gratuit', 'Échange sans engagement', 'Suivi régulier'].map((item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-amber-500" />
+                    <span className="w-1 h-1 rounded-full bg-signal-500" />
                     {item}
                   </li>
                 ))}
@@ -111,10 +111,10 @@ const Contact = () => {
           </div>
 
           {/* Formulaire */}
-          <div className="rounded-2xl border border-zinc-800 bg-[#0c0c0e] p-8">
+          <div className="rounded-2xl border border-ink-800 bg-card p-8">
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block text-xs text-zinc-400 uppercase tracking-[0.14em] mb-2">
+                <label htmlFor="name" className="block text-[13px] font-semibold text-ink-400 mb-2">
                   Nom complet *
                 </label>
                 <input
@@ -130,7 +130,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-xs text-zinc-400 uppercase tracking-[0.14em] mb-2">
+                <label htmlFor="email" className="block text-[13px] font-semibold text-ink-400 mb-2">
                   Email *
                 </label>
                 <input
@@ -146,7 +146,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-xs text-zinc-400 uppercase tracking-[0.14em] mb-2">
+                <label htmlFor="message" className="block text-[13px] font-semibold text-ink-400 mb-2">
                   Message *
                 </label>
                 <textarea
@@ -177,13 +177,13 @@ const Contact = () => {
                 disabled={isSubmitting}
                 className={`w-full min-h-[48px] py-3 px-6 rounded-lg font-semibold text-sm transition-colors flex items-center justify-center gap-2 ${
                   isSubmitting
-                    ? 'bg-zinc-800 text-zinc-400 cursor-not-allowed'
-                    : 'bg-amber-500 text-zinc-950 hover:bg-amber-400'
+                    ? 'bg-ink-800 text-ink-400 cursor-not-allowed'
+                    : 'bg-signal-500 text-ink-950 hover:bg-signal-400'
                 }`}
               >
                 {isSubmitting ? (
                   <>
-                    <span className="w-4 h-4 border-2 border-zinc-600 border-t-transparent rounded-full animate-spin" />
+                    <span className="w-4 h-4 border-2 border-ink-600 border-t-transparent rounded-full animate-spin" />
                     Envoi…
                   </>
                 ) : (
@@ -195,13 +195,13 @@ const Contact = () => {
               </button>
 
               {/* Mention RGPD */}
-              <p className="text-xs text-zinc-400 leading-relaxed max-w-[30rem]">
+              <p className="text-xs text-ink-400 leading-relaxed max-w-[30rem]">
                 Les informations envoyées via ce formulaire servent uniquement à
                 répondre à votre demande. Elles ne sont ni conservées à d&apos;autres
                 fins, ni transmises à des tiers —{' '}
                 <a
                   href="/politique-confidentialite"
-                  className="underline decoration-zinc-700 underline-offset-2 hover:text-zinc-300 transition-colors"
+                  className="underline decoration-ink-700 underline-offset-2 hover:text-ink-300 transition-colors"
                 >
                   politique de confidentialité
                 </a>

@@ -63,15 +63,15 @@ const CookieBanner = () => {
       aria-describedby="consent-texte"
       className="fixed inset-x-0 bottom-0 z-[60] p-3 sm:p-5"
     >
-      <div className="max-w-3xl mx-auto rounded-2xl border border-zinc-600 bg-[#141416] p-5 sm:p-6">
+      <div className="max-w-3xl mx-auto rounded-2xl border border-ink-600 bg-card p-5 sm:p-6">
         <div className="flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-8">
           <div className="min-w-0">
-            <p id="consent-titre" className="font-display text-base font-semibold text-zinc-50">
+            <p id="consent-titre" className="font-display text-base font-semibold text-ink-50">
               Mesure d&apos;audience
             </p>
             <p
               id="consent-texte"
-              className="mt-1.5 text-[13px] text-zinc-300 leading-relaxed max-w-[38rem]"
+              className="mt-1.5 text-[13px] text-ink-300 leading-relaxed max-w-[38rem]"
             >
               J&apos;aimerais savoir quelles pages sont consultées, pour améliorer ce
               site. Cela dépose un cookie et enregistre votre navigation sur le site.
@@ -79,7 +79,7 @@ const CookieBanner = () => {
               pouvez changer d&apos;avis à tout moment depuis le pied de page.{' '}
               <Link
                 href="/politique-confidentialite"
-                className="text-amber-400 hover:text-amber-300 underline decoration-amber-400/40 underline-offset-2 transition-colors"
+                className="text-signal-400 hover:text-signal-300 underline decoration-signal-400/40 underline-offset-2 transition-colors"
               >
                 En savoir plus
               </Link>
@@ -90,14 +90,14 @@ const CookieBanner = () => {
             <button
               type="button"
               onClick={refuse}
-              className="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-lg text-sm font-semibold border border-zinc-700 text-zinc-200 hover:border-zinc-500 hover:text-white transition-colors"
+              className="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-lg text-sm font-semibold border border-ink-700 text-ink-200 hover:border-ink-500 hover:text-white transition-colors"
             >
               Refuser
             </button>
             <button
               type="button"
               onClick={accept}
-              className="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-lg text-sm font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors"
+              className="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-lg text-sm font-semibold bg-signal-500 text-ink-950 hover:bg-signal-400 transition-colors"
             >
               Accepter
             </button>

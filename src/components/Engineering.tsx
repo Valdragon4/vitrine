@@ -96,10 +96,10 @@ const Engineering = () => {
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
         <Parallax speed={0.1}>
           <div className="mb-16 max-w-3xl">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink-50 tracking-tight text-balance">
               Une mise en production qui ne dépend pas de la chance
             </h2>
-            <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[38rem]">
+            <p className="mt-5 text-lg text-ink-300 leading-relaxed max-w-[38rem]">
               Un logiciel vendu doit pouvoir évoluer sans casser chez le client.
               Ordely compte plus de 1 300 commits et dix chaînes d&apos;intégration
               et de déploiement continus ; voici ce qui se passe entre une
@@ -111,7 +111,7 @@ const Engineering = () => {
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-12 xl:gap-20">
           {/* La chaîne de déploiement d'Ordely */}
           <div>
-            <p className="text-xs uppercase tracking-[0.14em] text-amber-400/90 font-medium mb-6">
+            <p className="text-[13px] font-semibold text-signal-400/90 font-medium mb-6">
               La chaîne d&apos;Ordely, de la branche à la production
             </p>
             <ol className="relative">
@@ -122,21 +122,21 @@ const Engineering = () => {
                   <li key={step.title} className="relative grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 pb-7 last:pb-0">
                     {!last && (
                       <span
-                        className="absolute left-[17px] top-10 bottom-1 w-px bg-zinc-800"
+                        className="absolute left-[17px] top-10 bottom-1 w-px bg-ink-800"
                         aria-hidden="true"
                       />
                     )}
-                    <span className="w-9 h-9 rounded-lg border border-zinc-700 bg-[#0c0c0e] flex items-center justify-center">
-                      <Icon className="w-4 h-4 text-amber-400" aria-hidden="true" />
+                    <span className="w-9 h-9 rounded-lg border border-ink-700 bg-card flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-signal-400" aria-hidden="true" />
                     </span>
                     <div className="pt-1.5">
-                      <h3 className="text-[0.9375rem] font-semibold text-zinc-100">
-                        <span className="font-mono text-xs text-zinc-500 mr-2 tabular">
+                      <h3 className="text-[0.9375rem] font-semibold text-ink-100">
+                        <span className="font-display text-sm text-signal-400 mr-2 tabular">
                           {String(i + 1).padStart(2, '0')}
                         </span>
                         {step.title}
                       </h3>
-                      <p className="mt-1 text-[13px] text-zinc-400 leading-relaxed max-w-[34rem]">
+                      <p className="mt-1 text-[13px] text-ink-400 leading-relaxed max-w-[34rem]">
                         {step.detail}
                       </p>
                     </div>
@@ -144,7 +144,7 @@ const Engineering = () => {
                 );
               })}
             </ol>
-            <p className="mt-8 text-[13px] text-zinc-400 leading-relaxed max-w-[34rem]">
+            <p className="mt-8 text-[13px] text-ink-400 leading-relaxed max-w-[34rem]">
               En tâche de fond : sauvegarde quotidienne de la base, maintenance
               planifiée, mises à jour mineures de dépendances fusionnées
               automatiquement une fois les tests passés. Ce site suit le même principe : fusionner
@@ -155,17 +155,17 @@ const Engineering = () => {
 
           {/* L'architecture qui porte tout ça */}
           <div>
-            <p className="text-xs uppercase tracking-[0.14em] text-amber-400/90 font-medium mb-6">
+            <p className="text-[13px] font-semibold text-signal-400/90 font-medium mb-6">
               L&apos;infrastructure qui l&apos;héberge
             </p>
-            <div className="rounded-2xl border border-zinc-800 bg-[#0c0c0e]/80 p-7 sm:p-8">
-              <p className="text-[0.9375rem] text-zinc-200 leading-relaxed">
+            <div className="rounded-2xl border border-ink-800 bg-card/80 p-7 sm:p-8">
+              <p className="text-[0.9375rem] text-ink-200 leading-relaxed">
                 Cinq machines sur trois sites et environ 170 conteneurs, que
                 j&apos;administre moi-même. La production d&apos;Ordely est
                 séparée de son environnement de développement, chacune sur sa
                 machine.
               </p>
-              <dl className="mt-6 divide-y divide-zinc-800 border-t border-zinc-800">
+              <dl className="mt-6 divide-y divide-ink-800 border-t border-ink-800">
                 {ARCHITECTURE.map((item) => {
                   const Icon = item.icon;
                   return (
@@ -173,9 +173,9 @@ const Engineering = () => {
                       key={item.title}
                       className="py-4 grid grid-cols-[auto_minmax(0,1fr)] gap-x-3.5 gap-y-1"
                     >
-                      <Icon className="w-4 h-4 text-amber-400 translate-y-0.5" aria-hidden="true" />
-                      <dt className="text-sm font-semibold text-zinc-100">{item.title}</dt>
-                      <dd className="col-start-2 text-[13px] text-zinc-400 leading-relaxed">
+                      <Icon className="w-4 h-4 text-signal-400 translate-y-0.5" aria-hidden="true" />
+                      <dt className="text-sm font-semibold text-ink-100">{item.title}</dt>
+                      <dd className="col-start-2 text-[13px] text-ink-400 leading-relaxed">
                         {item.detail}
                       </dd>
                     </div>

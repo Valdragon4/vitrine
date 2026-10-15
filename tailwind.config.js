@@ -7,13 +7,41 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // Toute la couleur passe par les variables du thème (globals.css) :
+      // changer d'univers ne touche à aucun composant.
       colors: {
-        // Accent unique (ambre) — utilisé à plat, sans dégradé.
-        accent: {
-          DEFAULT: '#f59e0b',
-          soft: '#fbbf24',
-          dim: '#b45309',
+        ink: {
+          50: 'rgb(var(--ink-50) / <alpha-value>)',
+          100: 'rgb(var(--ink-100) / <alpha-value>)',
+          200: 'rgb(var(--ink-200) / <alpha-value>)',
+          300: 'rgb(var(--ink-300) / <alpha-value>)',
+          400: 'rgb(var(--ink-400) / <alpha-value>)',
+          500: 'rgb(var(--ink-500) / <alpha-value>)',
+          600: 'rgb(var(--ink-600) / <alpha-value>)',
+          700: 'rgb(var(--ink-700) / <alpha-value>)',
+          800: 'rgb(var(--ink-800) / <alpha-value>)',
+          900: 'rgb(var(--ink-900) / <alpha-value>)',
+          950: 'rgb(var(--ink-950) / <alpha-value>)',
         },
+        signal: {
+          300: 'rgb(var(--signal-300) / <alpha-value>)',
+          400: 'rgb(var(--signal-400) / <alpha-value>)',
+          500: 'rgb(var(--signal-500) / <alpha-value>)',
+          600: 'rgb(var(--signal-600) / <alpha-value>)',
+        },
+        page: 'rgb(var(--page) / <alpha-value>)',
+        card: 'rgb(var(--card) / <alpha-value>)',
+      },
+      borderRadius: {
+        none: '0',
+        sm: 'var(--radius-sm)',
+        DEFAULT: 'var(--radius-sm)',
+        md: 'var(--radius-md)',
+        lg: 'var(--radius-md)',
+        xl: 'var(--radius-lg)',
+        '2xl': 'var(--radius-lg)',
+        '3xl': 'var(--radius-lg)',
+        full: '9999px',
       },
       fontFamily: {
         // Les variables sont posees par next/font dans src/app/layout.tsx.

@@ -5,8 +5,15 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { scroll } from '@/lib/scroll';
 
-const WHITE = new THREE.Color('#d4d4d8'); // zinc-300
-const AMBER = new THREE.Color('#f59e0b');
+// Couleurs lues dans le thème actif (globals.css). Le module n'est chargé
+// que côté client, après la pose de data-theme.
+const themeColor = (name: string, fallback: string) => {
+  if (typeof window === 'undefined') return fallback;
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+};
+const WHITE = new THREE.Color(themeColor('--scene-line', '#d4d4d8'));
+const AMBER = new THREE.Color(themeColor('--scene-signal', '#f59e0b'));
+const WIRE = themeColor('--scene-wire', '#3f3f46');
 
 /**
  * Une couche de points sur un large plan vertical, à une profondeur z donnée.
@@ -159,7 +166,7 @@ function WireCore() {
     <group ref={group} position={[3.4, 1.2, -2]}>
       <mesh>
         <icosahedronGeometry args={[2.1, 1]} />
-        <meshBasicMaterial color="#3f3f46" wireframe transparent opacity={0.5} />
+        <meshBasicMaterial color={WIRE} wireframe transparent opacity={0.5} />
       </mesh>
       <mesh ref={ring} rotation={[Math.PI / 2.4, 0, 0]}>
         <torusGeometry args={[3.1, 0.006, 8, 120]} />

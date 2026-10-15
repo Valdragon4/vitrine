@@ -135,10 +135,10 @@ const Experience = () => {
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
         <Parallax speed={0.1}>
           <div className="mb-16 max-w-3xl">
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight text-balance">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-50 tracking-tight text-balance">
               Une double casquette réseau &amp; développement
             </h2>
-            <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
+            <p className="mt-5 text-lg text-ink-300 leading-relaxed max-w-[36rem]">
               Administrateur systèmes et réseaux en alternance, développeur en
               freelance. Les deux métiers se nourrissent : je sais ce que coûte en
               production le code que j&apos;écris.
@@ -155,7 +155,7 @@ const Experience = () => {
             type="button"
             onClick={() => setShowAll(!showAll)}
             aria-expanded={showAll}
-            className="group flex items-center gap-2.5 min-h-[44px] px-5 py-3 rounded-lg border border-zinc-800 text-zinc-300 hover:text-zinc-100 hover:border-zinc-600 transition-colors text-sm"
+            className="group flex items-center gap-2.5 min-h-[44px] px-5 py-3 rounded-lg border border-ink-800 text-ink-300 hover:text-ink-100 hover:border-ink-600 transition-colors text-sm"
           >
             <span>
               {showAll
@@ -171,25 +171,25 @@ const Experience = () => {
           </button>
         </div>
 
-        <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-8 sm:p-10">
-          <h3 className="font-display text-xl font-semibold text-zinc-100 mb-3">
+        <div className="rounded-2xl border border-ink-800 bg-ink-900/40 p-8 sm:p-10">
+          <h3 className="font-display text-xl font-semibold text-ink-100 mb-3">
             Intéressé par mon profil ?
           </h3>
-          <p className="text-zinc-300 mb-7 max-w-[36rem] text-[0.9375rem] leading-relaxed">
+          <p className="text-ink-300 mb-7 max-w-[36rem] text-[0.9375rem] leading-relaxed">
             Disponible pour des missions de prestation, des projets au forfait et
             des opportunités en alternance.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors"
+              className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold bg-signal-500 text-ink-950 hover:bg-signal-400 transition-colors"
             >
               Me contacter
             </a>
             <a
               href="/cv-valentin-marot.pdf"
               download="CV-Valentin-MAROT.pdf"
-              className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold border border-zinc-700 text-zinc-200 hover:border-zinc-500 hover:text-white transition-colors"
+              className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold border border-ink-700 text-ink-200 hover:border-ink-500 hover:text-white transition-colors"
             >
               Télécharger mon CV
             </a>

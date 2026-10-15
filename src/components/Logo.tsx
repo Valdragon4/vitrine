@@ -15,9 +15,9 @@ const Logo = ({ size = 'md', variant = 'full', className = '' }: LogoProps) => {
 
   const monogram = (
     <div
-      className={`${sizeClasses[size]} rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center ${className}`}
+      className={`${sizeClasses[size]} rounded-lg border border-ink-700 bg-ink-900 flex items-center justify-center ${className}`}
     >
-      <span className="font-mono font-semibold text-amber-400 tracking-tight">
+      <span className="font-display font-bold text-signal-400 tracking-tight">
         VM
       </span>
     </div>
@@ -29,10 +29,10 @@ const Logo = ({ size = 'md', variant = 'full', className = '' }: LogoProps) => {
     <div className={`flex items-center gap-3 ${className}`}>
       {monogram}
       <div className="flex flex-col">
-        <span className="font-semibold text-zinc-100 text-base leading-tight">
+        <span className="font-semibold text-ink-100 text-base leading-tight">
           Valentin Marot
         </span>
-        <span className="font-mono text-xs text-zinc-400">
+        <span className="text-xs text-ink-400">
           Fondateur d&apos;Ordely
         </span>
       </div>

@@ -12,7 +12,7 @@ import SceneBackground from '@/components/scene/SceneBackground';
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-zinc-200">
+    <main className="min-h-screen text-ink-200">
       <SceneBackground />
       <div className="relative z-10">
         <Header />

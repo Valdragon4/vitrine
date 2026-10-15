@@ -35,16 +35,13 @@ const Hero = () => {
         <div className="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-12 xl:gap-20 items-center">
           {/* Colonne argumentaire */}
           <div>
-            <p className="mb-6 text-xs uppercase tracking-[0.16em] text-amber-400/90 font-medium">
-              Fondateur d&apos;Ordely · éditeur de logiciels
-            </p>
-            <h1 className="font-display text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-bold leading-[1.04] tracking-tight text-zinc-50 text-balance">
+            <h1 className="font-display text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-bold leading-[1.04] tracking-tight text-ink-50 text-balance">
               Je crée des logiciels que des commerces et des associations
               utilisent{' '}
-              <span className="text-amber-400">chaque jour</span>.
+              <span className="text-signal-400">chaque jour</span>.
             </h1>
 
-            <p className="mt-7 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
+            <p className="mt-7 text-lg text-ink-300 leading-relaxed max-w-[36rem]">
               Fondateur d&apos;Ordely, le carnet de commandes par SMS des
               boulangeries, j&apos;édite aussi des logiciels pour les
               associations. Je les conçois, les déploie et les héberge sur ma
@@ -55,7 +52,7 @@ const Hero = () => {
             <div className="mt-9 flex flex-col sm:flex-row gap-3 sm:items-center">
               <a
                 href="#produits"
-                className="group inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors"
+                className="group inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold bg-signal-500 text-ink-950 hover:bg-signal-400 transition-colors"
               >
                 Découvrir mes produits
                 <ArrowRight
@@ -65,29 +62,29 @@ const Hero = () => {
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold border border-zinc-700 text-zinc-200 hover:border-zinc-500 hover:text-white transition-colors"
+                className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold border border-ink-700 text-ink-200 hover:border-ink-500 hover:text-white transition-colors"
               >
                 Discuter d&apos;un projet
               </a>
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-zinc-400">
-              <span className="text-zinc-400">stack&nbsp;:</span>
+            <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-ink-400">
+              <span className="text-ink-400">Outils&nbsp;:</span>
               {STACK.map((tech, i) => (
                 <span key={tech} className="flex items-center gap-4">
-                  <span className="text-zinc-300">{tech}</span>
-                  {i < STACK.length - 1 && <span className="text-zinc-700">/</span>}
+                  <span className="text-ink-300">{tech}</span>
+                  {i < STACK.length - 1 && <span className="text-ink-700">/</span>}
                 </span>
               ))}
             </div>
 
-            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-zinc-400">
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-400">
               <span className="inline-flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-zinc-500" aria-hidden="true" />
+                <MapPin className="w-4 h-4 text-ink-500" aria-hidden="true" />
                 Champagne-Ardenne · à distance partout en France
               </span>
               <span className="inline-flex items-center gap-2">
-                <Clock3 className="w-4 h-4 text-zinc-500" aria-hidden="true" />
+                <Clock3 className="w-4 h-4 text-ink-500" aria-hidden="true" />
                 Réponse sous 24 h · devis gratuit
               </span>
             </div>
@@ -95,11 +92,11 @@ const Hero = () => {
 
           {/* Colonne preuve — occupe le vide et répond tout de suite au
               « est-ce qu'il sait vraiment faire ? » */}
-          <div className="rounded-2xl border border-zinc-800 bg-[#0c0c0e]/80 p-7 sm:p-8">
-            <p className="text-sm font-semibold text-zinc-100">
+          <div className="rounded-2xl border border-ink-800 bg-card/80 p-7 sm:p-8">
+            <p className="text-sm font-semibold text-ink-100">
               En production aujourd&apos;hui
             </p>
-            <p className="mt-1.5 text-[13px] text-zinc-400 leading-relaxed max-w-[26rem]">
+            <p className="mt-1.5 text-[13px] text-ink-400 leading-relaxed max-w-[26rem]">
               Pas des maquettes : des logiciels vendus, utilisés, et
               l&apos;infrastructure qui les fait tourner.
             </p>
@@ -108,14 +105,14 @@ const Hero = () => {
               {PROOF.map((item) => (
                 <div key={item.fact} className="flex gap-3.5">
                   <span
-                    className="mt-[0.55rem] w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0"
+                    className="mt-[0.55rem] w-1.5 h-1.5 rounded-full bg-signal-500 flex-shrink-0"
                     aria-hidden="true"
                   />
                   <div>
-                    <dt className="text-[0.9375rem] font-medium text-zinc-100 tabular">
+                    <dt className="text-[0.9375rem] font-medium text-ink-100 tabular">
                       {item.fact}
                     </dt>
-                    <dd className="text-[13px] text-zinc-400 leading-relaxed max-w-[26rem]">
+                    <dd className="text-[13px] text-ink-400 leading-relaxed max-w-[26rem]">
                       {item.detail}
                     </dd>
                   </div>

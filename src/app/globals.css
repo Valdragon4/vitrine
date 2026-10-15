@@ -2,18 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------
+   Thème « plaque émaillée » : fond graphite, cadres bleu émail des plaques
+   de rue avec leur filet blanc incrusté, lettrage blanc, accent jade. Toute couleur, tout rayon et les
+   polices passent par ces variables ; les composants n'en connaissent que
+   les noms.
+   --------------------------------------------------------------- */
 :root {
-  /* Base graphite (neutre, volontairement peu bleutée) */
-  --bg: #0a0a0b;
-  --surface: #141416;
-  --border: #26262a;
-  --text: #e8e8ea;
-  --text-muted: #a1a1aa;
-  --text-faint: #71717a;
+  --page: 10 10 11;
+  --card: 19 48 111;
+  --ink-50: 246 248 251;
+  --ink-100: 237 241 247;
+  --ink-200: 220 227 238;
+  --ink-300: 197 208 226;
+  --ink-400: 169 184 210;
+  --ink-500: 143 162 196;
+  --ink-600: 90 111 152;
+  --ink-700: 61 83 132;
+  --ink-800: 34 53 95;
+  --ink-900: 21 38 74;
+  --ink-950: 10 21 48;
+  --signal-300: 178 232 203;
+  --signal-400: 126 211 168;
+  --signal-500: 244 246 248;
+  --signal-600: 220 228 238;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --font-display: var(--font-barlow-condensed);
+  --font-sans: var(--font-barlow);
+  --scene-line: #dce3ee;
+  --scene-signal: #7ed3a8;
+  --scene-wire: #2a3f70;
+}
 
-  /* Accent unique */
-  --accent: #f59e0b;
-  --accent-soft: #fbbf24;
+/* Rôles dérivés du thème : le reste de la feuille ne parle qu'eux. */
+:root {
+  --bg: rgb(var(--page));
+  --surface: rgb(var(--card));
+  --border: rgb(var(--ink-800));
+  --text: rgb(var(--ink-100));
+  --text-muted: rgb(var(--ink-400));
+  --text-faint: rgb(var(--ink-500));
+  --accent: rgb(var(--signal-400));
+  --accent-soft: rgb(var(--signal-300));
 
   /* Le site n'a pas de thème clair : le dire au navigateur, sinon les
      contrôles natifs (validation de formulaire, autofill, scrollbars
@@ -43,8 +75,8 @@ body {
 }
 
 ::selection {
-  background: rgba(245, 158, 11, 0.25);
-  color: #fff;
+  background: rgb(var(--signal-400) / 0.3);
+  color: rgb(var(--ink-50));
 }
 
 /* Ancrage sous le header fixe */
@@ -58,12 +90,12 @@ section[id] {
    Sans cette règle, tout ce qui n'est pas un champ de formulaire —
    cartes de projet, boutons d'appel à l'action, navigation, liens de
    pied de page — hérite de l'outline par défaut du navigateur, qui est
-   un liseré sombre invisible sur #0a0a0b.
+   un liseré sombre invisible sur le fond sombre.
    --------------------------------------------------------------- */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 /* Les surfaces déjà arrondies gardent leur propre rayon. */
 a:focus-visible,
@@ -80,18 +112,18 @@ button:focus-visible {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a2e;
-  border-radius: 6px;
+  background: rgb(var(--ink-800));
+  border-radius: var(--radius-md);
   border: 2px solid var(--bg);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3a3f;
+  background: rgb(var(--ink-700));
 }
 ::-webkit-scrollbar-corner {
   background: var(--bg);
 }
 html {
-  scrollbar-color: #2a2a2e var(--bg);
+  scrollbar-color: rgb(var(--ink-800)) var(--bg);
   scrollbar-width: thin;
 }
 
@@ -104,36 +136,36 @@ html {
 input[type='text'],
 input[type='email'],
 textarea {
-  color: #e8e8ea !important;
-  background-color: #141416 !important;
-  border: 1px solid #26262a !important;
-  border-radius: 10px !important;
+  color: var(--text) !important;
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
   transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
   caret-color: var(--accent) !important;
 }
 input[type='text']:focus,
 input[type='email']:focus,
 textarea:focus {
-  color: #fff !important;
-  background-color: #141416 !important;
+  color: rgb(var(--ink-50)) !important;
+  background-color: var(--surface) !important;
   border-color: var(--accent) !important;
-  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18) !important;
+  box-shadow: 0 0 0 3px rgb(var(--signal-400) / 0.2) !important;
   outline: none !important;
 }
 input[type='text']::placeholder,
 input[type='email']::placeholder,
 textarea::placeholder {
-  color: #8b8b93 !important;
+  color: rgb(var(--ink-500)) !important;
   opacity: 1 !important;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
-  -webkit-text-fill-color: #e8e8ea !important;
-  -webkit-box-shadow: 0 0 0px 1000px #141416 inset !important;
-  box-shadow: 0 0 0px 1000px #141416 inset !important;
-  border: 1px solid #26262a !important;
+  -webkit-text-fill-color: var(--text) !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--surface) inset !important;
+  box-shadow: 0 0 0px 1000px var(--surface) inset !important;
+  border: 1px solid var(--border) !important;
   transition: background-color 5000s ease-in-out 0s !important;
 }
 
@@ -145,4 +177,23 @@ textarea:-webkit-autofill {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+/* Plaque émaillée : les cadres bleu émail portent un filet clair incrusté à
+   quelques pixels du bord. Tracé AU-DESSUS du contenu, pour qu'une image qui
+   remplit le cadre reste encadrée au lieu de recouvrir le filet. Réservé aux
+   plaques elles-mêmes (fond bg-card) : un encadré posé dedans n'en reçoit
+   pas un second. */
+.border[class*='rounded-'][class*='bg-card']:not(.absolute):not(.fixed) {
+  position: relative;
+}
+.border[class*='rounded-2xl'][class*='bg-card']::after,
+.border[class*='rounded-xl'][class*='bg-card']::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1.5px solid rgb(var(--ink-100) / 0.7);
+  border-radius: calc(var(--radius-lg) - 5px);
+  pointer-events: none;
+  z-index: 30;
 }

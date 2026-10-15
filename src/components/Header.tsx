@@ -52,7 +52,7 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         isScrolled || isOpen
-          ? 'bg-[#0a0a0b]/90 backdrop-blur-md border-b border-zinc-800'
+          ? 'bg-page/90 backdrop-blur-md border-b border-ink-800'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -70,7 +70,7 @@ const Header = () => {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-zinc-300 hover:text-amber-400 transition-colors rounded"
+                className="text-sm text-ink-300 hover:text-signal-400 transition-colors rounded"
               >
                 {item.label}
               </a>
@@ -80,7 +80,7 @@ const Header = () => {
           <div className="flex items-center gap-2">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center min-h-[44px] px-5 py-3 rounded-lg text-sm font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors"
+              className="inline-flex items-center justify-center min-h-[44px] px-5 py-3 rounded-lg text-sm font-semibold bg-signal-500 text-ink-950 hover:bg-signal-400 transition-colors"
             >
               Me contacter
             </a>
@@ -92,7 +92,7 @@ const Header = () => {
               aria-expanded={isOpen}
               aria-controls="menu-mobile"
               aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-              className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-200 hover:border-zinc-600 transition-colors"
+              className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-ink-800 bg-ink-900 text-ink-200 hover:border-ink-600 transition-colors"
             >
               {isOpen ? (
                 <X className="w-5 h-5" aria-hidden="true" />
@@ -110,7 +110,7 @@ const Header = () => {
         id="menu-mobile"
         ref={panelRef}
         hidden={!isOpen}
-        className="md:hidden border-t border-zinc-800 bg-[#0a0a0b]/97 backdrop-blur-md"
+        className="md:hidden border-t border-ink-800 bg-page/97 backdrop-blur-md"
       >
         <nav
           className="max-w-[100rem] mx-auto px-5 sm:px-8 py-3"
@@ -121,7 +121,7 @@ const Header = () => {
               key={item.href}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className="flex items-center min-h-[52px] px-2 text-base text-zinc-200 border-b border-zinc-900 last:border-b-0 hover:text-amber-400 transition-colors"
+              className="flex items-center min-h-[52px] px-2 text-base text-ink-200 border-b border-ink-900 last:border-b-0 hover:text-signal-400 transition-colors"
             >
               {item.label}
             </a>

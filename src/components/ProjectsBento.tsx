@@ -50,10 +50,10 @@ const ProjectsBento = () => {
       <div className="relative z-10 max-w-[100rem] mx-auto px-5 sm:px-8 lg:px-12">
         <Parallax speed={0.1}>
           <div className="mb-16 max-w-3xl">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink-50 tracking-tight text-balance">
               L’envers du décor : ce qui fait tourner les produits
             </h2>
-            <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
+            <p className="mt-5 text-lg text-ink-300 leading-relaxed max-w-[36rem]">
               Infrastructure, outillage, chaînes de déploiement, outils internes et
               contributions open source. Chaque réalisation a sa page : le
               problème, ce qui a coincé, et ce que ça donne aujourd&apos;hui.
@@ -70,7 +70,7 @@ const ProjectsBento = () => {
               <Link
                 key={project.slug}
                 href={`/projects/${project.slug}`}
-                className={`group relative rounded-xl overflow-hidden border border-zinc-800 bg-[#0c0c0e] transition-colors duration-300 hover:border-zinc-600 focus-visible:border-amber-500 ${spanFor(
+                className={`group relative rounded-xl overflow-hidden border border-ink-800 bg-card transition-colors duration-300 hover:border-ink-600 focus-visible:border-signal-500 ${spanFor(
                   project.size
                 )}`}
               >
@@ -83,7 +83,7 @@ const ProjectsBento = () => {
                       aria-hidden="true"
                       className="w-full h-full object-cover object-top opacity-50 transition-opacity duration-700 ease-out group-hover:opacity-80"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/75 to-[#0a0a0b]/20" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-page via-page/75 to-page/20" />
                   </div>
                 )}
 
@@ -100,14 +100,14 @@ const ProjectsBento = () => {
                       {project.badges.map((badge) => (
                         <span
                           key={badge}
-                          className="text-[11px] uppercase tracking-wider px-2 py-0.5 rounded border border-zinc-700/80 bg-zinc-950/70 text-zinc-300"
+                          className="text-xs font-medium px-2 py-0.5 rounded border border-ink-700/80 bg-ink-950/70 text-ink-300"
                         >
                           {badge}
                         </span>
                       ))}
                     </div>
                     <ArrowUpRight
-                      className="w-4 h-4 text-zinc-600 flex-shrink-0 transition-[color,transform] duration-300 group-hover:text-amber-400 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      className="w-4 h-4 text-ink-600 flex-shrink-0 transition-[color,transform] duration-300 group-hover:text-signal-400 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                       aria-hidden="true"
                     />
                   </div>
@@ -115,8 +115,8 @@ const ProjectsBento = () => {
                   {/* Rangée basse : le titre mène, la transformation suit */}
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2.5">
-                      <span className="w-8 h-8 rounded-lg border border-zinc-700 bg-zinc-900 flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-4 h-4 text-amber-400" />
+                      <span className="w-8 h-8 rounded-lg border border-ink-700 bg-ink-900 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-4 h-4 text-signal-400" />
                       </span>
                       <h3
                         className={`font-semibold text-white tracking-tight ${
@@ -128,16 +128,16 @@ const ProjectsBento = () => {
                     </div>
 
                     {isLarge && (
-                      <p className="text-zinc-300 leading-relaxed max-w-[34rem] pt-1">
+                      <p className="text-ink-300 leading-relaxed max-w-[34rem] pt-1">
                         {project.description}
                       </p>
                     )}
 
                     <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px] leading-snug">
-                      <span className="text-zinc-400 line-through decoration-zinc-600">
+                      <span className="text-ink-400 line-through decoration-ink-600">
                         {project.problem}
                       </span>
-                      <span className="text-amber-400/90 font-medium">
+                      <span className="text-signal-400/90 font-medium">
                         {project.result}
                       </span>
                     </p>
@@ -147,7 +147,7 @@ const ProjectsBento = () => {
                         {project.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="font-mono text-[11px] px-2 py-0.5 rounded border border-zinc-800 bg-zinc-950/60 text-zinc-400"
+                            className="text-xs px-2 py-0.5 rounded border border-ink-800 bg-ink-950/60 text-ink-400"
                           >
                             {tech}
                           </span>
