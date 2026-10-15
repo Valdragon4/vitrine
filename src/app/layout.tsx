@@ -36,9 +36,14 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://valentin-marot.fr'),
-  title: "Valentin MAROT - Développeur Web & DevOps | Solutions sur mesure",
-  description: "Développeur web & DevOps freelance spécialisé en Python, Docker, Linux. Création d'applications web, automatisation et administration système. Solutions sur mesure pour entreprises et associations.",
+  title: "Valentin MAROT - Fondateur d'Ordely, développeur & DevOps",
+  description: "Fondateur d'Ordely, logiciel de commande par SMS pour boulangeries. J'édite des logiciels pour commerces et associations, et je conçois, déploie et héberge des applications sur mesure avec CI/CD et infrastructure supervisée.",
   keywords: [
+    "Ordely",
+    "commande par SMS",
+    "logiciel boulangerie",
+    "SMS association",
+    "CI/CD",
     "développeur web", 
     "développeur Python", 
     "DevOps", 
@@ -75,8 +80,8 @@ export const metadata: Metadata = {
     canonical: 'https://valentin-marot.fr',
   },
   openGraph: {
-    title: "Valentin MAROT - Développeur Web & DevOps | Solutions sur mesure",
-    description: "Développeur web & DevOps freelance spécialisé en Python, Docker, Linux. Création d'applications web, automatisation et administration système.",
+    title: "Valentin MAROT - Fondateur d'Ordely, développeur & DevOps",
+    description: "Fondateur d'Ordely. Logiciels pour commerces et associations, applications sur mesure, CI/CD et hébergement supervisé.",
     url: 'https://valentin-marot.fr',
     siteName: 'Valentin MAROT - Portfolio',
     locale: 'fr_FR',
@@ -92,8 +97,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Valentin MAROT - Développeur Web & DevOps',
-    description: 'Développeur web & DevOps freelance spécialisé en Python, Docker, Linux. Solutions sur mesure.',
+    title: "Valentin MAROT - Fondateur d'Ordely, développeur & DevOps",
+    description: 'Fondateur d’Ordely. Logiciels pour commerces et associations, CI/CD et hébergement.',
     images: ['https://valentin-marot.fr/og-image.jpg'],
     creator: '@valentin_marot',
   },
@@ -125,8 +130,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Valentin MAROT",
-              "jobTitle": "Développeur Web & DevOps",
-              "description": "Développeur web & DevOps freelance spécialisé en Python, Docker, Linux",
+              "jobTitle": "Fondateur d'Ordely, développeur & DevOps",
+              "description": "Fondateur d'Ordely, éditeur de logiciels pour commerces et associations, développeur & DevOps",
               "url": "https://valentin-marot.fr",
               "sameAs": [
                 "https://github.com/Valdragon4",

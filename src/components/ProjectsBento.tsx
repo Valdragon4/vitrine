@@ -18,6 +18,32 @@ const spanFor = (size: ProjectItem['size']) => {
   return 'min-h-[200px] md:min-h-0 md:col-span-1 md:row-span-1';
 };
 
+/**
+ * Les produits ont leur propre section : la grille ne garde que les
+ * réalisations techniques. L'ordre est explicite parce que la grille ne se
+ * remplit sans trou qu'avec cet enchaînement de tailles.
+ */
+const ORDER = [
+  'homelab',
+  'mcp-infra',
+  'vitrine',
+  'sauvegardes',
+  'openproject-reskin',
+  'dashboard-patrimoine',
+  'media-stack',
+  'mailcow',
+  'table-virtuelle-mtg',
+  'centreon-plugin',
+];
+
+const realisations = projectsData
+  .filter((p) => !p.product)
+  .sort((a, b) => {
+    const ia = ORDER.indexOf(a.slug);
+    const ib = ORDER.indexOf(b.slug);
+    return (ia === -1 ? ORDER.length : ia) - (ib === -1 ? ORDER.length : ib);
+  });
+
 const ProjectsBento = () => {
   return (
     <section id="projets" className="relative py-28 sm:py-36 overflow-hidden">
@@ -25,18 +51,18 @@ const ProjectsBento = () => {
         <Parallax speed={0.1}>
           <div className="mb-16 max-w-3xl">
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
-              Onze projets en service, pas des maquettes
+              L’envers du décor : ce qui fait tourner les produits
             </h2>
             <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
-              Applications en production, infrastructure qui les héberge et
-              contributions open source. Chaque projet a sa page : le problème,
-              ce qui a coincé, et ce que ça donne aujourd&apos;hui.
+              Infrastructure, outillage, chaînes de déploiement, outils internes et
+              contributions open source. Chaque réalisation a sa page : le
+              problème, ce qui a coincé, et ce que ça donne aujourd&apos;hui.
             </p>
           </div>
         </Parallax>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:auto-rows-[210px]">
-          {projectsData.map((project) => {
+          {realisations.map((project) => {
             const Icon = project.icon;
             const isLarge = project.size === 'large';
 

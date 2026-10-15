@@ -51,11 +51,12 @@ const Services = () => {
         <Parallax speed={0.1}>
           <div className="mb-16 max-w-3xl">
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-50 tracking-tight text-balance">
-              Du code à la production, un seul interlocuteur
+              Votre projet, avec la rigueur de mes produits
             </h2>
             <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
               La plupart des projets se cassent entre deux prestataires : celui qui
-              développe et celui qui héberge. Je tiens les deux bouts de la chaîne.
+              développe et celui qui héberge. Je tiens les deux bouts de la chaîne,
+              avec les méthodes qui font tourner Ordely en production.
             </p>
           </div>
         </Parallax>

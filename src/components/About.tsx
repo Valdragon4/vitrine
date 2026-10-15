@@ -14,8 +14,8 @@ const infos = [
   {
     icon: Building2,
     label: 'Statut',
-    value: 'Auto-entrepreneur',
-    detail: 'Micro-entreprise, SIRET enregistré',
+    value: 'Micro-entreprise',
+    detail: 'Éditeur de logiciels et prestataire, SIRET enregistré',
   },
   {
     icon: MapPin,
@@ -45,7 +45,7 @@ const About = () => {
         <Parallax speed={0.1}>
           <div className="mb-16 max-w-3xl">
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-zinc-50 tracking-tight text-balance">
-              Développeur et administrateur système, en freelance
+              Entrepreneur, développeur et administrateur système
             </h2>
           </div>
         </Parallax>
@@ -54,10 +54,13 @@ const About = () => {
           {/* La prose porte l'argument : elle n'a pas besoin d'une carte */}
           <div>
             <p className="text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
-              En Master Réseaux &amp; Télécommunications et en alternance sur
-              l&apos;administration systèmes et réseaux, j&apos;ai lancé ma
-              micro-entreprise pour accompagner entreprises, indépendants et
-              associations.
+              J&apos;ai fondé Ordely pour régler un problème concret : des
+              boulangeries qui prennent leurs commandes sur un cahier, entre deux
+              appels pendant le rush. Autour de ce produit, ma micro-entreprise
+              édite des logiciels pour les associations et accompagne
+              entreprises, indépendants et structures dans leurs projets — en
+              parallèle d&apos;un Master Réseaux &amp; Télécommunications en
+              alternance.
             </p>
             <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
               Je réunis deux compétences rarement associées :{' '}
@@ -69,9 +72,10 @@ const About = () => {
               responsabilité.
             </p>
             <p className="mt-5 text-lg text-zinc-300 leading-relaxed max-w-[36rem]">
-              Ce n&apos;est pas théorique : j&apos;administre quatre machines sur
-              trois sites, un SaaS en production et une vingtaine de services
-              exposés. Tout ce que je propose, je le fais déjà tourner chez moi.
+              Ce n&apos;est pas théorique : j&apos;administre cinq machines sur
+              trois sites, des logiciels en production chez de vrais clients et
+              une vingtaine de services exposés. Tout ce que je propose, je le
+              fais déjà tourner chez moi.
             </p>
 
             <div className="mt-10 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center gap-5">

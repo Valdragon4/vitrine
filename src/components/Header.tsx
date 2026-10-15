@@ -5,8 +5,10 @@ import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 
 const NAV = [
+  { label: 'Produits', href: '#produits' },
+  { label: 'Architecture', href: '#architecture' },
   { label: 'Services', href: '#services' },
-  { label: 'Projets', href: '#projets' },
+  { label: 'Réalisations', href: '#projets' },
   { label: 'Parcours', href: '#experience' },
   { label: 'À propos', href: '#a-propos' },
   { label: 'Contact', href: '#contact' },

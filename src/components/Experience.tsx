@@ -11,20 +11,20 @@ const Experience = () => {
   const timelineItems = [
     {
       id: 'freelance',
-      title: 'Développeur web & DevOps — Freelance',
-      company: 'Auto-entrepreneur',
+      title: 'Fondateur d’Ordely · Développeur & DevOps indépendant',
+      company: 'Micro-entreprise',
       location: 'Champagne-Ardenne · à distance',
       period: '2025 — en cours',
       type: 'experience' as const,
       description:
-        "Conception, déploiement et hébergement d'applications web pour des clients, de la première ligne de code à la supervision en production. Disponible pour des missions de prestation et des projets au forfait.",
+        "Création et exploitation de mes propres logiciels — Ordely en tête — et conception, déploiement et hébergement d'applications pour des clients, de la première ligne de code à la supervision en production.",
       achievements: [
-        "Développement d'applications sur mesure, du front à l'API",
-        'Conteneurisation et chaînes de déploiement continu',
-        'Administration de serveurs Linux, reverse-proxy, TLS et DNS',
-        'Supervision, sauvegardes et maintenance dans la durée',
+        'Ordely : SaaS de commande par SMS, en production chez une boulangerie depuis août 2026',
+        'Messagerie SMS et application Le Coucou pour la Maison Sport-Santé Akhilleus',
+        'Dix chaînes CI/CD : tests, migrations, déploiement et retour arrière',
+        'Infrastructure de cinq machines : supervision, sauvegardes vérifiées, documentation',
       ],
-      technologies: ['Next.js', 'Python', 'Docker', 'Linux', 'Nginx', 'CI/CD'],
+      technologies: ['Next.js', 'Python', 'Flutter', 'Docker', 'Linux', 'CI/CD'],
       current: true,
     },
     {

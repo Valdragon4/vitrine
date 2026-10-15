@@ -4,8 +4,10 @@ import { Mail, Github, Linkedin } from 'lucide-react';
 import { resetConsent } from '@/lib/consent';
 
 const NAV = [
+  { label: 'Produits', href: '#produits' },
+  { label: 'Architecture', href: '#architecture' },
   { label: 'Services', href: '#services' },
-  { label: 'Projets', href: '#projets' },
+  { label: 'Réalisations', href: '#projets' },
   { label: 'Parcours', href: '#experience' },
   { label: 'À propos', href: '#a-propos' },
   { label: 'Contact', href: '#contact' },

@@ -10,6 +10,9 @@ import {
   HardDrive,
   GitPullRequest,
   Globe,
+  Send,
+  Bell,
+  Fuel,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -49,6 +52,19 @@ export interface ProjectItem {
   gallery?: { src: string; alt: string; caption: string }[];
   demo?: string;
   github?: string;
+  /**
+   * Présent sur les seuls produits que j'édite ou que je vends. Ils sont
+   * présentés dans la section Produits, et non dans la grille des
+   * réalisations : un produit se juge à ses clients, pas à sa pile.
+   */
+  product?: {
+    /** À qui il s'adresse, dans les mots du client. */
+    audience: string;
+    /** Où il en est, sans arrondir vers le haut. */
+    status: string;
+    /** Faits mesurés, jamais des objectifs. */
+    metrics?: { value: string; label: string }[];
+  };
 }
 
 export const projectsData: ProjectItem[] = [
@@ -58,7 +74,16 @@ export const projectsData: ProjectItem[] = [
     problem: 'Commandes prises au téléphone, une par une',
     result: 'Commandes par SMS, comprises et traitées seules',
     description:
-      "Plateforme SaaS multi-commerces de prise de commande par SMS, en production. Le client écrit un message en langage courant ; le système le comprend, vérifie la disponibilité et confirme.",
+      "Le carnet de commandes des boulangeries. Le client écrit un SMS comme il écrirait à son boulanger ; Ordely comprend la demande, vérifie catalogue, stock et horaires, répond et enregistre la commande.",
+    product: {
+      audience: 'Boulangeries et commerces de bouche',
+      status: 'En production depuis août 2026',
+      metrics: [
+        { value: '130+', label: 'clients commandent par SMS' },
+        { value: '~170', label: 'commandes gérées par semaine' },
+        { value: '2 sur 3', label: 'clients repassent commande' },
+      ],
+    },
     size: 'large',
     icon: MessageSquare,
     badges: ['Production', 'SaaS'],
@@ -77,7 +102,7 @@ export const projectsData: ProjectItem[] = [
       'GitHub Actions',
     ],
     fullDescription:
-      "Ordely permet à un commerce alimentaire de recevoir ses commandes par SMS plutôt qu'au téléphone. Le message arrive par une passerelle SMS, part dans une file Redis Streams, passe par une analyse en langage naturel qui en extrait produits, quantités et créneau de retrait, puis rejoint le traitement des commandes qui répond au client. Chaque étape est un service distinct : la réception ne dépend pas de l'analyse, et l'analyse ne bloque pas la confirmation. Côté commerçant, une interface web par enseigne ; côté plateforme, un back-office d'administration multi-tenant et une facturation à l'abonnement.",
+      "Ordely est mon produit : je l'ai conçu, je le développe, je l'héberge et je le vends. Il permet à une boulangerie de recevoir ses commandes par SMS plutôt qu'au téléphone pendant le rush — sans rien demander au client final, ni application ni mot-clé. Les commandes par SMS, au comptoir, en ligne et des clients réguliers arrivent au même endroit, et une fiche de production dit chaque matin quoi préparer, pour qui et pour quand. Côté technique, le message arrive par une passerelle SMS, part dans une file Redis Streams, passe par une analyse en langage naturel qui en extrait produits, quantités et créneau de retrait, puis rejoint le traitement des commandes qui répond au client. Le message arrive par une passerelle SMS, part dans une file Redis Streams, passe par une analyse en langage naturel qui en extrait produits, quantités et créneau de retrait, puis rejoint le traitement des commandes qui répond au client. Chaque étape est un service distinct : la réception ne dépend pas de l'analyse, et l'analyse ne bloque pas la confirmation. Côté commerçant, une interface web par enseigne ; côté plateforme, un back-office d'administration multi-tenant et une facturation à l'abonnement.",
     features: [
       'Analyse des SMS en langage naturel, y compris mal orthographiés',
       "Pipeline découplé en files d'attente : réception, analyse, commandes, réponses",
@@ -89,7 +114,7 @@ export const projectsData: ProjectItem[] = [
     challenges:
       "Comprendre des SMS écrits à la va-vite, sans ponctuation ni orthographe fiable. Isoler les données de chaque commerce sur une plateforme partagée. Et faire remonter la vraie adresse IP du client à travers deux couches de reverse-proxy — un réglage faux et c'est le journal d'audit, la limitation de débit et l'IP de consentement RGPD qui deviennent faux avec lui.",
     results:
-      "En production chez un commerçant. Le dépôt compte 860 commits et neuf chaînes d'intégration continue : tests, déploiement, migrations de base, sauvegarde quotidienne, contrôle de santé, maintenance, versionnage sémantique et retour arrière.",
+      "En production depuis août 2026 dans une boulangerie familiale de l'Aube : plus de 130 clients y commandent par SMS, environ 170 commandes par semaine, 43 clients réguliers sans ressaisie, et près d'un SMS sur six reçu avant 7 h ou après 20 h — des commandes qui, avant, n'arrivaient pas. Le dépôt compte plus de 1 300 commits et dix chaînes d'intégration continue : tests et audit des dépendances, construction des images, déploiement avec sauvegarde de la base avant migration, contrôle de santé, maintenance, versionnage sémantique, notes de mise à jour et retour arrière.",
     duration: '2024 — en cours',
     image: '/images/projects/ordely.png',
     gallery: [
@@ -103,13 +128,109 @@ export const projectsData: ProjectItem[] = [
     demo: 'https://ordely.fr',
   },
   {
+    slug: 'messagerie-sms',
+    title: 'Messagerie SMS',
+    problem: 'Prévenir 1 200 adhérents depuis un portable personnel',
+    result: 'Des campagnes envoyées depuis les téléphones de la structure',
+    description:
+      "Diffusion de SMS pour les associations, depuis leurs propres téléphones et cartes SIM. Écrire à tous les adhérents d'un coup, ou — bien plus souvent — à un groupe de dix à trente personnes.",
+    product: {
+      audience: 'Associations et structures médico-sociales',
+      status: 'En service chez Akhilleus · proposée à d’autres structures',
+      metrics: [
+        { value: '~1 200', label: 'adhérents joignables' },
+      ],
+    },
+    size: 'medium',
+    icon: Send,
+    badges: ['Production', 'Produit'],
+    technologies: ['Next.js', 'PostgreSQL', 'Android'],
+    stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Docker', 'Passerelle SMS privée', 'Application compagnon Android'],
+    fullDescription:
+      "Une association qui veut écrire à ses adhérents a deux mauvaises options : le portable personnel d'un bénévole, ou un service d'envoi en masse facturé au message. Cette solution prend une troisième voie : l'interface web compose les messages et les met en file, un moteur d'envoi les dépose sur une passerelle privée, et ce sont les téléphones de la structure, avec leurs propres forfaits, qui émettent. L'application web n'envoie jamais elle-même : une campagne à 1 200 destinataires ne peut pas dépendre d'un onglet de navigateur resté ouvert.",
+    features: [
+      'Envoi à toute l’association ou à des groupes ciblés',
+      'Plusieurs téléphones de la structure, répartition des envois',
+      'Moteur d’envoi découplé de l’interface : une campagne survit à la fermeture du navigateur',
+      'Gestion des listes et des réglages par l’équipe, sans développeur',
+      'Installation possible sur le serveur du client, en coordination avec son service informatique',
+    ],
+    challenges:
+      "Les deux usages tirent dans des sens opposés : une campagne à 1 200 destinataires exige débit maîtrisé et reprise sur incident, alors qu'un message à quinze personnes doit partir tout de suite. Et Android bride en silence les envois au-delà de trente messages par demi-heure — l'ordre est accepté, le téléphone attend dans un placard qu'on tape sur son écran. La limite est documentée, et levée une fois pour toutes à la mise en service.",
+    results:
+      "En service à la Maison Sport-Santé Akhilleus pour ses quelque 1 200 adhérents. La même solution est proposée à d’autres associations, en hébergement géré ou installée sur leur propre serveur.",
+    duration: '2026 — en cours',
+  },
+  {
+    slug: 'coucou-akhilleus',
+    title: 'Le Coucou',
+    problem: 'Des exercices conseillés, jamais refaits à la maison',
+    result: 'Un exercice de 30 secondes, au rythme de chacun',
+    description:
+      "Application installable pour une maison sport-santé : comme l'oiseau d'une horloge, elle envoie à chaque inscrit un exercice de moins de trente secondes, par notification, au rythme qu'il a choisi.",
+    product: {
+      audience: 'Maisons sport-santé et leurs adhérents',
+      status: 'En service depuis septembre 2026',
+    },
+    size: 'small',
+    icon: Bell,
+    badges: ['Production', 'Client'],
+    technologies: ['Next.js', 'PWA', 'Web Push'],
+    stack: ['Next.js', 'TypeScript', 'PostgreSQL 16', 'Web Push (VAPID)', 'PWA', 'Docker'],
+    fullDescription:
+      "Réalisée pour la Maison Sport-Santé Akhilleus. L'adhérent s'inscrit depuis son téléphone, choisit son rythme, et reçoit ses micro-exercices en notification — sans passer par un magasin d'applications. L'équipe gère les exercices et les vidéos depuis un espace dédié. Même principe que la messagerie SMS : l'interface inscrit et met en file, un planificateur séparé choisit l'exercice au moment de l'envoi et pousse la notification.",
+    features: [
+      'Application installable depuis le navigateur, sans magasin d’applications',
+      'Rythme choisi par chaque inscrit',
+      'Exercice choisi au moment de l’envoi, pas à l’avance',
+      'Espace équipe pour gérer exercices et vidéos',
+      'Relances et purge automatiques',
+    ],
+    challenges:
+      "Les notifications web passent par le service de chaque fabricant de navigateur — Google, Apple, Mozilla — chacun avec ses règles. Le planificateur doit tenir la journée de chaque inscrit sans jamais doubler un envoi ni en perdre un au redémarrage.",
+    results: 'Mise en service le 25 septembre 2026 pour les adhérents d’Akhilleus.',
+    duration: '2026 — en cours',
+  },
+  {
+    slug: 'plenove',
+    title: 'Plenove',
+    problem: 'La station la moins chère… à vingt minutes de détour',
+    result: 'Le plein le plus malin, détour compris',
+    description:
+      "Application mobile qui croise les prix officiels des carburants, le véhicule et le trajet réel pour indiquer où faire le plein au meilleur coût total — détour compris.",
+    product: {
+      audience: 'Automobilistes',
+      status: 'Application Android, abonnement via Google Play',
+      metrics: [{ value: '11 000+', label: 'stations suivies en France' }],
+    },
+    size: 'small',
+    icon: Fuel,
+    badges: ['Produit', 'Mobile'],
+    technologies: ['Flutter', 'FastAPI', 'OpenStreetMap'],
+    stack: ['Flutter', 'Dart', 'Python', 'FastAPI', 'OSRM', 'Nominatim', 'OpenStreetMap', 'Google Play Billing', 'Docker'],
+    fullDescription:
+      "Les comparateurs affichent le prix au litre, pas ce que coûte vraiment le plein : une station moins chère de trois centimes ne vaut rien à vingt minutes de détour. Plenove part de la base officielle des prix (mise à jour toutes les dix minutes), de la consommation réelle du véhicule (base de l'ADEME) et du trajet calculé sur la route, puis classe les stations par coût total. L'application Flutter s'appuie sur une API que j'héberge, avec son propre calcul d'itinéraires et de géocodage sur OpenStreetMap.",
+    features: [
+      'Prix officiels des carburants, rafraîchis toutes les dix minutes',
+      'Consommation du véhicule tirée de la base de l’ADEME',
+      'Stations cherchées le long du trajet réel, pas seulement autour de soi',
+      'Tri par coût total, temps de détour ou distance',
+      'Itinéraires et géocodage auto-hébergés, sans service cartographique payant',
+      'Abonnement Google Play, sans donnée personnelle conservée',
+    ],
+    challenges:
+      "Calculer des itinéraires réels pour chaque recherche sans payer un service cartographique au volume : le moteur d'itinéraires et le géocodage tournent sur mes serveurs, à partir des données OpenStreetMap de la France entière.",
+    results: 'API publique en service ; application Android avec abonnement intégré.',
+    duration: '2026 — en cours',
+  },
+  {
     slug: 'homelab',
     title: 'Infrastructure',
     problem: 'Dépendre d’un hébergeur pour chaque service',
-    result: 'Quatre machines, trois sites, tout sous contrôle',
+    result: 'Cinq machines, trois sites, tout sous contrôle',
     description:
-      "L'infrastructure sur laquelle tournent mes projets et ceux de mes clients : quatre machines réparties sur trois sites, reliées par un VPN, supervisées et documentées.",
-    size: 'medium',
+      "L'infrastructure sur laquelle tournent mes produits et ceux de mes clients : cinq machines réparties sur trois sites, reliées par un VPN, supervisées, sauvegardées et documentées.",
+    size: 'large',
     icon: Server,
     badges: ['Production', 'Infrastructure'],
     technologies: ['Linux', 'Docker', 'MikroTik', 'WireGuard'],
@@ -128,19 +249,19 @@ export const projectsData: ProjectItem[] = [
       'MkDocs',
     ],
     fullDescription:
-      "Quatre machines réparties sur trois sites — deux au même endroit, une sur un second site, une chez un hébergeur — reliées par un tunnel WireGuard dont le routeur MikroTik est le concentrateur. Un hôte porte les applications, un autre le reverse-proxy et ses vhosts, un troisième la supervision et la domotique, le dernier la production publique. Le réseau est segmenté en VLANs, l'administration du routeur est filtrée hors VPN, et tous les domaines publics passent derrière Cloudflare.",
+      "Cinq machines réparties sur trois sites — trois au même endroit, une sur un second site, une chez un hébergeur — reliées par un tunnel WireGuard dont le routeur MikroTik est le concentrateur. Un hôte porte les applications, un autre le reverse-proxy et ses vhosts, un troisième la supervision et la domotique, un quatrième la production publique, et un hyperviseur Proxmox les machines virtuelles de laboratoire. Le réseau est segmenté en VLANs, l'administration du routeur est filtrée hors VPN, et tous les domaines publics passent derrière Cloudflare.",
     features: [
-      'Environ 160 conteneurs actifs répartis sur les quatre machines',
+      'Environ 170 conteneurs actifs répartis sur le parc',
       'Reverse-proxy nginx d’une vingtaine de vhosts, certificats automatisés',
       'VPN WireGuard maillé entre les trois sites, réseau segmenté en VLANs',
-      'Supervision Prometheus / Grafana / Loki avec seize règles d’alerte',
+      'Supervision Prometheus / Grafana / Loki, près de quatre-vingts règles d’alerte',
       'Trois runners d’intégration continue auto-hébergés',
       'Adresse virtuelle keepalived pour la bascule de l’hôte applicatif',
     ],
     challenges:
       "Faire cohabiter du matériel très inégal : l'un des hôtes est un Core 2 Duo de 2007 qui porte tout le reverse-proxy. Un build applicatif l'avait saturé ; la chaîne de déploiement a été refaite pour que la compilation ait lieu sur la machine applicative et que celui-ci ne reçoive qu'une image déjà construite.",
     results:
-      "Les machines tiennent entre 86 et 91 jours d'uptime sans conteneur en défaut. L'ensemble est décrit dans 110 pages de documentation, journaux d'incidents compris — y compris les écarts constatés et les correctifs qui n'ont pas encore été appliqués.",
+      "Aucun conteneur en défaut sur le parc. Les sauvegardes sont copiées hors site et restaurées chaque semaine pour être comparées à la base vivante — une sauvegarde n'est déclarée bonne qu'après restauration. L'ensemble est décrit dans 125 pages de documentation, journaux d'incidents compris — y compris les écarts constatés et les correctifs qui n'ont pas encore été appliqués.",
     duration: '2023 — en cours',
     image: '/images/projects/homelab.png',
   },
@@ -150,16 +271,16 @@ export const projectsData: ProjectItem[] = [
     problem: 'Répondre de mémoire sur un parc qui bouge',
     result: 'Un agent qui lit l’état réel avant de répondre',
     description:
-      "Un serveur MCP que j'ai écrit pour exposer l'état réel de mes quatre machines à un assistant IA : conteneurs, services, ports, réseau et documentation, en lecture seule.",
+      "Un serveur MCP que j'ai écrit pour exposer l'état réel de mes cinq machines à un assistant IA : conteneurs, services, ports, réseau et documentation, en lecture seule.",
     size: 'medium',
     icon: Plug,
     badges: ['Outil interne', 'IA'],
     technologies: ['Python', 'MCP', 'systemd', 'MkDocs'],
     stack: ['Python', 'Model Context Protocol', 'systemd', 'SSH', 'Docker', 'MkDocs'],
     fullDescription:
-      "Diagnostiquer une infrastructure de mémoire, c'est produire une réponse plausible et périmée. Ce serveur expose donc l'état vivant du parc à un assistant : bilan de santé des quatre machines en un appel, recherche d'un service sur toutes les machines à la fois, conteneurs et ports d'un hôte, journaux d'un service, configuration réseau du routeur, et recherche plein texte dans les 110 pages de documentation. Tous les outils sont en lecture seule : aucun ne redémarre, ne déploie ni ne supprime.",
+      "Diagnostiquer une infrastructure de mémoire, c'est produire une réponse plausible et périmée. Ce serveur expose donc l'état vivant du parc à un assistant : bilan de santé de tout le parc en un appel, recherche d'un service sur toutes les machines à la fois, conteneurs et ports d'un hôte, journaux d'un service, configuration réseau du routeur, et recherche plein texte dans les 125 pages de documentation. Tous les outils sont en lecture seule : aucun ne redémarre, ne déploie ni ne supprime.",
     features: [
-      'Bilan de santé des quatre machines en un seul appel',
+      'Bilan de santé de tout le parc en un seul appel',
       'Recherche d’un service ou d’un port sur tout le parc à la fois',
       'Conteneurs, services systemd et ports en écoute par machine',
       'Configuration réseau : VLANs, pare-feu, NAT, VPN, baux DHCP',
@@ -331,7 +452,7 @@ export const projectsData: ProjectItem[] = [
     result: 'Sauvegardes vérifiées tous les jours',
     description:
       "Dispositif de sauvegarde centralisant les données de plusieurs serveurs, avec vérification d'intégrité et restauration testée.",
-    size: 'small',
+    size: 'medium',
     icon: HardDrive,
     badges: ['Infrastructure'],
     technologies: ['restic', 'SFTP', 'Docker'],
@@ -387,7 +508,7 @@ export const projectsData: ProjectItem[] = [
     result: 'Fusionner suffit à mettre en ligne',
     description:
       "Ce site : rendu 3D en arrière-plan, et une chaîne de déploiement continue qui va de la fusion à la vérification publique.",
-    size: 'small',
+    size: 'medium',
     icon: Globe,
     badges: ['En ligne'],
     technologies: ['Next.js', 'React Three Fiber', 'Tailwind'],

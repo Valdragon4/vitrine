@@ -33,7 +33,7 @@ const Logo = ({ size = 'md', variant = 'full', className = '' }: LogoProps) => {
           Valentin Marot
         </span>
         <span className="font-mono text-xs text-zinc-400">
-          Développeur web &amp; DevOps
+          Fondateur d&apos;Ordely
         </span>
       </div>
     </div>
